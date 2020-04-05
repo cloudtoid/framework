@@ -28,6 +28,8 @@ jobs:
       with:
         # Filepath of the project to be packaged, relative to root of repository
         PROJECT_FILE_PATH: src/Cloudtoid.Framework/Cloudtoid.Framework.csproj
+        VERSION_FILE_PATH: Directory.Build.props
+        VERSION_REGEX: <Version>(.*)<\/Version>
         # API key for the NuGet feed
         NUGET_KEY: oy2amvim54vyji3atgiqglgzp6mpqhcehgv3rvitpxp6fq
 
