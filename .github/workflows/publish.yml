@@ -15,16 +15,7 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.201
-    - name: Install dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
-    - name: Publish NuGet
-      uses: rohith/publish-nuget@v2.2.1
-      with:
-        PROJECT_FILE_PATH: src/Cloudtoid.Framework/Cloudtoid.Framework.csproj
-        VERSION_FILE_PATH: version
-        NUGET_KEY: oy2amvim54vyji3atgiqglgzp6mpqhcehgv3rvitpxp6fq
-
+    - name: Restore, build and pack
+      run: dotnet pack --configuration Release --output . --version-suffix ${{github.run_number}} src\Cloudtoid.Framework\Cloudtoid.Framework.csproj 
+    - name: Push
+      run: dotnet nuget push Cloudtoid.Framework.*.nupkg --source https://api.nuget.org/v3/index.json --api-key oy2amvim54vyji3atgiqglgzp6mpqhcehgv3rvitpxp6fq
