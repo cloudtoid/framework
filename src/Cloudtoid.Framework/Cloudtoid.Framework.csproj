@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>$(LibraryDotNetVersion)</TargetFramework>
@@ -19,6 +19,8 @@
     <IsPackable>true</IsPackable>
     <PackageTags>utilities;framework;utility;framework</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <VersionSuffix Condition=" '$(VersionSuffix)'=='' ">0</VersionSuffix>
+    <Version>1.0.$(VersionSuffix)</Version>
   </PropertyGroup>
 
   <ItemGroup>
