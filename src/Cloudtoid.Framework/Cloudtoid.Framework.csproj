@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(LibraryDotNetVersion)</TargetFramework>
+  </PropertyGroup>
+
+  <!-- Package References -->
+  <ItemGroup>
+    <PackageReference Include="System.Collections.Immutable" Version="1.7.*" />
+  </ItemGroup>
+
+  <!-- NuGet Packaging -->
+  <PropertyGroup>
+    <PackageId>Cloudtoid.Framework</PackageId>
+    <Title>Cloudtoid.Framework</Title>
+    <Authors>pedram@rezaei.us</Authors>
+    <PackageDescription>This is a common set of utility classes that is shared across cloudtoid</PackageDescription>
+    <Copyright>Copyright (c) Cloudtoid</Copyright>
+    <IsPackable>true</IsPackable>
+    <PackageTags>utilities;framework;utility;framework</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Build\Cloudtoid.Framework.targets" PackagePath="build" />
+    <Content Include="Build\Cloudtoid.Framework.props" PackagePath="build" />
+    <Content Include="$(FrameworkCodeAnalysis)\stylecop.props" PackagePath="build" Link="Build\stylecop.props" />
+    <Content Include="$(FrameworkCodeAnalysis)\stylecop.ruleset" PackagePath="build" Link="CodeAnalysis\stylecop.ruleset" />
+    <Content Include="$(FrameworkCodeAnalysis)\stylecop.json" PackagePath="build" Link="CodeAnalysis\stylecop.json" />
+    <Content Include="$(FrameworkCodeAnalysis)\BannedSymbols.txt" PackagePath="build" Link="CodeAnalysis\BannedSymbols.txt" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,135 @@
+#Banning Assert
+T:Microsoft.VisualStudio.TestTools.UnitTesting.Assert; Don't use Assert, use FluentAssertions instead.
+
+#Banning Moq
+M:Moq.Mock`1.#ctor; Don't use Moq, use NSubstitute instead.
+M:Moq.Mock`1(Moq.MockBehavior).#ctor; Don't use Moq, use NSubstitute instead.
+
+#Banning String.Format
+M:System.String.Format(System.String,System.Object); Don't use String.Format, use StringUtil.FormatInvariant instead.
+M:System.String.Format(System.String,System.Object,System.Object,System.Object); Don't use String.Format, use StringUtil.FormatInvariant instead.
+M:System.String.Format(System.String,System.Object[]); Don't use String.Format, use StringUtil.FormatInvariant instead.
+M:System.String.Format(System.String,System.Object,System.Object); Don't use String.Format, use StringUtil.FormatInvariant instead.
+M:System.String.Format(System.IFormatProvider,System.String,System.Object,System.Object,System.Object); Don't use String.Format, use StringUtil.FormatInvariant instead.
+M:System.String.Format(System.IFormatProvider,System.String,System.Object[]); Don't use String.Format, use StringUtil.FormatInvariant instead.
+M:System.String.Format(System.IFormatProvider,System.String,System.Object,System.Object); Don't use String.Format, use StringUtil.FormatInvariant instead.
+M:System.String.Format(System.IFormatProvider,System.String,System.Object); Don't use String.Format, use StringUtil.FormatInvariant instead.
+
+#Banning String.Equals
+M:System.String.Equals(System.String,System.StringComparison); Don't use String.Equal, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.Equals(System.String,System.String); Don't use String.Equal, use StringUtil.EqualsOrdinal pr StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.Equals(System.String,System.String,System.StringComparison); Don't use String.Equal, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.Equals(System.Object); Don't use String.Equal, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.Equals(System.String); Don't use String.Equal, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+
+#Banning String.IndexOf
+M:System.String.IndexOf(System.String,System.Int32,System.Int32); Don't use String.IndexOf, use StringUtil.IndexOfOrdinal or StringUtil.IndexOfOrdinalIgnoreCase instead.
+M:System.String.IndexOf(System.String,System.Int32,System.Int32,System.StringComparison); Don't use String.IndexOf, use StringUtil.IndexOfOrdinal or StringUtil.IndexOfOrdinalIgnoreCase instead.
+M:System.String.IndexOf(System.String,System.Int32,System.StringComparison); Don't use String.IndexOf, use StringUtil.IndexOfOrdinal or StringUtil.IndexOfOrdinalIgnoreCase instead.
+M:System.String.IndexOf(System.Char,System.Int32,System.Int32); Don't use String.IndexOf, use StringUtil.IndexOfOrdinal or StringUtil.IndexOfOrdinalIgnoreCase instead.
+M:System.String.IndexOf(System.String,System.StringComparison); Don't use String.IndexOf, use StringUtil.IndexOfOrdinal or StringUtil.IndexOfOrdinalIgnoreCase instead.
+M:System.String.IndexOf(System.Char,System.StringComparison); Don't use String.IndexOf, use StringUtil.IndexOfOrdinal or StringUtil.IndexOfOrdinalIgnoreCase instead.
+M:System.String.IndexOf(System.String); Don't use String.IndexOf, use StringUtil.IndexOfOrdinal or StringUtil.IndexOfOrdinalIgnoreCase instead.
+M:System.String.IndexOf(System.Char); Don't use String.IndexOf, use StringUtil.IndexOfOrdinal or StringUtil.IndexOfOrdinalIgnoreCase instead.
+M:System.String.IndexOf(System.String,System.Int32); Don't use String.IndexOf, use StringUtil.IndexOfOrdinal or StringUtil.IndexOfOrdinalIgnoreCase instead.
+
+#Banning String.Compare
+M:System.String.Compare(System.String,System.Int32,System.String,System.Int32,System.Int32,System.Boolean); Don't use String.Compare, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.Compare(System.String,System.Int32,System.String,System.Int32,System.Int32); Don't use String.Compare, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.Compare(System.String,System.String,System.Globalization.CultureInfo,System.Globalization.CompareOptions); Don't use String.Compare, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.Compare(System.String,System.String,System.Boolean,System.Globalization.CultureInfo); Don't use String.Compare, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.Compare(System.String,System.String,System.Boolean); Don't use String.Compare, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.Compare(System.String,System.String,System.StringComparison); Don't use String.Compare, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.Compare(System.String,System.Int32,System.String,System.Int32,System.Int32,System.StringComparison); Don't use String.Compare, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.Compare(System.String,System.Int32,System.String,System.Int32,System.Int32,System.Globalization.CultureInfo,System.Globalization.CompareOptions); Don't use String.Compare, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.Compare(System.String,System.Int32,System.String,System.Int32,System.Boolean,System.Int32,System.Globalization.CultureInfo); Don't use String.Compare, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.Compare(System.String,System.String); Don't use String.Compare, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.CompareOrdinal(System.String,System.Int32,System.String,System.Int32,System.Int32); Don't use String.CompareOrdinal, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+M:System.String.CompareOrdinal(System.String,System.Int32); Don't use String.CompareOrdinal, use StringUtil.EqualsOrdinal or StringUtil.EqualsOrdinalIgnoreCase instead.
+
+#Banning String.StartsWith
+M:System.String.StartsWith(System.String); Don't use String.StartsWith, use StringUtil.StartsWithOrdinal or StringUtil.StartsWithOrdinalIgnoreCase instead.
+M:System.String.StartsWith(System.String,System.StringComparison); Don't use String.StartsWith, use StringUtil.StartsWithOrdinal or StringUtil.StartsWithOrdinalIgnoreCase instead.
+M:System.String.StartsWith(System.String,System.Boolean,System.Globalization.CultureInfo); Don't use String.StartsWith, use StringUtil.StartsWithOrdinal or StringUtil.StartsWithOrdinalIgnoreCase instead.
+
+#Banning String.EndsWith
+M:System.String.EndsWith(System.String); Don't use String.EndsWith, use StringUtil.EndsWithOrdinal or StringUtil.EndsWithOrdinalIgnoreCase instead.
+M:System.String.EndsWith(System.String,System.StringComparison); Don't use String.EndsWith, use StringUtil.EndsWithOrdinal or StringUtil.EndsWithOrdinalIgnoreCase instead.
+M:System.String.EndsWith(System.String,System.Boolean,System.Globalization.CultureInfo); Don't use String.EndsWith, use StringUtil.EndsWithOrdinal or StringUtil.EndsWithOrdinalIgnoreCase instead.
+
+#Banning String.Contains
+M:System.String.Contains(System.String); Don't use String.Contains, use StringUtil.ContainsOrdinal or StringUtil.ContainsOrdinalIgnoreCase instead.
+M:System.String.Contains(System.String,System.StringComparison); Don't use String.Contains, use StringUtil.ContainsOrdinal or StringUtil.ContainsOrdinalIgnoreCase instead.
+
+#Banning String.Replace
+M:System.String.Replace(System.String,System.String,System.Boolean,System.Globalization.CultureInfo); Don't use String.Replace, use StringUtil.ReplaceOrdinal instead.
+M:System.String.Replace(System.Char,System.Char); Don't use String.Replace, use StringUtil.ReplaceOrdinal instead.
+M:System.String.Replace(System.String,System.String); Don't use String.Replace, use StringUtil.ReplaceOrdinal instead.
+M:System.String.Replace(System.String,System.String,System.StringComparison); Don't use String.Replace, use StringUtil.ReplaceOrdinal instead.
+
+#Banning String.GetHashCode
+M:System.String.GetHashCode(); Don't use String.GetHashCode, use StringUtil.GetHashCodeInvariant instead.
+
+#Banning a few of the ToString methods
+M:System.Byte.ToString(); Don't use Byte.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Byte.ToString(System.String); Don't use Byte.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Byte.ToString(System.IFormatProvider); Don't use Byte.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Byte.ToString(System.String,System.IFormatProvider); Don't use Byte.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Int16.ToString(); Don't use Int16.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Int16.ToString(System.String); Don't use Int16.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Int16.ToString(System.IFormatProvider); Don't use Int16.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Int16.ToString(System.String,System.IFormatProvider); Don't use Int16.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.UInt16.ToString(); Don't use UInt16.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.UInt16.ToString(System.String); Don't use UInt16.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.UInt16.ToString(System.IFormatProvider); Don't use UInt16.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.UInt16.ToString(System.String,System.IFormatProvider); Don't use UInt16.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Int32.ToString(); Don't use Int32.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Int32.ToString(System.String); Don't use Int32.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Int32.ToString(System.IFormatProvider); Don't use Int32.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Int32.ToString(System.String,System.IFormatProvider); Don't use Int32.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.UInt32.ToString(); Don't use UInt32.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.UInt32.ToString(System.String); Don't use UInt32.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.UInt32.ToString(System.IFormatProvider); Don't use UInt32.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.UInt32.ToString(System.String,System.IFormatProvider); Don't use UInt32.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Int64.ToString(); Don't use Int64.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Int64.ToString(System.String); Don't use Int64.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Int64.ToString(System.IFormatProvider); Don't use Int64.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Int64.ToString(System.String,System.IFormatProvider); Don't use Int64.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.UInt64.ToString(); Don't use UInt64.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.UInt64.ToString(System.String); Don't use UInt64.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.UInt64.ToString(System.IFormatProvider); Don't use UInt64.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.UInt64.ToString(System.String,System.IFormatProvider); Don't use UInt64.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Single.ToString(); Don't use Single.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Single.ToString(System.String); Don't use Single.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Single.ToString(System.IFormatProvider); Don't use Single.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Single.ToString(System.String,System.IFormatProvider); Don't use Single.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Double.ToString(); Don't use Double.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Double.ToString(System.String); Don't use Double.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Double.ToString(System.IFormatProvider); Don't use Double.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Double.ToString(System.String,System.IFormatProvider); Don't use Double.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Decimal.ToString(); Don't use Decimal.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Decimal.ToString(System.String); Don't use Decimal.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Decimal.ToString(System.IFormatProvider); Don't use Decimal.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Decimal.ToString(System.String,System.IFormatProvider); Don't use Decimal.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.DateTime.ToString(); Don't use DateTime.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.DateTime.ToString(System.String); Don't use DateTime.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.DateTime.ToString(System.IFormatProvider); Don't use DateTime.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.DateTime.ToString(System.String,System.IFormatProvider); Don't use DateTime.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.DateTimeOffset.ToString(); Don't use DateTimeOffset.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.DateTimeOffset.ToString(System.String); Don't use DateTimeOffset.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.DateTimeOffset.ToString(System.IFormatProvider); Don't use DateTimeOffset.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.DateTimeOffset.ToString(System.String,System.IFormatProvider); Don't use DateTimeOffset.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.TimeSpan.ToString(); Don't use TimeSpan.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.TimeSpan.ToString(System.String); Don't use TimeSpan.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.TimeSpan.ToString(System.String,System.IFormatProvider); Don't use TimeSpan.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Guid.ToString(); Don't use Guid.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Guid.ToString(System.String); Don't use Guid.ToString, use ToStringExtensions.ToStringInvariant instead.
+M:System.Guid.ToString(System.String,System.IFormatProvider); Don't use Guid.ToString, use ToStringExtensions.ToStringInvariant instead.
+
+#Nondeterministic Methods and Properties
+M:System.Guid.NewGuid(); This method is nondeterministic and thus hard to use in tests, use IGuidProvider through dependency injection instead.
+P:System.DateTime.Now; This property is nondeterministic and thus hard to use in tests, use IDateTimeProvider through dependency injection instead.
+P:System.DateTime.UtcNow; This property is nondeterministic and thus hard to use in tests, use IDateTimeProvider through dependency injection instead.
+P:System.DateTime.Today; This property is nondeterministic and thus hard to use in tests, use IDateTimeProvider through dependency injection instead.
+P:System.DateTimeOffset.Now; This property is nondeterministic and thus hard to use in tests, use IDateTimeOffsetProvider through dependency injection instead.
+P:System.DateTimeOffset.UtcNow; This property is nondeterministic and thus hard to use in tests, use IDateTimeOffsetProvider through dependency injection instead.

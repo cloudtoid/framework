@@ -1,0 +1,68 @@
+<Project>
+
+  <!-- Paths -->
+  <PropertyGroup>
+    <Root>$(MSBuildThisFileDirectory)</Root>
+    <FrameworkCodeAnalysis>$(Root)code-analysis\</FrameworkCodeAnalysis>
+  </PropertyGroup>
+
+  <!-- .NET Runtime Versions -->
+  <PropertyGroup>
+    <LibraryDotNetVersion>netstandard2.1</LibraryDotNetVersion>
+    <AppDotNetVersion>netcoreapp3.1</AppDotNetVersion>
+  </PropertyGroup>
+
+  <!-- Build Settings -->
+  <PropertyGroup>
+    <Platforms>x64</Platforms>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Product Package Versions -->
+  <PropertyGroup>
+    <MicrosoftExtensionsVersion>3.1.*</MicrosoftExtensionsVersion>
+  </PropertyGroup>
+
+  <!-- Test Package Versions -->
+  <PropertyGroup>
+    <MicrosoftDotNetTestSdk>16.5.*</MicrosoftDotNetTestSdk>
+    <MSTestVersion>2.1.*</MSTestVersion>
+    <NSubstituteVersion>4.2.*</NSubstituteVersion>
+    <FluentAssertionsVersion>5.10.*</FluentAssertionsVersion>
+    <CoverletVersion>2.8.*</CoverletVersion>
+  </PropertyGroup>
+
+  <!-- Code Analyzer Versions -->
+  <PropertyGroup>
+    <!-- Temporary workaround to suppress the nuget pack warning below-->
+    <NoWarn>$(NoWarn)NU5104</NoWarn>
+    <StyleCopAnalyzersVersion>1.2.0-beta.164</StyleCopAnalyzersVersion>
+    <ThreadingAnalyzersVersion>16.6.*</ThreadingAnalyzersVersion>
+    <BannedApiAnalyzersVersion>2.9.*</BannedApiAnalyzersVersion>
+  </PropertyGroup>
+
+  <!-- Code Analyzer Settings -->
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>$(FrameworkCodeAnalysis)stylecop.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <!-- Code Analyzer Assets -->
+  <ItemGroup>
+    <AdditionalFiles Include="$(FrameworkCodeAnalysis)stylecop.json" Visible="false" />
+    <AdditionalFiles Include="$(FrameworkCodeAnalysis)BannedSymbols.txt" Visible="false" />
+  </ItemGroup>
+
+  <!-- Package dependencies -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftExtensionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="$(MicrosoftExtensionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftExtensionsVersion)" />
+    <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="$(BannedApiAnalyzersVersion)" IncludeAssets="all"/>
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="$(ThreadingAnalyzersVersion)" IncludeAssets="all" />
+    <PackageReference Include="StyleCop.Analyzers" Version="$(StyleCopAnalyzersVersion)" IncludeAssets="all"  />
+  </ItemGroup>
+
+</Project>
