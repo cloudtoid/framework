@@ -16,6 +16,6 @@ jobs:
       with:
         dotnet-version: 3.1.201
     - name: Restore, build and pack
-      run: dotnet pack --configuration Release --output . --version-suffix ${{github.run_number}} src\Cloudtoid.Framework\Cloudtoid.Framework.csproj 
+      run: dotnet pack --configuration Release --output . --version-suffix ${{github.run_number}} src/Cloudtoid.Framework/Cloudtoid.Framework.csproj 
     - name: Push
       run: dotnet nuget push Cloudtoid.Framework.*.nupkg --source https://api.nuget.org/v3/index.json --api-key oy2amvim54vyji3atgiqglgzp6mpqhcehgv3rvitpxp6fq
