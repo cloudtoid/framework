@@ -16,7 +16,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
+        dotnet-version: 3.1.3
     - name: Install dependencies
       run: dotnet restore
     - name: Build
@@ -26,10 +26,8 @@ jobs:
     - name: Publish NuGet
       uses: rohith/publish-nuget@v2.2.1
       with:
-        # Filepath of the project to be packaged, relative to root of repository
         PROJECT_FILE_PATH: src/Cloudtoid.Framework/Cloudtoid.Framework.csproj
         VERSION_FILE_PATH: Directory.Build.props
         VERSION_REGEX: <Version>(.*)<\/Version>
-        # API key for the NuGet feed
         NUGET_KEY: oy2amvim54vyji3atgiqglgzp6mpqhcehgv3rvitpxp6fq
 
