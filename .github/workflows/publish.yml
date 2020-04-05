@@ -1,9 +1,9 @@
 name: .NET Core
 
 on:
-  pull_request:
+  push:
     branches: [ master ]
-
+  
 jobs:
   build:
 
@@ -21,3 +21,10 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+    - name: Publish NuGet
+      uses: rohith/publish-nuget@v2.2.1
+      with:
+        PROJECT_FILE_PATH: src/Cloudtoid.Framework/Cloudtoid.Framework.csproj
+        VERSION_FILE_PATH: version
+        NUGET_KEY: oy2amvim54vyji3atgiqglgzp6mpqhcehgv3rvitpxp6fq
+
