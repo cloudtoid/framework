@@ -1,6 +1,6 @@
 # Cloudtoid Framework
 
-Welcome to Cloudtoid's Framework project, which is a library of utility classes, targetting `.netstandard 2.1` used by all Cloudtoid applications.
+Welcome to Cloudtoid's Framework project, which is a library of utility classes, targetting `.netstandard 2.1`, for all Cloudtoid projects.
 
 The latest NuGet package can be found [here](https://www.nuget.org/packages/Cloudtoid.Framework/).
 
