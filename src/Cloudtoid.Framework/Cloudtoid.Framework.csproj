@@ -14,8 +14,11 @@
     <PackageId>Cloudtoid.Framework</PackageId>
     <Title>Cloudtoid.Framework</Title>
     <Authors>pedram@rezaei.us</Authors>
+    <Company>>cloudtoid</Company>
     <PackageDescription>This is a common set of utility classes that is shared across cloudtoid</PackageDescription>
     <Copyright>Copyright (c) Cloudtoid</Copyright>
+    <RepositoryUrl>https://github.com/cloudtoid/framework/</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/cloudtoid/framework/blob/master/README.md</PackageProjectUrl>
     <IsPackable>true</IsPackable>
     <PackageTags>utilities;framework;utility;framework</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

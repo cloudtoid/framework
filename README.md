@@ -1,5 +1,7 @@
 # Cloudtoid Framework
 
+![](https://github.com/cloudtoid/url-pattern/workflows/publish/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/cloudtoid/url-patterns/blob/master/LICENSE)
+
 Welcome to Cloudtoid's Framework project, which is a library of utility classes, targetting `.netstandard 2.1`, for all Cloudtoid projects.
 
 The latest NuGet package can be found [here](https://www.nuget.org/packages/Cloudtoid.Framework/).
