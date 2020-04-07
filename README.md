@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/cloudtoid/assets/master/logos/cloudtoid-black-red.png" width="100">
+
 # Cloudtoid Framework
 
 ![](https://github.com/cloudtoid/url-pattern/workflows/publish/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/cloudtoid/url-patterns/blob/master/LICENSE)
