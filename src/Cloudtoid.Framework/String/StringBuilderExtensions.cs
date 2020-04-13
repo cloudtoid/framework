@@ -23,6 +23,10 @@
             => CheckValue(builder, nameof(builder)).Append(':');
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static StringBuilder AppendSemicolon(this StringBuilder builder)
+            => CheckValue(builder, nameof(builder)).Append(';');
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static StringBuilder AppendEqual(this StringBuilder builder)
             => CheckValue(builder, nameof(builder)).Append('=');
 
