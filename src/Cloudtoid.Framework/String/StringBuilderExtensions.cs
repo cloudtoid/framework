@@ -27,6 +27,10 @@
             => CheckValue(builder, nameof(builder)).Append(';');
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static StringBuilder AppendComma(this StringBuilder builder)
+            => CheckValue(builder, nameof(builder)).Append(',');
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static StringBuilder AppendEqual(this StringBuilder builder)
             => CheckValue(builder, nameof(builder)).Append('=');
 
