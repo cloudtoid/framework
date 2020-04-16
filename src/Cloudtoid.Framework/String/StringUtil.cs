@@ -157,27 +157,13 @@
         /// <param name="oldValue">The string to be replaced.</param>
         /// <param name="newValue">The string to replace all occurrences of oldValue.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string ReplaceOrdinal(this string str, string oldValue, string newValue)
-        {
-#if NETSTANDARD2_0
-            return CheckValue(str, nameof(str)).Replace(oldValue, newValue);
-#else
-            return CheckValue(str, nameof(str)).Replace(oldValue, newValue, StringComparison.Ordinal);
-#endif
-        }
+        public static string ReplaceOrdinal(this string str, string oldValue, string newValue) => CheckValue(str, nameof(str)).Replace(oldValue, newValue, StringComparison.Ordinal);
 
         /// <summary>
         /// Returns the hash code for this string using <see cref="StringComparison.InvariantCulture"/>.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static int GetHashCodeInvariant(this string str)
-        {
-#if NETSTANDARD2_0
-            return CheckValue(str, nameof(str)).GetHashCode();
-#else
-            return CheckValue(str, nameof(str)).GetHashCode(StringComparison.InvariantCulture);
-#endif
-        }
+        public static int GetHashCodeInvariant(this string str) => CheckValue(str, nameof(str)).GetHashCode(StringComparison.InvariantCulture);
 
         /// <summary>
         /// Determines whether the specified string is a CLS-compliant identifier.
