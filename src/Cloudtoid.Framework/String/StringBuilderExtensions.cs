@@ -31,6 +31,10 @@
             => CheckValue(builder, nameof(builder)).Append(',');
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static StringBuilder AppendDot(this StringBuilder builder)
+            => CheckValue(builder, nameof(builder)).Append('.');
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static StringBuilder AppendEqual(this StringBuilder builder)
             => CheckValue(builder, nameof(builder)).Append('=');
 
