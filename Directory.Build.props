@@ -27,7 +27,7 @@
 
   <!-- Test Package Versions -->
   <PropertyGroup>
-    <MicrosoftDotNetTestSdk>16.5.*</MicrosoftDotNetTestSdk>
+    <MicrosoftDotNetTestSdk>16.6.*</MicrosoftDotNetTestSdk>
     <MSTestVersion>2.1.*</MSTestVersion>
     <NSubstituteVersion>4.2.*</NSubstituteVersion>
     <FluentAssertionsVersion>5.10.*</FluentAssertionsVersion>
@@ -40,7 +40,7 @@
     <NoWarn>$(NoWarn)NU5104</NoWarn>
     <StyleCopAnalyzersVersion>1.2.0-beta.164</StyleCopAnalyzersVersion>
     <ThreadingAnalyzersVersion>16.6.*</ThreadingAnalyzersVersion>
-    <BannedApiAnalyzersVersion>2.9.*</BannedApiAnalyzersVersion>
+    <BannedApiAnalyzersVersion>3.0.*</BannedApiAnalyzersVersion>
   </PropertyGroup>
 
   <!-- Code Analyzer Settings -->
