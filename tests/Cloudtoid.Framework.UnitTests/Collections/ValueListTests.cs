@@ -191,6 +191,15 @@
         }
 
         [TestMethod]
+        public void New_WhenEnumerableWithManyValues_ValuesFieldSetToNewArray()
+        {
+            var e = Enumerable.Range(1, 1000).Select(i => i.ToStringInvariant());
+            var array = e.ToArray();
+            var v = new ValueList<string>(e);
+            v.values.Should().BeEquivalentTo(array);
+        }
+
+        [TestMethod]
         public void Indexer_WhenNullValue_Throws()
         {
             var v = new ValueList<string>(default(string));
