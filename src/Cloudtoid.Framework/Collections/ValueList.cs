@@ -42,6 +42,16 @@
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ValueList{TValue}"/> structure using the specified <typeparamref name="TValue"/> enumerable.
+        /// </summary>
+        /// <param name="source">A <typeparamref name="TValue"/> enumerable or <see langword="null"/>.</param>
+        public ValueList(IEnumerable<TValue?>? source)
+        {
+            (var value, var values) = ValueListUtil.GetOptimizedValues(source);
+            this.values = value ?? (object?)values;
+        }
+
+        /// <summary>
         /// Gets the number of <typeparamref name="TValue"/> elements contained in this <see cref="ValueList{TValue}" />.
         /// </summary>
         public int Count

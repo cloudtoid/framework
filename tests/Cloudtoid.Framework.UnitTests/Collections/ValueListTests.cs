@@ -12,7 +12,7 @@
     public sealed class ValueListTests
     {
         [TestMethod]
-        public void New_WhenEmptyy_ValuesFieldIsEmpty()
+        public void New_WhenEmpty_ValuesFieldIsEmpty()
         {
             var v = ValueList<string>.Empty;
             v.values.Should().BeOfType<string[]>().And.BeSameAs(Array.Empty<string>());
@@ -70,9 +70,52 @@
         }
 
         [TestMethod]
+        public void New_WhenNullEnumerableValue_ValuesFieldIsNull()
+        {
+            var v = new ValueList<string>(default(IEnumerable<string?>));
+            v.values.Should().BeNull();
+            v.Count.Should().Be(0);
+            v.ToArray().Should().BeSameAs(Array.Empty<string>());
+            v.WhereNotNull().ToList().Should().BeEmpty();
+
+            var l = (IList<string>)v;
+            l.IndexOf("a").Should().Be(-1);
+
+            var c = (ICollection<string>)v;
+            c.Contains("a").Should().BeFalse();
+
+            var a = Array.Empty<string>();
+            c.CopyTo(a, 0);
+        }
+
+        [TestMethod]
         public void New_WhenOneValue_ValuesFieldSetToThatValue()
         {
             var v = new ValueList<string>("a");
+            v.values.Should().Be("a");
+            v.Count.Should().Be(1);
+            v[0].Should().Be("a");
+            v.ToArray().Should().BeEquivalentTo(new[] { "a" });
+            v.WhereNotNull().ToList().Should().BeEquivalentTo(new[] { "a" });
+
+            var l = (IList<string>)v;
+            l.IndexOf("a").Should().Be(0);
+            l.IndexOf("b").Should().Be(-1);
+            l[0].Should().Be("a");
+
+            var c = (ICollection<string>)v;
+            c.Contains("a").Should().BeTrue();
+            c.Contains("b").Should().BeFalse();
+
+            var a = new string[1];
+            c.CopyTo(a, 0);
+            a.Should().BeEquivalentTo(new[] { "a" });
+        }
+
+        [TestMethod]
+        public void New_WhenOneEnumerableValue_ValuesFieldSetToThatValue()
+        {
+            var v = new ValueList<string>(Enumerable.Repeat("a", 1));
             v.values.Should().Be("a");
             v.Count.Should().Be(1);
             v[0].Should().Be("a");
@@ -103,6 +146,33 @@
             v[0].Should().Be("a");
             v[1].Should().Be("b");
             v.ToArray().Should().BeSameAs(array);
+            v.WhereNotNull().ToList().Should().BeEquivalentTo(new[] { "a", "b" });
+
+            var l = (IList<string>)v;
+            l.IndexOf("a").Should().Be(0);
+            l.IndexOf("b").Should().Be(1);
+            l.IndexOf("c").Should().Be(-1);
+
+            var c = (ICollection<string>)v;
+            c.Contains("a").Should().BeTrue();
+            c.Contains("b").Should().BeTrue();
+            c.Contains("c").Should().BeFalse();
+
+            var a = new string[array.Length];
+            c.CopyTo(a, 0);
+            a.Should().BeEquivalentTo(array);
+        }
+
+        [TestMethod]
+        public void New_WhenEnumerableMoreThanOneValue_ValuesFieldSetToNewArray()
+        {
+            var array = new[] { "a", "b" };
+            var v = new ValueList<string>(new[] { "a" }.Concat(new[] { "b" }));
+            v.values.Should().BeEquivalentTo(array);
+            v.Count.Should().Be(2);
+            v[0].Should().Be("a");
+            v[1].Should().Be("b");
+            v.ToArray().Should().BeSameAs((string[]?)v.values);
             v.WhereNotNull().ToList().Should().BeEquivalentTo(new[] { "a", "b" });
 
             var l = (IList<string>)v;
