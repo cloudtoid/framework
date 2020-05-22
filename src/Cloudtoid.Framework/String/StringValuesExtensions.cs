@@ -3,12 +3,22 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Linq;
     using System.Runtime.CompilerServices;
     using Microsoft.Extensions.Primitives;
 
     [DebuggerStepThrough]
     public static class StringValuesExtensions
     {
+        /// <summary>
+        /// Creates an instance of <see cref="StringValues"/> from <see cref="IEnumerable{String}"/>.
+        /// <list type="bullet">
+        /// <item>If the source is <see langword="null"/>, it returns en empty <see cref="StringValues"/>.</item>
+        /// <item>If the source is an array of type <see cref="string"/>, then the array is wrapped inside of an instance of <see cref="StringValues"/>.</item>
+        /// <item>If the source contains a single instance of <see cref="string"/>, then it is wrapped inside of an instance of <see cref="StringValues"/> saving on a creation of an array instance.</item>
+        /// <item>In all other cases, it behaves similar to <see cref="Enumerable.ToArray{TSource}(IEnumerable{TSource})"/> wrapped in an instance of <see cref="StringValues"/>.</item>
+        /// </list>
+        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static StringValues AsStringValues(this IEnumerable<string>? source)
         {

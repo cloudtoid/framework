@@ -235,7 +235,7 @@
 
         /// <summary>
         /// Uses the <paramref name="comparer"/> to get the hash code of the <paramref name="value"/>.
-        /// Avoids calling <paramref name="comparer"/> if <paramref name="value"/> is null, because most comparers
+        /// Avoids calling <paramref name="comparer"/> if <paramref name="value"/> is <see langword="null"/>, because most comparers
         /// do not support this.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
