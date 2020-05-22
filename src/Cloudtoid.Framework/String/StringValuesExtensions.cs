@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
-    using System.Runtime.CompilerServices;
     using Microsoft.Extensions.Primitives;
 
     [DebuggerStepThrough]
@@ -19,14 +18,22 @@
         /// <item>In all other cases, it behaves similar to <see cref="Enumerable.ToArray{TSource}(IEnumerable{TSource})"/> wrapped in an instance of <see cref="StringValues"/>.</item>
         /// </list>
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static StringValues AsStringValues(this IEnumerable<string>? source)
         {
-            if (source is null)
-                return default;
+            switch (source)
+            {
+                case StringValues sv:
+                    return sv;
 
-            if (source is string[] array)
-                return new StringValues(array);
+                case string[] array:
+                    return new StringValues(array);
+
+                case null:
+                    return default;
+
+                default:
+                    break;
+            }
 
             using (var en = source.GetEnumerator())
             {

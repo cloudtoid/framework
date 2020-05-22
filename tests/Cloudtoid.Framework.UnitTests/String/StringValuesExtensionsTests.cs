@@ -25,7 +25,9 @@
             var items = Enumerable.Repeat("a", 1);
             var values = items.AsStringValues();
             values.Should().BeEquivalentTo(new StringValues("a"));
-            ValuesField.GetValue(values)!.GetType().Should().Be(typeof(string));
+            var internals = ValuesField.GetValue(values);
+            internals.Should().NotBeNull();
+            internals!.GetType().Should().Be(typeof(string));
         }
 
         [TestMethod]
@@ -58,6 +60,15 @@
             var items = new[] { "a", "b" };
             var values = items.AsStringValues();
             values.ToArray().Should().BeSameAs(items);
+        }
+
+        [TestMethod]
+        public void AsStringValues_WhenAlreadyStringValue_ReturnsStringValue()
+        {
+            var items = new StringValues("a");
+            var values = items.AsStringValues();
+            values.Should().BeEquivalentTo(items);
+            ValuesField.GetValue(values).Should().NotBeNull().And.BeSameAs(ValuesField.GetValue(items));
         }
     }
 }
