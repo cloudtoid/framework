@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Linq;
     using System.Runtime.CompilerServices;
     using Microsoft.Extensions.Primitives;
 
@@ -11,18 +10,15 @@
     public static class StringValuesExtensions
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static StringValues AsStringValues(this IEnumerable<string> items)
+        public static StringValues AsStringValues(this IEnumerable<string>? source)
         {
-            if (items is null)
+            if (source is null)
                 return default;
 
-            if (items is string[] array)
+            if (source is string[] array)
                 return new StringValues(array);
 
-            if (items is ICollection<string> ic)
-                return new StringValues(ic.ToArray());
-
-            using (var en = items.GetEnumerator())
+            using (var en = source.GetEnumerator())
             {
                 if (en.MoveNext())
                 {
@@ -67,6 +63,7 @@
                         arr[count++] = en.Current;
                     }
 
+                    Array.Resize(ref arr, count);
                     return new StringValues(arr);
                 }
             }
