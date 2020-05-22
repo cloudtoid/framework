@@ -14,7 +14,7 @@
         [TestMethod]
         public void New_WhenEmpty_ValuesFieldIsEmpty()
         {
-            var v = ValueList<string>.Empty;
+            var v = ValueList<string?>.Empty;
             v.values.Should().BeOfType<string[]>().And.BeSameAs(Array.Empty<string>());
             v.Count.Should().Be(0);
             v.ToArray().Should().BeSameAs(Array.Empty<string>());
@@ -34,7 +34,7 @@
         [TestMethod]
         public void New_WhenDefault_ValuesFieldIsNull()
         {
-            var v = default(ValueList<string>);
+            var v = default(ValueList<string?>);
             v.values.Should().BeNull();
             v.Count.Should().Be(0);
             v.ToArray().Should().BeSameAs(Array.Empty<string>());
@@ -53,7 +53,7 @@
         [TestMethod]
         public void New_WhenNullValue_ValuesFieldIsNull()
         {
-            var v = new ValueList<string>(default(string));
+            var v = new ValueList<string?>(default(string));
             v.values.Should().BeNull();
             v.Count.Should().Be(0);
             v.ToArray().Should().BeSameAs(Array.Empty<string>());
@@ -72,7 +72,7 @@
         [TestMethod]
         public void New_WhenNullEnumerableValue_ValuesFieldIsNull()
         {
-            var v = new ValueList<string>(default(IEnumerable<string?>));
+            var v = new ValueList<string?>(default(IEnumerable<string?>));
             v.values.Should().BeNull();
             v.Count.Should().Be(0);
             v.ToArray().Should().BeSameAs(Array.Empty<string>());
@@ -91,7 +91,7 @@
         [TestMethod]
         public void New_WhenOneValue_ValuesFieldSetToThatValue()
         {
-            var v = new ValueList<string>("a");
+            var v = new ValueList<string?>("a");
             v.values.Should().Be("a");
             v.Count.Should().Be(1);
             v[0].Should().Be("a");
@@ -115,7 +115,7 @@
         [TestMethod]
         public void New_WhenOneEnumerableValue_ValuesFieldSetToThatValue()
         {
-            var v = new ValueList<string>(Enumerable.Repeat("a", 1));
+            var v = new ValueList<string?>(Enumerable.Repeat("a", 1));
             v.values.Should().Be("a");
             v.Count.Should().Be(1);
             v[0].Should().Be("a");
@@ -140,7 +140,7 @@
         public void New_WhenValueArray_ValuesFieldSetToThatArray()
         {
             var array = new[] { "a", "b" };
-            var v = new ValueList<string>(array);
+            var v = new ValueList<string?>(array);
             v.values.Should().BeSameAs(array);
             v.Count.Should().Be(2);
             v[0].Should().Be("a");
@@ -167,7 +167,7 @@
         public void New_WhenEnumerableMoreThanOneValue_ValuesFieldSetToNewArray()
         {
             var array = new[] { "a", "b" };
-            var v = new ValueList<string>(new[] { "a" }.Concat(new[] { "b" }));
+            var v = new ValueList<string?>(new[] { "a" }.Concat(new[] { "b" }));
             v.values.Should().BeEquivalentTo(array);
             v.Count.Should().Be(2);
             v[0].Should().Be("a");
@@ -195,21 +195,21 @@
         {
             var e = Enumerable.Range(1, 1000).Select(i => i.ToStringInvariant());
             var array = e.ToArray();
-            var v = new ValueList<string>(e);
+            var v = new ValueList<string?>(e);
             v.values.Should().BeEquivalentTo(array);
         }
 
         [TestMethod]
         public void Indexer_WhenNullValue_Throws()
         {
-            var v = new ValueList<string>(default(string));
+            var v = new ValueList<string?>(default(string));
             Invoking(() => v[0]).Should().ThrowExactly<IndexOutOfRangeException>();
         }
 
         [TestMethod]
         public void Indexer_WhenOneValueAccessingOutOfBounds_Throws()
         {
-            var v = new ValueList<string>("a");
+            var v = new ValueList<string?>("a");
             Invoking(() => v[-1]).Should().ThrowExactly<IndexOutOfRangeException>();
             Invoking(() => v[1]).Should().ThrowExactly<IndexOutOfRangeException>();
         }
@@ -218,7 +218,7 @@
         public void CopyTo_WhenBadArgs_Throws()
         {
             var array = new[] { "a", "b" };
-            var v = new ValueList<string>(array);
+            var v = new ValueList<string?>(array);
             var c = (ICollection<string>)v;
 
             var a = new string[array.Length];
@@ -237,35 +237,35 @@
         public void Equals_Mix()
         {
             var array = new[] { "a", "b" };
-            var v2 = new ValueList<string>(array);
+            var v2 = new ValueList<string?>(array);
 
             (v2 == array).Should().BeTrue();
             (v2 != array).Should().BeFalse();
             (v2 == (object)array).Should().BeTrue();
             (v2 != (object)array).Should().BeFalse();
-            (v2 == new ValueList<string>(array)).Should().BeTrue();
-            (v2 != new ValueList<string>(array)).Should().BeFalse();
+            (v2 == new ValueList<string?>(array)).Should().BeTrue();
+            (v2 != new ValueList<string?>(array)).Should().BeFalse();
 
             (array == v2).Should().BeTrue();
             (array != v2).Should().BeFalse();
             (((object)array) == v2).Should().BeTrue();
             (((object)array) != v2).Should().BeFalse();
-            (new ValueList<string>(array) == v2).Should().BeTrue();
-            (new ValueList<string>(array) != v2).Should().BeFalse();
+            (new ValueList<string?>(array) == v2).Should().BeTrue();
+            (new ValueList<string?>(array) != v2).Should().BeFalse();
 
             v2.Equals(array).Should().BeTrue();
             v2.Equals(v2).Should().BeTrue();
             v2.Equals((object?)v2).Should().BeTrue();
             v2.Equals((object)array).Should().BeTrue();
-            v2.Equals(new ValueList<string>(array)).Should().BeTrue();
-            v2.Equals(new ValueList<string>(new[] { "a", "b" })).Should().BeTrue();
-            v2.Equals(new ValueList<string>(new[] { "a", "c" })).Should().BeFalse();
-            v2.Equals(new ValueList<string>(default(string))).Should().BeFalse();
+            v2.Equals(new ValueList<string?>(array)).Should().BeTrue();
+            v2.Equals(new ValueList<string?>(new[] { "a", "b" })).Should().BeTrue();
+            v2.Equals(new ValueList<string?>(new[] { "a", "c" })).Should().BeFalse();
+            v2.Equals(new ValueList<string?>(default(string))).Should().BeFalse();
             v2.Equals(default(string)).Should().BeFalse();
-            v2.Equals(new ValueList<string>("a")).Should().BeFalse();
+            v2.Equals(new ValueList<string?>("a")).Should().BeFalse();
 
             var s = "a";
-            var v1 = new ValueList<string>(s);
+            var v1 = new ValueList<string?>(s);
 
             (v1 == s).Should().BeTrue();
             (v1 != s).Should().BeFalse();
@@ -274,36 +274,36 @@
             v1.Equals(v1).Should().BeTrue();
             v1.Equals(s).Should().BeTrue();
             v1.Equals((object)s).Should().BeTrue();
-            v1.Equals(new ValueList<string>(s)).Should().BeTrue();
-            v1.Equals(new ValueList<string>(default(string))).Should().BeFalse();
+            v1.Equals(new ValueList<string?>(s)).Should().BeTrue();
+            v1.Equals(new ValueList<string?>(default(string))).Should().BeFalse();
             v1.Equals(default(string)).Should().BeFalse();
-            v1.Equals(new ValueList<string>(array)).Should().BeFalse();
+            v1.Equals(new ValueList<string?>(array)).Should().BeFalse();
 
-            var v0 = new ValueList<string>(default(string));
+            var v0 = new ValueList<string?>(default(string));
 
             v0.Equals((object?)null).Should().BeTrue();
             v0.Equals(v0).Should().BeTrue();
             v0.Equals(default(string)).Should().BeTrue();
-            v0.Equals(new ValueList<string>(default(string))).Should().BeTrue();
+            v0.Equals(new ValueList<string?>(default(string))).Should().BeTrue();
             v0.Equals(default(string)).Should().BeTrue();
-            v0.Equals(ValueList<string>.Empty).Should().BeTrue();
-            v0.Equals(new ValueList<string>(array)).Should().BeFalse();
+            v0.Equals(ValueList<string?>.Empty).Should().BeTrue();
+            v0.Equals(new ValueList<string?>(array)).Should().BeFalse();
             v0.Equals("a").Should().BeFalse();
             v0.Equals(10).Should().BeFalse();
 
-            ValueList<string>.Equals(v2, default(string)).Should().BeFalse();
-            ValueList<string>.Equals(v0, default(string)).Should().BeTrue();
-            ValueList<string>.Equals(v2, array).Should().BeTrue();
-            ValueList<string>.Equals(default(string), v2).Should().BeFalse();
-            ValueList<string>.Equals(default(string), v0).Should().BeTrue();
-            ValueList<string>.Equals(array, v2).Should().BeTrue();
+            ValueList<string?>.Equals(v2, default(string)).Should().BeFalse();
+            ValueList<string?>.Equals(v0, default(string)).Should().BeTrue();
+            ValueList<string?>.Equals(v2, array).Should().BeTrue();
+            ValueList<string?>.Equals(default(string), v2).Should().BeFalse();
+            ValueList<string?>.Equals(default(string), v0).Should().BeTrue();
+            ValueList<string?>.Equals(array, v2).Should().BeTrue();
         }
 
         [TestMethod]
         public void ReadOnlyTests()
         {
             var array = new[] { "a", "b" };
-            var v = new ValueList<string>(array);
+            var v = new ValueList<string?>(array);
             var c = (ICollection<string?>)v;
             var l = (IList<string?>)v;
 
@@ -320,17 +320,17 @@
         public void GetHashCodeTests()
         {
             var array = new[] { "a", "b" };
-            var v = new ValueList<string>(array);
+            var v = new ValueList<string?>(array);
             v.GetHashCode().Should().NotBe(HashUtil.NullHashCode);
 
-            v = new ValueList<string>("a");
+            v = new ValueList<string?>("a");
 #pragma warning disable RS0030 // Do not used banned APIs
             v.GetHashCode().Should().Be("a".GetHashCode());
 #pragma warning restore RS0030 // Do not used banned APIs
 
-            ValueList<string>.Empty.GetHashCode().Should().Be(0);
+            ValueList<string?>.Empty.GetHashCode().Should().Be(0);
 
-            new ValueList<string>(default(string)).GetHashCode().Should().Be(HashUtil.NullHashCode);
+            new ValueList<string?>(default(string)).GetHashCode().Should().Be(HashUtil.NullHashCode);
         }
     }
 }

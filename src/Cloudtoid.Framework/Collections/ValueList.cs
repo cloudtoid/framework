@@ -9,7 +9,7 @@
     /// <summary>
     /// Represents zero/<see langword="null"/>, one, or many items of type <typeparamref name="TValue"/> in an efficient way.
     /// </summary>
-    public readonly struct ValueList<TValue> : IList<TValue?>, IReadOnlyList<TValue?> where TValue : class
+    public readonly struct ValueList<TValue> : IList<TValue>, IReadOnlyList<TValue>
     {
         /// <summary>
         /// A read-only instance of the <see cref="ValueList{TValue}"/> struct whose value is an empty <typeparamref name="TValue"/> array.
@@ -17,7 +17,7 @@
         /// <remarks>
         /// In application code, this field is most commonly used to safely represent a <see cref="ValueList{TValue}"/> that has no values.
         /// </remarks>
-        public static readonly ValueList<TValue> Empty = new ValueList<TValue>(Array.Empty<TValue?>());
+        public static readonly ValueList<TValue> Empty = new ValueList<TValue>(Array.Empty<TValue>());
 
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1307:Accessible fields should begin with upper-case letter", Justification = "Only used for testing")]
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:Non-private readonly fields should begin with upper-case letter", Justification = "Only used for testing")]
@@ -27,7 +27,7 @@
         /// Initializes a new instance of the <see cref="ValueList{TValue}"/> structure using the specified <paramref name="value"/>.
         /// </summary>
         /// <param name="value">A value or <see langword="null"/></param>
-        public ValueList(TValue? value)
+        public ValueList(TValue value)
         {
             values = value;
         }
@@ -36,7 +36,7 @@
         /// Initializes a new instance of the <see cref="ValueList{TValue}"/> structure using the specified <typeparamref name="TValue"/> array.
         /// </summary>
         /// <param name="values">A <typeparamref name="TValue"/> array or <see langword="null"/>.</param>
-        public ValueList(TValue?[]? values)
+        public ValueList(TValue[]? values)
         {
             this.values = values;
         }
@@ -45,7 +45,7 @@
         /// Initializes a new instance of the <see cref="ValueList{TValue}"/> structure using the specified <typeparamref name="TValue"/> enumerable.
         /// </summary>
         /// <param name="source">A <typeparamref name="TValue"/> enumerable or <see langword="null"/>.</param>
-        public ValueList(IEnumerable<TValue?>? source)
+        public ValueList(IEnumerable<TValue>? source)
         {
             (var value, var values) = ValueListUtil.GetOptimizedValues(source);
             this.values = value ?? (object?)values;
@@ -67,12 +67,12 @@
                 if (value is null)
                     return 0;
 
-                // Not TValue, not null, can only be TValue?[]
-                return Unsafe.As<TValue?[]>(value).Length;
+                // Not TValue, not null, can only be TValue[]
+                return Unsafe.As<TValue[]>(value).Length;
             }
         }
 
-        bool ICollection<TValue?>.IsReadOnly => true;
+        bool ICollection<TValue>.IsReadOnly => true;
 
         /// <summary>
         /// Gets the <typeparamref name="TValue"/> at index.
@@ -80,7 +80,7 @@
         /// <value>The <typeparamref name="TValue"/> at the specified index.</value>
         /// <param name="index">The zero-based index of the element to get.</param>
         /// <exception cref="NotSupportedException">Set operations are not supported on read-only <see cref="ValueList{TValue}"/>.</exception>
-        TValue? IList<TValue?>.this[int index]
+        TValue IList<TValue>.this[int index]
         {
             get => this[index];
             set => throw new NotSupportedException();
@@ -91,7 +91,7 @@
         /// </summary>
         /// <value>The <typeparamref name="TValue"/> at the specified index.</value>
         /// <param name="index">The zero-based index of the element to get.</param>
-        public TValue? this[int index]
+        public TValue this[int index]
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
@@ -105,8 +105,8 @@
                 }
                 else if (value != null)
                 {
-                    // Not TValue, not null, can only be TValue?[]
-                    return Unsafe.As<TValue?[]>(value)[index]; // may throw
+                    // Not TValue, not null, can only be TValue[]
+                    return Unsafe.As<TValue[]>(value)[index]; // may throw
                 }
 
                 return OutOfBounds(); // throws
@@ -130,7 +130,7 @@
         public static bool operator !=(ValueList<TValue> left, ValueList<TValue> right) => !Equals(left, right);
 
         /// <inheritdoc cref="Equals(ValueList{TValue}, TValue)" />
-        public static bool operator ==(ValueList<TValue> left, TValue? right) => Equals(left, new ValueList<TValue>(right));
+        public static bool operator ==(ValueList<TValue> left, TValue right) => Equals(left, new ValueList<TValue>(right));
 
         /// <summary>
         /// Determines whether the specified <see cref="ValueList{TValue}"/> and <typeparamref name="TValue"/> objects have different values.
@@ -138,10 +138,10 @@
         /// <param name="left">The <see cref="ValueList{TValue}"/> to compare.</param>
         /// <param name="right">The <typeparamref name="TValue"/> to compare.</param>
         /// <returns><c>true</c> if the value of <paramref name="left"/> is different to the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ValueList<TValue> left, TValue? right) => !Equals(left, new ValueList<TValue>(right));
+        public static bool operator !=(ValueList<TValue> left, TValue right) => !Equals(left, new ValueList<TValue>(right));
 
         /// <inheritdoc cref="Equals(TValue, ValueList{TValue})" />
-        public static bool operator ==(TValue? left, ValueList<TValue> right) => Equals(new ValueList<TValue>(left), right);
+        public static bool operator ==(TValue left, ValueList<TValue> right) => Equals(new ValueList<TValue>(left), right);
 
         /// <summary>
         /// Determines whether the specified <typeparamref name="TValue"/> and <see cref="ValueList{TValue}"/> objects have different values.
@@ -149,10 +149,10 @@
         /// <param name="left">The <typeparamref name="TValue"/> to compare.</param>
         /// <param name="right">The <see cref="ValueList{TValue}"/> to compare.</param>
         /// <returns><c>true</c> if the value of <paramref name="left"/> is different to the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(TValue? left, ValueList<TValue> right) => !Equals(new ValueList<TValue>(left), right);
+        public static bool operator !=(TValue left, ValueList<TValue> right) => !Equals(new ValueList<TValue>(left), right);
 
-        /// <inheritdoc cref="Equals(ValueList{TValue}, TValue?[])" />
-        public static bool operator ==(ValueList<TValue> left, TValue?[]? right) => Equals(left, new ValueList<TValue>(right));
+        /// <inheritdoc cref="Equals(ValueList{TValue}, TValue[])" />
+        public static bool operator ==(ValueList<TValue> left, TValue[]? right) => Equals(left, new ValueList<TValue>(right));
 
         /// <summary>
         /// Determines whether the specified <see cref="ValueList{TValue}"/> and <typeparamref name="TValue"/> array have different values.
@@ -160,10 +160,10 @@
         /// <param name="left">The <see cref="ValueList{TValue}"/> to compare.</param>
         /// <param name="right">The <typeparamref name="TValue"/> array to compare.</param>
         /// <returns><c>true</c> if the value of <paramref name="left"/> is different to the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ValueList<TValue> left, TValue?[] right) => !Equals(left, new ValueList<TValue>(right));
+        public static bool operator !=(ValueList<TValue> left, TValue[] right) => !Equals(left, new ValueList<TValue>(right));
 
-        /// <inheritdoc cref="Equals(TValue?[], ValueList{TValue})" />
-        public static bool operator ==(TValue?[] left, ValueList<TValue> right) => Equals(new ValueList<TValue>(left), right);
+        /// <inheritdoc cref="Equals(TValue[], ValueList{TValue})" />
+        public static bool operator ==(TValue[] left, ValueList<TValue> right) => Equals(new ValueList<TValue>(left), right);
 
         /// <summary>
         /// Determines whether the specified <typeparamref name="TValue"/> array and <see cref="ValueList{TValue}"/> have different values.
@@ -171,7 +171,7 @@
         /// <param name="left">The <typeparamref name="TValue"/> array to compare.</param>
         /// <param name="right">The <see cref="ValueList{TValue}"/> to compare.</param>
         /// <returns><c>true</c> if the value of <paramref name="left"/> is different to the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(TValue?[] left, ValueList<TValue> right) => !Equals(new ValueList<TValue>(left), right);
+        public static bool operator !=(TValue[] left, ValueList<TValue> right) => !Equals(new ValueList<TValue>(left), right);
 
         /// <summary>
         /// Determines whether the specified <see cref="ValueList{TValue}"/> and <see cref="object"/>, which must be a
@@ -209,7 +209,7 @@
         public static bool operator !=(object left, ValueList<TValue> right) => !right.Equals(left);
 
         [MethodImpl(MethodImplOptions.NoInlining)]
-        private static TValue? OutOfBounds() => Array.Empty<TValue?>()[0]; // throws
+        private static TValue OutOfBounds() => Array.Empty<TValue>()[0]; // throws
 
         /// <summary>
         /// Creates a <typeparamref name="TValue"/> array from the current <see cref="ValueList{TValue}"/> object.
@@ -219,18 +219,18 @@
         /// <para>If the <see cref="ValueList{TValue}"/> contains a single <typeparamref name="TValue"/> internally, it is copied to a new array.</para>
         /// <para>If the <see cref="ValueList{TValue}"/> contains an array internally it returns that array instance.</para>
         /// </remarks>
-        public TValue?[] ToArray()
+        public TValue[] ToArray()
         {
             // Take local copy of values so type checks remain valid even if the ValueList is overwritten in memory
             var value = this.values;
-            if (value is TValue?[] values)
+            if (value is TValue[] values)
                 return values;
 
             if (value is null)
-                return Array.Empty<TValue?>();
+                return Array.Empty<TValue>();
 
             // value not array, can only be TValue
-            return new[] { Unsafe.As<TValue>(value) };
+            return new[] { (TValue)value };
         }
 
         /// <summary>
@@ -238,26 +238,26 @@
         /// </summary>
         /// <param name="item">The <typeparamref name="TValue"/> to locate in the <see cref="ValueList{TValue}" />.</param>
         /// <returns>the zero-based index of the first occurrence of <paramref name="item" /> within the <see cref="ValueList{TValue}" />, if found; otherwise, –1.</returns>
-        int IList<TValue?>.IndexOf(TValue? item) => IndexOf(item);
+        int IList<TValue>.IndexOf(TValue item) => IndexOf(item);
 
-        private int IndexOf(TValue? item)
+        private int IndexOf(TValue item)
         {
             // Take local copy of values so type checks remain valid even if the ValueList is overwritten in memory
             var value = this.values;
-            if (value is TValue?[] values)
+            if (value is TValue[] values)
                 return Array.IndexOf(values, item);
 
             if (value is null)
                 return -1;
 
             // value not array, can only be TValue
-            return Equals(Unsafe.As<TValue>(value), item) ? 0 : -1;
+            return Equals((TValue)value, item) ? 0 : -1;
         }
 
         /// <summary>Determines whether a <typeparamref name="TValue"/> is in the <see cref="ValueList{TValue}" />.</summary>
         /// <param name="item">The <typeparamref name="TValue"/> to locate in the <see cref="ValueList{TValue}" />.</param>
         /// <returns>true if <paramref name="item">item</paramref> is found in the <see cref="ValueList{TValue}" />; otherwise, false.</returns>
-        bool ICollection<TValue?>.Contains(TValue? item) => IndexOf(item) >= 0;
+        bool ICollection<TValue>.Contains(TValue item) => IndexOf(item) >= 0;
 
         /// <summary>
         /// Copies the entire <see cref="ValueList{TValue}" />to a <typeparamref name="TValue"/> array, starting at the specified index of the target array.
@@ -267,9 +267,9 @@
         /// <exception cref="T:System.ArgumentNullException"><paramref name="array">array</paramref> <see langword="null"/>.</exception>
         /// <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="arrayIndex">arrayIndex</paramref> is less than 0.</exception>
         /// <exception cref="T:System.ArgumentException">The number of elements in the source <see cref="ValueList{TValue}" /> is greater than the available space from <paramref name="arrayIndex">arrayIndex</paramref> to the end of the destination <paramref name="array">array</paramref>.</exception>
-        void ICollection<TValue?>.CopyTo(TValue?[] array, int arrayIndex) => CopyTo(array, arrayIndex);
+        void ICollection<TValue>.CopyTo(TValue[] array, int arrayIndex) => CopyTo(array, arrayIndex);
 
-        private void CopyTo(TValue?[] array, int arrayIndex)
+        private void CopyTo(TValue[] array, int arrayIndex)
         {
             // Take local copy of values so type checks remain valid even if the ValueList is overwritten in memory
             var value = values;
@@ -285,32 +285,32 @@
             if (value is null)
                 return;
 
-            if (value is TValue?[] vs)
+            if (value is TValue[] vs)
             {
                 Array.Copy(vs, 0, array, arrayIndex, vs.Length);
                 return;
             }
 
             // value not array, can only be TValue
-            ar[arrayIndex] = Unsafe.As<TValue>(value);
+            ar[arrayIndex] = (TValue)value;
         }
 
-        void ICollection<TValue?>.Add(TValue? item) => throw new NotSupportedException();
+        void ICollection<TValue>.Add(TValue item) => throw new NotSupportedException();
 
-        void IList<TValue?>.Insert(int index, TValue? item) => throw new NotSupportedException();
+        void IList<TValue>.Insert(int index, TValue item) => throw new NotSupportedException();
 
-        bool ICollection<TValue?>.Remove(TValue? item) => throw new NotSupportedException();
+        bool ICollection<TValue>.Remove(TValue item) => throw new NotSupportedException();
 
-        void IList<TValue?>.RemoveAt(int index) => throw new NotSupportedException();
+        void IList<TValue>.RemoveAt(int index) => throw new NotSupportedException();
 
-        void ICollection<TValue?>.Clear() => throw new NotSupportedException();
+        void ICollection<TValue>.Clear() => throw new NotSupportedException();
 
         /// <summary>Retrieves an object that can iterate through the individual <typeparamref name="TValue"/>s in this <see cref="ValueList{TValue}" />.</summary>
         /// <returns>An enumerator that can be used to iterate through the <see cref="ValueList{TValue}" />.</returns>
-        public IEnumerator<TValue?> GetEnumerator() => new Enumerator(values);
+        public IEnumerator<TValue> GetEnumerator() => new Enumerator(values);
 
         /// <inheritdoc cref="GetEnumerator()" />
-        IEnumerator<TValue?> IEnumerable<TValue?>.GetEnumerator() => GetEnumerator();
+        IEnumerator<TValue> IEnumerable<TValue>.GetEnumerator() => GetEnumerator();
 
         /// <inheritdoc cref="GetEnumerator()" />
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -349,7 +349,7 @@
         /// <param name="left">The <typeparamref name="TValue"/> to compare.</param>
         /// <param name="right">The <see cref="ValueList{TValue}"/> to compare.</param>
         /// <returns><c>true</c> if the value of <paramref name="left"/> is the same as the value of <paramref name="right"/>; otherwise, <c>false</c>. If <paramref name="left"/> is <c>null</c>, the method returns <c>false</c>.</returns>
-        public static bool Equals(TValue? left, ValueList<TValue> right) => Equals(new ValueList<TValue>(left), right);
+        public static bool Equals(TValue left, ValueList<TValue> right) => Equals(new ValueList<TValue>(left), right);
 
         /// <summary>
         /// Determines whether the specified <see cref="ValueList{TValue}"/> and <typeparamref name="TValue"/> objects have the same values.
@@ -357,7 +357,7 @@
         /// <param name="left">The <see cref="ValueList{TValue}"/> to compare.</param>
         /// <param name="right">The <typeparamref name="TValue"/> to compare.</param>
         /// <returns><c>true</c> if the value of <paramref name="left"/> is the same as the value of <paramref name="right"/>; otherwise, <c>false</c>. If <paramref name="right"/> is <c>null</c>, the method returns <c>false</c>.</returns>
-        public static bool Equals(ValueList<TValue> left, TValue? right) => Equals(left, new ValueList<TValue>(right));
+        public static bool Equals(ValueList<TValue> left, TValue right) => Equals(left, new ValueList<TValue>(right));
 
         /// <summary>
         /// Determines whether the specified <typeparamref name="TValue"/> array and <see cref="ValueList{TValue}"/> objects have the same values.
@@ -365,7 +365,7 @@
         /// <param name="left">The <typeparamref name="TValue"/> array to compare.</param>
         /// <param name="right">The <see cref="ValueList{TValue}"/> to compare.</param>
         /// <returns><c>true</c> if the value of <paramref name="left"/> is the same as the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
-        public static bool Equals(TValue?[] left, ValueList<TValue> right) => Equals(new ValueList<TValue>(left), right);
+        public static bool Equals(TValue[] left, ValueList<TValue> right) => Equals(new ValueList<TValue>(left), right);
 
         /// <summary>
         /// Determines whether the specified <see cref="ValueList{TValue}"/> and <typeparamref name="TValue"/> array objects have the same values.
@@ -373,21 +373,21 @@
         /// <param name="left">The <see cref="ValueList{TValue}"/> to compare.</param>
         /// <param name="right">The <typeparamref name="TValue"/> array to compare.</param>
         /// <returns><c>true</c> if the value of <paramref name="left"/> is the same as the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
-        public static bool Equals(ValueList<TValue> left, TValue?[]? right) => Equals(left, new ValueList<TValue>(right));
+        public static bool Equals(ValueList<TValue> left, TValue[]? right) => Equals(left, new ValueList<TValue>(right));
 
         /// <summary>
         /// Determines whether this instance and a specified <typeparamref name="TValue"/>, have the same value.
         /// </summary>
         /// <param name="other">The <typeparamref name="TValue"/> to compare to this instance.</param>
         /// <returns><c>true</c> if the value of <paramref name="other"/> is the same as this instance; otherwise, <c>false</c>. If <paramref name="other"/> is <c>null</c>, returns <c>false</c>.</returns>
-        public bool Equals(TValue? other) => Equals(this, new ValueList<TValue>(other));
+        public bool Equals(TValue other) => Equals(this, new ValueList<TValue>(other));
 
         /// <summary>
         /// Determines whether this instance and a specified <typeparamref name="TValue"/> array have the same values.
         /// </summary>
         /// <param name="other">The <typeparamref name="TValue"/> array to compare to this instance.</param>
         /// <returns><c>true</c> if the value of <paramref name="other"/> is the same as this instance; otherwise, <c>false</c>.</returns>
-        public bool Equals(TValue?[]? other) => Equals(this, new ValueList<TValue>(other));
+        public bool Equals(TValue[]? other) => Equals(this, new ValueList<TValue>(other));
 
         /// <summary>
         /// Determines whether this instance and a specified object have the same value.
@@ -400,7 +400,7 @@
             {
                 ValueList<TValue> vl => Equals(this, vl),
                 TValue v => Equals(this, v),
-                TValue?[] vs => Equals(this, new ValueList<TValue>(vs)),
+                TValue[] vs => Equals(this, new ValueList<TValue>(vs)),
                 null => Equals(this, ValueList<TValue>.Empty),
                 _ => false,
             };
@@ -413,18 +413,18 @@
             if (value is null)
                 return HashUtil.NullHashCode;
 
-            if (value is TValue?[] values)
+            if (value is TValue[] values)
                 return HashUtil.Combine(values);
 
-            return Unsafe.As<TValue>(value).GetHashCode();
+            return value.GetHashCode();
         }
 
         /// <summary>
         /// Enumerates the <typeparamref name="TValue"/> values of a <see cref="ValueList{TValue}" />.
         /// </summary>
-        private struct Enumerator : IEnumerator<TValue?>
+        private struct Enumerator : IEnumerator<TValue>
         {
-            private readonly TValue?[]? values;
+            private readonly TValue[]? values;
             private int index;
 
             internal Enumerator(object? value)
@@ -436,14 +436,14 @@
                 }
                 else
                 {
-                    Current = null;
-                    values = Unsafe.As<TValue?[]>(value);
+                    Current = default!;
+                    values = Unsafe.As<TValue[]>(value);
                 }
 
                 index = 0;
             }
 
-            public TValue? Current { get; private set; }
+            public TValue Current { get; private set; }
 
             [ExcludeFromCodeCoverage]
             object? IEnumerator.Current => Current;

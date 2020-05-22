@@ -15,16 +15,15 @@
         /// <item>In all other cases, it behaves similar to <see cref="Enumerable.ToArray{TSource}(IEnumerable{TSource})"/>.</item>
         /// </list>
         /// </summary>
-        internal static (TValue? Value, TValue?[]? Values) GetOptimizedValues<TValue>(IEnumerable<TValue?>? source)
-            where TValue : class
+        internal static (TValue Value, TValue[]? Values) GetOptimizedValues<TValue>(IEnumerable<TValue>? source)
         {
             switch (source)
             {
                 case TValue[] array:
-                    return (null, array);
+                    return (default, array);
 
                 case null:
-                    return (null, null);
+                    return (default, default);
 
                 default:
                     break;
@@ -36,10 +35,10 @@
                 {
                     var first = en.Current;
                     if (!en.MoveNext())
-                        return (first, null);
+                        return (first, default);
 
                     const int DefaultCapacity = 4;
-                    var arr = new TValue?[DefaultCapacity];
+                    var arr = new TValue[DefaultCapacity];
                     arr[0] = first;
                     arr[1] = en.Current;
                     int count = 2;
@@ -76,7 +75,7 @@
                     }
 
                     Array.Resize(ref arr, count);
-                    return (null, arr);
+                    return (default, arr);
                 }
             }
 
