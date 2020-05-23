@@ -48,7 +48,7 @@
         public ValueList(IEnumerable<TValue>? source)
         {
             (var value, var values) = ValueListUtil.GetOptimizedValues(source);
-            this.values = value ?? (object?)values;
+            this.values = values is null ? value : (object)values;
         }
 
         /// <summary>
