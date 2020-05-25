@@ -836,6 +836,52 @@
             => value.CompareTo(max) <= 0 ? value : throw ExceptLessThanOrEqual(paramName, max, message, args);
 
         /// <summary>
+        /// Used to validate that the value is greater than the min value.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"> is thrown on failure.</exception>
+        /// <param name="value">The actual condition.</param>
+        /// <param name="min">The absolute minimum - exclusive.</param>
+        /// <param name="paramName">The name of the parameter being tested.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T CheckGreaterThanl<T>(T value, T min, string paramName) where T : IComparable<T>
+            => CheckGreaterThan(value, min, paramName, null, Array.Empty<object>());
+
+        /// <summary>
+        /// Used to validate that the value is greater than the min value.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"> is thrown on failure.</exception>
+        /// <param name="value">The actual condition.</param>
+        /// <param name="min">The absolute minimum - exclusive.</param>
+        /// <param name="paramName">The name of the parameter being tested.</param>
+        /// <param name="message">The exception message or message format.</param>
+        /// <param name="args">The arguments for message format.</param>
+        public static T CheckGreaterThan<T>(T value, T min, string paramName, string? message, params object?[] args) where T : IComparable<T>
+            => value.CompareTo(min) > 0 ? value : throw ExceptGreaterThan(paramName, min, message, args);
+
+        /// <summary>
+        /// Used to validate that the value is less than the max value.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"> is thrown on failure.</exception>
+        /// <param name="value">The actual condition.</param>
+        /// <param name="max">The absolute maximum - exclusive.</param>
+        /// <param name="paramName">The name of the parameter being tested.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T CheckLessThan<T>(T value, T max, string paramName) where T : IComparable<T>
+            => CheckLessThan(value, max, paramName, null, Array.Empty<object>());
+
+        /// <summary>
+        /// Used to validate that the value is less than the max value.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"> is thrown on failure.</exception>
+        /// <param name="value">The actual condition.</param>
+        /// <param name="max">The absolute maximum - exclusive.</param>
+        /// <param name="paramName">The name of the parameter being tested.</param>
+        /// <param name="message">The exception message or message format.</param>
+        /// <param name="args">The arguments for message format.</param>
+        public static T CheckLessThan<T>(T value, T max, string paramName, string? message, params object?[] args) where T : IComparable<T>
+            => value.CompareTo(max) < 0 ? value : throw ExceptLessThan(paramName, max, message, args);
+
+        /// <summary>
         /// Used to validate that all the strings in a specified collection are
         /// non-null and non-empty.
         /// </summary>
@@ -1342,6 +1388,22 @@
             return new ArgumentOutOfRangeException(
                 paramName,
                 GetMessage($"{paramName} parameter must be less than or equal to {max}.", message, args));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static ArgumentOutOfRangeException ExceptGreaterThan<T>(string paramName, T min, string? message, object?[] args)
+        {
+            return new ArgumentOutOfRangeException(
+                paramName,
+                GetMessage($"{paramName} parameter must be greater than {min}.", message, args));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static ArgumentOutOfRangeException ExceptLessThan<T>(string paramName, T max, string? message, object?[] args)
+        {
+            return new ArgumentOutOfRangeException(
+                paramName,
+                GetMessage($"{paramName} parameter must be less than {max}.", message, args));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
