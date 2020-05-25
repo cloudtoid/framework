@@ -843,7 +843,7 @@
         /// <param name="min">The absolute minimum - exclusive.</param>
         /// <param name="paramName">The name of the parameter being tested.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T CheckGreaterThanl<T>(T value, T min, string paramName) where T : IComparable<T>
+        public static T CheckGreaterThan<T>(T value, T min, string paramName) where T : IComparable<T>
             => CheckGreaterThan(value, min, paramName, null, Array.Empty<object>());
 
         /// <summary>
