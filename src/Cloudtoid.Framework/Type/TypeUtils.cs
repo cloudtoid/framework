@@ -36,11 +36,12 @@
                 case TypeCode.Int32:
                 case TypeCode.Int64:
                 case TypeCode.Double:
-                case TypeCode.Single:
-                case TypeCode.Int16:
-                case TypeCode.UInt16:
+                case TypeCode.Decimal:
                 case TypeCode.UInt32:
                 case TypeCode.UInt64:
+                case TypeCode.Int16:
+                case TypeCode.Single:
+                case TypeCode.UInt16:
                 case TypeCode.Byte:
                 case TypeCode.Char:
                 case TypeCode.SByte:
@@ -104,11 +105,12 @@
                 case TypeCode.Int32:
                 case TypeCode.Int64:
                 case TypeCode.Double:
+                case TypeCode.Decimal:
                 case TypeCode.UInt32:
                 case TypeCode.UInt64:
                 case TypeCode.Int16:
-                case TypeCode.UInt16:
                 case TypeCode.Single:
+                case TypeCode.UInt16:
                     return true;
             }
 
