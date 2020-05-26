@@ -2,7 +2,7 @@
 {
     using System;
 
-    public static class TypeUtils
+    public static class TypeUtil
     {
         public static Type GetNonNullableType(this Type type)
             => IsNullableType(type) ? type.GetGenericArguments()[0] : type;
