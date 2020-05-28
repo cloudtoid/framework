@@ -36,9 +36,11 @@
             set => EnsureItems()[key] = value;
         }
 
-        public void Add(TKey key, TValue value) => EnsureItems().Add(key, value);
+        public void Add(TKey key, TValue value)
+            => EnsureItems().Add(key, value);
 
-        public void Add(KeyValuePair<TKey, TValue> item) => EnsureItems().Add(item);
+        public void Add(KeyValuePair<TKey, TValue> item)
+            => EnsureItems().Add(item);
 
         public void Clear()
         {
@@ -53,7 +55,10 @@
             => items != null && items.ContainsKey(key);
 
         public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
-            => (items ?? Empty).CopyTo(array, arrayIndex);
+        {
+            if (items != null)
+                items.CopyTo(array, arrayIndex);
+        }
 
         public bool Remove(TKey key)
             => items != null && items.Remove(key);
@@ -76,7 +81,7 @@
             => (items ?? Empty).GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator()
-            => (items ?? Empty).GetEnumerator();
+            => GetEnumerator();
 
         private IDictionary<TKey, TValue> EnsureItems()
         {

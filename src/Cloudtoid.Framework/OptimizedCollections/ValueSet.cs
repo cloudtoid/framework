@@ -28,7 +28,7 @@
             => EnsureItems().Add(item);
 
         void ICollection<TValue>.Add(TValue item)
-            => EnsureItems().Add(item);
+            => Add(item);
 
         public void Clear()
         {
@@ -40,7 +40,10 @@
             => items != null && items.Contains(item);
 
         public void CopyTo(TValue[] array, int arrayIndex)
-            => (items ?? Empty).CopyTo(array, arrayIndex);
+        {
+            if (items != null)
+                items.CopyTo(array, arrayIndex);
+        }
 
         public void ExceptWith(IEnumerable<TValue> other)
         {
@@ -84,6 +87,9 @@
         public IEnumerator<TValue> GetEnumerator()
             => (items ?? Empty).GetEnumerator();
 
+        IEnumerator IEnumerable.GetEnumerator()
+            => GetEnumerator();
+
         private ISet<TValue> EnsureItems()
         {
             if (items == null)
@@ -91,7 +97,5 @@
 
             return items;
         }
-
-        IEnumerator IEnumerable.GetEnumerator() => throw new System.NotImplementedException();
     }
 }
