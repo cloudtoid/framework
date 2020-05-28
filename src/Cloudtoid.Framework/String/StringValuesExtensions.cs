@@ -27,7 +27,7 @@
                 return new StringValues(value);
 
             if (values != null)
-                return new StringValues(values);
+                return new StringValues(values.AsArray());
 
             return StringValues.Empty;
         }

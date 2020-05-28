@@ -10,17 +10,17 @@
         /// Gets an optimized value from <see cref="IEnumerable{TValue}"/>.
         /// <list type="bullet">
         /// <item>If the source is <see langword="null"/>, it returns <see langword="null"/>.</item>
-        /// <item>If the source is a <typeparamref name="TValue"/> array, then the same exact instance of the array is returned.</item>
-        /// <item>If the source only has a single instance of <typeparamref name="TValue"/>, then the same exact instance of <typeparamref name="TValue"/> is returned.</item>
+        /// <item>If the source is a <see cref="IList{TValue}"/>, then the same exact instance of the list is returned.</item>
+        /// <item>If the source has a single instance of <typeparamref name="TValue"/>, then the same exact instance of <typeparamref name="TValue"/> is returned.</item>
         /// <item>In all other cases, it behaves similar to <see cref="Enumerable.ToArray{TSource}(IEnumerable{TSource})"/>.</item>
         /// </list>
         /// </summary>
-        internal static (TValue Value, TValue[]? Values) GetOptimizedValues<TValue>(IEnumerable<TValue>? source)
+        internal static (TValue Value, IList<TValue>? Values) GetOptimizedValues<TValue>(IEnumerable<TValue>? source)
         {
             switch (source)
             {
-                case TValue[] array:
-                    return (default, array);
+                case IList<TValue> list:
+                    return (default, list);
 
                 case null:
                     return (default, default);
