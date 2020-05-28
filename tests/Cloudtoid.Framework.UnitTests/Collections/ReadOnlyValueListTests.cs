@@ -15,7 +15,7 @@
         public void New_WhenEmpty_ValuesFieldIsEmpty()
         {
             var v = ReadOnlyValueList<string?>.Empty;
-            v.values.Should().BeOfType<string[]>().And.BeSameAs(Array.Empty<string>());
+            v.items.Should().BeOfType<string[]>().And.BeSameAs(Array.Empty<string>());
             v.Count.Should().Be(0);
             v.ToArray().Should().BeSameAs(Array.Empty<string>());
             v.WhereNotNull().ToList().Should().BeEmpty();
@@ -35,7 +35,7 @@
         public void New_WhenDefault_ValuesFieldIsNull()
         {
             var v = default(ReadOnlyValueList<string?>);
-            v.values.Should().BeNull();
+            v.items.Should().BeNull();
             v.Count.Should().Be(0);
             v.ToArray().Should().BeSameAs(Array.Empty<string>());
             v.WhereNotNull().ToList().Should().BeEmpty();
@@ -54,7 +54,7 @@
         public void New_WhenNullValue_ValuesFieldIsNull()
         {
             var v = new ReadOnlyValueList<string?>(default(string));
-            v.values.Should().BeNull();
+            v.items.Should().BeNull();
             v.Count.Should().Be(0);
             v.ToArray().Should().BeSameAs(Array.Empty<string>());
             v.WhereNotNull().ToList().Should().BeEmpty();
@@ -73,7 +73,7 @@
         public void New_WhenNullEnumerableValue_ValuesFieldIsNull()
         {
             var v = new ReadOnlyValueList<string?>(default(IEnumerable<string?>));
-            v.values.Should().BeNull();
+            v.items.Should().BeNull();
             v.Count.Should().Be(0);
             v.ToArray().Should().BeSameAs(Array.Empty<string>());
             v.WhereNotNull().ToList().Should().BeEmpty();
@@ -92,7 +92,7 @@
         public void New_WhenOneValue_ValuesFieldSetToThatValue()
         {
             var v = new ReadOnlyValueList<string?>("a");
-            v.values.Should().Be("a");
+            v.items.Should().Be("a");
             v.Count.Should().Be(1);
             v[0].Should().Be("a");
             v.ToArray().Should().BeEquivalentTo(new[] { "a" });
@@ -116,7 +116,7 @@
         public void New_WhenOneEnumerableValue_ValuesFieldSetToThatValue()
         {
             var v = new ReadOnlyValueList<string?>(Enumerable.Repeat("a", 1));
-            v.values.Should().Be("a");
+            v.items.Should().Be("a");
             v.Count.Should().Be(1);
             v[0].Should().Be("a");
             v.ToArray().Should().BeEquivalentTo(new[] { "a" });
@@ -141,7 +141,7 @@
         {
             var array = new[] { "a", "b" };
             var v = new ReadOnlyValueList<string?>(array);
-            v.values.Should().BeSameAs(array);
+            v.items.Should().BeSameAs(array);
             v.Count.Should().Be(2);
             v[0].Should().Be("a");
             v[1].Should().Be("b");
@@ -168,11 +168,11 @@
         {
             var array = new[] { "a", "b" };
             var v = new ReadOnlyValueList<string?>(new[] { "a" }.Concat(new[] { "b" }));
-            v.values.Should().BeEquivalentTo(array);
+            v.items.Should().BeEquivalentTo(array);
             v.Count.Should().Be(2);
             v[0].Should().Be("a");
             v[1].Should().Be("b");
-            v.ToArray().Should().BeSameAs((string[]?)v.values);
+            v.ToArray().Should().BeSameAs((string[]?)v.items);
             v.WhereNotNull().ToList().Should().BeEquivalentTo(new[] { "a", "b" });
 
             var l = (IList<string>)v;
@@ -196,7 +196,7 @@
             var e = Enumerable.Range(1, 1000).Select(i => i.ToStringInvariant());
             var array = e.ToArray();
             var v = new ReadOnlyValueList<string?>(e);
-            v.values.Should().BeEquivalentTo(array);
+            v.items.Should().BeEquivalentTo(array);
         }
 
         [TestMethod]

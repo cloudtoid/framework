@@ -11,7 +11,7 @@
         /// <summary>Retrieves an object that can iterate through the individual <typeparamref name="TValue"/>s in this <see cref="ReadOnlyValueList{TValue}" />.</summary>
         /// <returns>An enumerator that can be used to iterate through the <see cref="ReadOnlyValueList{TValue}" />.</returns>
         public IEnumerator<TValue> GetEnumerator()
-            => new Enumerator(values);
+            => new Enumerator(items);
 
         /// <inheritdoc cref="GetEnumerator()" />
         IEnumerator<TValue> IEnumerable<TValue>.GetEnumerator()

@@ -20,34 +20,34 @@
 
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1307:Accessible fields should begin with upper-case letter", Justification = "Only used for testing")]
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:Non-private readonly fields should begin with upper-case letter", Justification = "Only used for testing")]
-        internal readonly object? values;
+        internal readonly object? items;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReadOnlyValueList{TValue}"/> structure using the specified <paramref name="value"/>.
+        /// Initializes a new instance of the <see cref="ReadOnlyValueList{TValue}"/> structure using the specified <paramref name="item"/>.
         /// </summary>
-        /// <param name="value">A value or <see langword="null"/></param>
-        public ReadOnlyValueList(TValue value)
+        /// <param name="item">A value or <see langword="null"/></param>
+        public ReadOnlyValueList(TValue item)
         {
-            values = value;
+            items = item;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReadOnlyValueList{TValue}"/> structure that holds the specified <paramref name="values"/>.
+        /// Initializes a new instance of the <see cref="ReadOnlyValueList{TValue}"/> structure that holds the specified <paramref name="items"/>.
         /// </summary>
-        /// <param name="values">A <see cref="IList{TValue}"/> instance or <see langword="null"/>.</param>
-        public ReadOnlyValueList(IList<TValue>? values)
+        /// <param name="items">A <see cref="IList{TValue}"/> instance or <see langword="null"/>.</param>
+        public ReadOnlyValueList(IList<TValue>? items)
         {
-            this.values = values;
+            this.items = items;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReadOnlyValueList{TValue}"/> structure using the specified <typeparamref name="TValue"/> enumerable.
         /// </summary>
-        /// <param name="source">A <typeparamref name="TValue"/> enumerable or <see langword="null"/>.</param>
-        public ReadOnlyValueList(IEnumerable<TValue>? source)
+        /// <param name="items">A <typeparamref name="TValue"/> enumerable or <see langword="null"/>.</param>
+        public ReadOnlyValueList(IEnumerable<TValue>? items)
         {
-            (var value, var values) = ValueListUtil.GetOptimizedValues(source);
-            this.values = values is null ? value : (object)values;
+            (var value, var values) = ValueListUtil.GetOptimizedValues(items);
+            this.items = values is null ? value : (object)values;
         }
 
         bool ICollection<TValue>.IsReadOnly => true;
@@ -61,7 +61,7 @@
             get
             {
                 // Take local copy of values so type checks remain valid even if the ReadOnlyValueList is overwritten in memory
-                var value = values;
+                var value = items;
                 if (value is TValue)
                     return 1;
 
@@ -84,7 +84,7 @@
             get
             {
                 // Take local copy of values so type checks remain valid even if the ReadOnlyValueList is overwritten in memory
-                var value = values;
+                var value = items;
                 if (value is TValue v)
                 {
                     if (index == 0)
@@ -124,7 +124,7 @@
         public TValue[] ToArray()
         {
             // Take local copy of values so type checks remain valid even if the ReadOnlyValueList is overwritten in memory
-            var value = values;
+            var value = items;
             if (value is IList<TValue> list)
                 return list.AsArray();
 
@@ -146,7 +146,7 @@
         private int IndexOf(TValue item)
         {
             // Take local copy of values so type checks remain valid even if the ReadOnlyValueList is overwritten in memory
-            var value = this.values;
+            var value = items;
             if (value is IList<TValue> values)
                 return values.IndexOf(item);
 
@@ -177,7 +177,7 @@
         private void CopyTo(TValue[] array, int arrayIndex)
         {
             // Take local copy of values so type checks remain valid even if the ReadOnlyValueList is overwritten in memory
-            var value = values;
+            var value = items;
 
             var ar = Contract.CheckValue(array, nameof(array));
 

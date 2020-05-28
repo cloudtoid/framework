@@ -213,7 +213,7 @@
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            var value = values;
+            var value = items;
             if (value is null)
                 return HashUtil.NullHashCode;
 

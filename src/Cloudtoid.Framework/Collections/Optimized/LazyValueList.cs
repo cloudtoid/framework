@@ -3,7 +3,9 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using static Contract;
 
     /// <summary>
     /// This is a lightweight value type that wraps an existing list or a single item and lazily makes it a mutable <see cref="IList{TValue}"/>.
@@ -12,17 +14,20 @@
     /// </summary>
     public struct LazyValueList<TValue> : IList<TValue>
     {
+        public static readonly LazyValueList<TValue> Empty = default;
+
         private static readonly TValue[] EmptyArray = Array.Empty<TValue>();
         private IList<TValue>? items;
 
         public LazyValueList(IEnumerable<TValue> items)
         {
-            this.items = items.AsList();
+            CheckValue(items, nameof(items));
+            this.items = new ReadOnlyValueList<TValue>(items);
         }
 
         public LazyValueList(TValue item)
         {
-            items = new ReadOnlyValueList<TValue>(item);
+            items = item is null ? (IList<TValue>?)null : new ReadOnlyValueList<TValue>(item);
         }
 
         public int Count
@@ -75,8 +80,13 @@
         public IEnumerator<TValue> GetEnumerator()
             => (items ?? EmptyArray).GetEnumerator();
 
+        [ExcludeFromCodeCoverage]
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
+
+        // This is only used for testing
+        internal IList<TValue>? GetInner()
+            => items;
 
         private IList<TValue> EnsureNotReadOnly()
         {
