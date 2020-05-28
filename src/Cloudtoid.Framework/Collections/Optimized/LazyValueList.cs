@@ -22,7 +22,7 @@
         public LazyValueList(IEnumerable<TValue> items)
         {
             CheckValue(items, nameof(items));
-            this.items = new ReadOnlyValueList<TValue>(items);
+            this.items = (items as IList<TValue>) ?? new ReadOnlyValueList<TValue>(items);
         }
 
         public LazyValueList(TValue item)

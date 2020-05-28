@@ -25,6 +25,7 @@
             v.Remove(string.Empty).Should().BeFalse();
             v.Clear(); // should not throw
             v.Count.Should().Be(0);
+            v.GetInner().Should().BeNull();
 
             Invoking(() => v[0]).Should().ThrowExactly<IndexOutOfRangeException>();
             Invoking(() => v.RemoveAt(0)).Should().ThrowExactly<ArgumentOutOfRangeException>();
@@ -47,11 +48,12 @@
 
             v.Add("test");
             v.Count.Should().Be(1);
+            v[0] = "a";
+            v.Should().BeEquivalentTo(new[] { "a" });
+            v.Insert(0, "b");
+            v.Should().BeEquivalentTo(new[] { "b", "a" });
             v.RemoveAt(0);
-            v.Count.Should().Be(0);
-
-            v.Add("test");
-            v.Count.Should().Be(1);
+            v.Should().BeEquivalentTo(new[] { "a" });
             v.Clear(); // should not throw
             v.Count.Should().Be(0);
         }
@@ -120,7 +122,7 @@
             var inner = v.GetInner();
             inner.Should().NotBeNull();
             inner.Should().BeOfType<ReadOnlyValueList<string?>>();
-            ((ReadOnlyValueList<string?>)inner!).items.Should().Be("a");
+            ((ReadOnlyValueList<string?>)inner!).GetInner().Should().Be("a");
         }
 
         [TestMethod]
@@ -131,7 +133,7 @@
             var inner = v.GetInner();
             inner.Should().NotBeNull();
             inner.Should().BeOfType<ReadOnlyValueList<string?>>();
-            ((ReadOnlyValueList<string?>)inner!).items.Should().BeEquivalentTo(e);
+            ((ReadOnlyValueList<string?>)inner!).GetInner().Should().BeEquivalentTo(e);
             v.Count.Should().Be(1000);
             v.IsReadOnly.Should().BeFalse();
             v.ToArray().Should().BeEquivalentTo(e);
@@ -159,8 +161,37 @@
             var v = new LazyValueList<string?>(e);
             var inner = v.GetInner();
             inner.Should().NotBeNull();
-            inner.Should().BeOfType<ReadOnlyValueList<string?>>();
-            ((ReadOnlyValueList<string?>)inner!).items.Should().BeEquivalentTo(e);
+            inner.Should().NotBeOfType<ReadOnlyValueList<string?>>();
+            inner!.IsReadOnly.Should().BeTrue();
+            v.Count.Should().Be(1000);
+            v.IsReadOnly.Should().BeFalse();
+            v.ToArray().Should().BeEquivalentTo(e);
+            v.WhereNotNull().ToList().Should().BeEquivalentTo(e);
+            v[0].Should().Be("1");
+            v[1].Should().Be("2");
+            v.IndexOf(string.Empty).Should().Be(-1);
+            v.Contains(string.Empty).Should().BeFalse();
+            v.Remove(string.Empty).Should().BeFalse();
+            v.Contains("10").Should().BeTrue();
+            v.IndexOf("10").Should().Be(9);
+
+            v.Add("test");
+            inner = v.GetInner();
+            inner!.IsReadOnly.Should().BeFalse();
+            inner.Should().NotBeNull();
+            inner!.GetType().Should().Be(typeof(List<string?>));
+            v.Count.Should().Be(1001);
+            v[1000].Should().Be("test");
+        }
+
+        [TestMethod]
+        public void New_WhenReadOnlyCollection_MutableListIsCreated()
+        {
+            var e = Enumerable.Range(1, 1000).Select(i => i.ToStringInvariant()).ToList();
+            var v = new LazyValueList<string?>(e);
+            var inner = v.GetInner();
+            inner.Should().NotBeNull();
+            inner!.IsReadOnly.Should().BeFalse();
             v.Count.Should().Be(1000);
             v.IsReadOnly.Should().BeFalse();
             v.ToArray().Should().BeEquivalentTo(e);
@@ -176,7 +207,8 @@
             v.Add("test");
             inner = v.GetInner();
             inner.Should().NotBeNull();
-            inner!.GetType().Should().Be(typeof(List<string?>));
+            inner!.IsReadOnly.Should().BeFalse();
+            inner.GetType().Should().Be(typeof(List<string?>));
             v.Count.Should().Be(1001);
             v[1000].Should().Be("test");
         }

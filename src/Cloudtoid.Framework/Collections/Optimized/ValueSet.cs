@@ -3,6 +3,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.Immutable;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// This struct avoids an object allocation if none of the write methods are called. Once the first write operation is called then
@@ -10,7 +11,8 @@
     /// </summary>
     public struct ValueSet<TValue> : ISet<TValue>
     {
-        private static readonly ISet<TValue> Empty = ImmutableHashSet<TValue>.Empty;
+        public static readonly ValueSet<TValue> Empty = default;
+        private static readonly ISet<TValue> EmptySet = ImmutableHashSet<TValue>.Empty;
         private ISet<TValue>? items;
 
         public ValueSet(ISet<TValue>? items)
@@ -58,25 +60,25 @@
         }
 
         public bool IsProperSubsetOf(IEnumerable<TValue> other)
-            => (items ?? Empty).IsProperSubsetOf(other);
+            => (items ?? EmptySet).IsProperSubsetOf(other);
 
         public bool IsProperSupersetOf(IEnumerable<TValue> other)
-            => (items ?? Empty).IsProperSupersetOf(other);
+            => (items ?? EmptySet).IsProperSupersetOf(other);
 
         public bool IsSubsetOf(IEnumerable<TValue> other)
-            => (items ?? Empty).IsSubsetOf(other);
+            => (items ?? EmptySet).IsSubsetOf(other);
 
         public bool IsSupersetOf(IEnumerable<TValue> other)
-            => (items ?? Empty).IsSupersetOf(other);
+            => (items ?? EmptySet).IsSupersetOf(other);
 
         public bool Overlaps(IEnumerable<TValue> other)
-            => (items ?? Empty).Overlaps(other);
+            => (items ?? EmptySet).Overlaps(other);
 
         public bool Remove(TValue item)
             => items != null && items.Remove(item);
 
         public bool SetEquals(IEnumerable<TValue> other)
-            => (items ?? Empty).SetEquals(other);
+            => (items ?? EmptySet).SetEquals(other);
 
         public void SymmetricExceptWith(IEnumerable<TValue> other)
             => EnsureItems().SymmetricExceptWith(other);
@@ -85,10 +87,15 @@
             => EnsureItems().UnionWith(other);
 
         public IEnumerator<TValue> GetEnumerator()
-            => (items ?? Empty).GetEnumerator();
+            => (items ?? EmptySet).GetEnumerator();
 
+        [ExcludeFromCodeCoverage]
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
+
+        // This is only used for testing
+        internal ISet<TValue>? GetInner()
+            => items;
 
         private ISet<TValue> EnsureItems()
         {

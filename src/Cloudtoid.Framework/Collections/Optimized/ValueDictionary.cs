@@ -10,7 +10,8 @@
     /// </summary>
     public struct ValueDictionary<TKey, TValue> : IDictionary<TKey, TValue>
     {
-        private static readonly IDictionary<TKey, TValue> Empty = ImmutableDictionary<TKey, TValue>.Empty;
+        public static readonly ValueDictionary<TKey, TValue> Empty = default;
+        private static readonly IDictionary<TKey, TValue> EmptyDic = ImmutableDictionary<TKey, TValue>.Empty;
         private IDictionary<TKey, TValue>? items;
 
         public ValueDictionary(IDictionary<TKey, TValue>? items)
@@ -19,10 +20,10 @@
         }
 
         public ICollection<TKey> Keys
-            => (items ?? Empty).Keys;
+            => (items ?? EmptyDic).Keys;
 
         public ICollection<TValue> Values
-            => (items ?? Empty).Values;
+            => (items ?? EmptyDic).Values;
 
         public int Count
             => items is null ? 0 : items.Count;
@@ -32,7 +33,7 @@
 
         public TValue this[TKey key]
         {
-            get => (items ?? Empty)[key];
+            get => (items ?? EmptyDic)[key];
             set => EnsureItems()[key] = value;
         }
 
@@ -78,10 +79,14 @@
         }
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
-            => (items ?? Empty).GetEnumerator();
+            => (items ?? EmptyDic).GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
+
+        // This is only used for testing
+        internal IDictionary<TKey, TValue>? GetInner()
+            => items;
 
         private IDictionary<TKey, TValue> EnsureItems()
         {

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
 
     /// <summary>
@@ -18,9 +17,7 @@
         /// </remarks>
         public static readonly ReadOnlyValueList<TValue> Empty = new ReadOnlyValueList<TValue>(Array.Empty<TValue>());
 
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1307:Accessible fields should begin with upper-case letter", Justification = "Only used for testing")]
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:Non-private readonly fields should begin with upper-case letter", Justification = "Only used for testing")]
-        internal readonly object? items;
+        private readonly object? items;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReadOnlyValueList{TValue}"/> structure using the specified <paramref name="item"/>.
@@ -199,5 +196,9 @@
             // value not array, can only be TValue
             ar[arrayIndex] = (TValue)value;
         }
+
+        // This is only used for testing
+        internal object? GetInner()
+            => items;
     }
 }
