@@ -6,7 +6,7 @@
 
     /// <summary>
     /// This struct avoids an object allocation if none of the write methods are called. Once the first write operation is called then
-    /// an instance of the inner dictionary is instantiated.
+    /// an instance of the inner <see cref="Dictionary{TKey, TValue}"/> is instantiated.
     /// </summary>
     public struct ValueDictionary<TKey, TValue> : IDictionary<TKey, TValue>
     {
