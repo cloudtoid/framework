@@ -1,4 +1,4 @@
-﻿namespace Cloudtoid.Json.Schema
+﻿namespace Cloudtoid
 {
     using System.Collections;
     using System.Collections.Generic;
