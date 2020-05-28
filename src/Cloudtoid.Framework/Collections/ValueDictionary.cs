@@ -8,12 +8,12 @@
     /// This struct avoids an object allocation if none of the write methods are called. Once the first write operation is called then
     /// an instance of the inner dictionary is instantiated.
     /// </summary>
-    internal struct ValueDictionary<TKey, TValue> : IDictionary<TKey, TValue>
+    public struct ValueDictionary<TKey, TValue> : IDictionary<TKey, TValue>
     {
         private static readonly IDictionary<TKey, TValue> Empty = ImmutableDictionary<TKey, TValue>.Empty;
         private IDictionary<TKey, TValue>? items;
 
-        internal ValueDictionary(IDictionary<TKey, TValue>? items)
+        public ValueDictionary(IDictionary<TKey, TValue>? items)
         {
             this.items = items;
         }
