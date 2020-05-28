@@ -12,7 +12,7 @@
     /// </summary>
     public struct LazyValueList<TValue> : IList<TValue>
     {
-        private static readonly TValue[] EmptyArrey = Array.Empty<TValue>();
+        private static readonly TValue[] EmptyArray = Array.Empty<TValue>();
         private IList<TValue>? items;
 
         public LazyValueList(IEnumerable<TValue> items)
@@ -73,7 +73,7 @@
         }
 
         public IEnumerator<TValue> GetEnumerator()
-            => (items ?? EmptyArrey).GetEnumerator();
+            => (items ?? EmptyArray).GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
