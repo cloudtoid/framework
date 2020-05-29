@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using static Contract;
 
     /// <summary>
     /// This is a lightweight value type that wraps an existing list or a single item and lazily makes it a mutable <see cref="IList{TValue}"/>.
@@ -21,8 +20,9 @@
 
         public LazyValueList(IEnumerable<TValue> items)
         {
-            CheckValue(items, nameof(items));
-            this.items = (items as IList<TValue>) ?? new ReadOnlyValueList<TValue>(items);
+            this.items = items is null
+                ? null
+                : (items as IList<TValue>) ?? new ReadOnlyValueList<TValue>(items);
         }
 
         public LazyValueList(TValue item)
