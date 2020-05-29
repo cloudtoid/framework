@@ -30,15 +30,15 @@
             items = item is null ? (IList<TValue>?)null : new ReadOnlyValueList<TValue>(item);
         }
 
-        public int Count
+        public readonly int Count
             => items is null ? 0 : items.Count;
 
-        public bool IsReadOnly
+        public readonly bool IsReadOnly
             => false;
 
         public TValue this[int index]
         {
-            get => items is null ? throw new IndexOutOfRangeException() : items[index];
+            readonly get => items is null ? throw new IndexOutOfRangeException() : items[index];
             set => EnsureNotReadOnly()[index] = value;
         }
 
@@ -59,33 +59,33 @@
         public bool Remove(TValue item)
             => items != null && items.Count != 0 && EnsureNotReadOnly().Remove(item);
 
-        public int IndexOf(TValue item)
+        public readonly int IndexOf(TValue item)
             => items is null ? -1 : items.IndexOf(item);
 
-        public void Clear()
+        public readonly void Clear()
         {
             if (items?.Count > 0)
                 items.Clear();
         }
 
-        public bool Contains(TValue item)
+        public readonly bool Contains(TValue item)
             => items != null && items.Contains(item);
 
-        public void CopyTo(TValue[] array, int arrayIndex)
+        public readonly void CopyTo(TValue[] array, int arrayIndex)
         {
             if (items != null)
                 items.CopyTo(array, arrayIndex);
         }
 
-        public IEnumerator<TValue> GetEnumerator()
+        public readonly IEnumerator<TValue> GetEnumerator()
             => (items ?? EmptyArray).GetEnumerator();
 
         [ExcludeFromCodeCoverage]
-        IEnumerator IEnumerable.GetEnumerator()
+        readonly IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
 
         // This is only used for testing
-        internal IList<TValue>? GetInner()
+        internal readonly IList<TValue>? GetInner()
             => items;
 
         private IList<TValue> EnsureNotReadOnly()

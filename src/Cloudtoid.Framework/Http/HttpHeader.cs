@@ -42,7 +42,7 @@
 
         // Must be between 'space' (32) and 'DEL' (127).
         private static bool IsValidNameChar(char character)
-            => character > 127 ? false : TokenChars[character];
+            => character <= 127 && TokenChars[character];
 
         public static bool IsValidName(string name)
         {

@@ -8,7 +8,8 @@
     [DebuggerStepThrough]
     public static class EnumerableExtensions
     {
-        public static IEnumerable<TItem> Concat<TItem>(this IEnumerable<TItem>? items, TItem item) => items.ConcatOrEmpty(new[] { item });
+        public static IEnumerable<TItem> Concat<TItem>(this IEnumerable<TItem>? items, TItem item)
+            => items.ConcatOrEmpty(new[] { item });
 
         /// <summary>
         /// It safely concatenates two enumerables. If the enumerables are null, they are treated as empty.
@@ -16,12 +17,7 @@
         public static IEnumerable<TItem> ConcatOrEmpty<TItem>(this IEnumerable<TItem>? first, IEnumerable<TItem>? second)
         {
             if (second is null)
-            {
-                if (first is null)
-                    return Array.Empty<TItem>();
-
-                return first;
-            }
+                return first ?? Array.Empty<TItem>();
 
             if (first is null)
                 return second;

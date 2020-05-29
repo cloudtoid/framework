@@ -74,17 +74,7 @@
         }
 
         public static bool IsCancelOrTimeout(this Exception ex)
-        {
-            CheckValue(ex, nameof(ex));
-
-            if (ex is OperationCanceledException)
-                return true;
-
-            if (ex is TaskCanceledException)
-                return true;
-
-            return false;
-        }
+            => ex is OperationCanceledException || ex is TaskCanceledException;
 
         public static bool IsFatalOrCancelOrTimeout(this Exception ex)
             => IsFatal(ex) || IsCancelOrTimeout(ex);

@@ -20,10 +20,10 @@
             this.items = items;
         }
 
-        public int Count
+        public readonly int Count
             => items is null ? 0 : items.Count;
 
-        public bool IsReadOnly
+        public readonly bool IsReadOnly
             => items != null && items.IsReadOnly;
 
         public bool Add(TValue item)
@@ -32,40 +32,40 @@
         void ICollection<TValue>.Add(TValue item)
             => Add(item);
 
-        public void Clear()
+        public readonly void Clear()
             => items?.Clear();
 
-        public bool Contains(TValue item)
+        public readonly bool Contains(TValue item)
             => items != null && items.Contains(item);
 
-        public void CopyTo(TValue[] array, int arrayIndex)
+        public readonly void CopyTo(TValue[] array, int arrayIndex)
             => items?.CopyTo(array, arrayIndex);
 
-        public void ExceptWith(IEnumerable<TValue> other)
+        public readonly void ExceptWith(IEnumerable<TValue> other)
             => items?.ExceptWith(other);
 
-        public void IntersectWith(IEnumerable<TValue> other)
+        public readonly void IntersectWith(IEnumerable<TValue> other)
             => items?.IntersectWith(other);
 
-        public bool IsProperSubsetOf(IEnumerable<TValue> other)
+        public readonly bool IsProperSubsetOf(IEnumerable<TValue> other)
             => (items ?? EmptySet).IsProperSubsetOf(other);
 
-        public bool IsProperSupersetOf(IEnumerable<TValue> other)
+        public readonly bool IsProperSupersetOf(IEnumerable<TValue> other)
             => (items ?? EmptySet).IsProperSupersetOf(other);
 
-        public bool IsSubsetOf(IEnumerable<TValue> other)
+        public readonly bool IsSubsetOf(IEnumerable<TValue> other)
             => items is null || items.IsSubsetOf(other);
 
-        public bool IsSupersetOf(IEnumerable<TValue> other)
+        public readonly bool IsSupersetOf(IEnumerable<TValue> other)
             => (items ?? EmptySet).IsSupersetOf(other);
 
-        public bool Overlaps(IEnumerable<TValue> other)
+        public readonly bool Overlaps(IEnumerable<TValue> other)
             => items != null && items.Overlaps(other);
 
-        public bool Remove(TValue item)
+        public readonly bool Remove(TValue item)
             => items != null && items.Remove(item);
 
-        public bool SetEquals(IEnumerable<TValue> other)
+        public readonly bool SetEquals(IEnumerable<TValue> other)
             => (items ?? EmptySet).SetEquals(other);
 
         public void SymmetricExceptWith(IEnumerable<TValue> other)
@@ -74,15 +74,15 @@
         public void UnionWith(IEnumerable<TValue> other)
             => EnsureItems().UnionWith(other);
 
-        public IEnumerator<TValue> GetEnumerator()
+        public readonly IEnumerator<TValue> GetEnumerator()
             => items is null ? EmptyEnumerator<TValue>.Instance : items.GetEnumerator();
 
         [ExcludeFromCodeCoverage]
-        IEnumerator IEnumerable.GetEnumerator()
+        readonly IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
 
         // This is only used for testing
-        internal ISet<TValue>? GetInner()
+        internal readonly ISet<TValue>? GetInner()
             => items;
 
         private ISet<TValue> EnsureItems()
