@@ -35,9 +35,11 @@
             v.TryGetValue("a", out _).Should().BeFalse();
             v.Select(k => k.Value).WhereNotNull().ToList().Should().BeEmpty();
             v.ContainsKey(string.Empty).Should().BeFalse();
+            v.Contains(new KeyValuePair<string, string?>("a", "a")).Should().BeFalse();
             v.CopyTo(new KeyValuePair<string, string?>[0], 0);
             v.Should().BeEmpty();
             v.Remove(string.Empty).Should().BeFalse();
+            v.Remove(new KeyValuePair<string, string?>("a", "a")).Should().BeFalse();
             v.Clear(); // should not throw
             v.Count.Should().Be(0);
             v.GetInner().Should().BeNull();
@@ -53,13 +55,14 @@
             v.Keys.Should().BeEquivalentTo(SingleStringArray);
 
             v = ValueDictionary<string, string?>.Empty;
-            v.Add("a", "a");
+            v.Add(new KeyValuePair<string, string?>("a", "a"));
             v.GetInner().Should().NotBeNull();
             v.Count.Should().Be(1);
             v.IsReadOnly.Should().BeFalse();
             v.Select(k => k.Value).WhereNotNull().ToList().Should().BeEquivalentTo(SingleStringArray);
             v.ContainsKey(string.Empty).Should().BeFalse();
             v.Remove(string.Empty).Should().BeFalse();
+            v.Contains(new KeyValuePair<string, string?>("a", "a")).Should().BeTrue();
             v.ContainsKey("a").Should().BeTrue();
             v["a"].Should().Be("a");
             v["a"] = "a";
@@ -93,6 +96,14 @@
             v.Keys.Should().BeEquivalentTo(new[] { "a", "b" });
             v.Select(k => k.Value).Should().BeEquivalentTo(new[] { "a", "b" });
             v.Count.Should().Be(2);
+            v["a"] = "c";
+            v["a"].Should().Be("c");
+            v.TryGetValue("a", out var val).Should().BeTrue();
+            val.Should().Be("c");
+            var array = new KeyValuePair<string, string?>[2];
+            v.CopyTo(array, 0);
+            array.Select(a => a.Key).Should().BeEquivalentTo(new[] { "a", "b" });
+            v["a"] = "a";
 
             v.ContainsKey(string.Empty).Should().BeFalse();
             v.Remove(string.Empty).Should().BeFalse();
@@ -107,6 +118,8 @@
             v.Count.Should().Be(2);
             v.IsReadOnly.Should().BeFalse();
             v.Values.Should().BeEquivalentTo(new[] { "a", "test" });
+            v.Remove(new KeyValuePair<string, string?>("test", "test")).Should().BeTrue();
+            v.Values.Should().BeEquivalentTo(new[] { "a" });
         }
     }
 }
