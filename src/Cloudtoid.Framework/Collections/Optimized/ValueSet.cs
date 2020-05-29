@@ -33,31 +33,19 @@
             => Add(item);
 
         public void Clear()
-        {
-            if (items != null)
-                items.Clear();
-        }
+            => items?.Clear();
 
         public bool Contains(TValue item)
             => items != null && items.Contains(item);
 
         public void CopyTo(TValue[] array, int arrayIndex)
-        {
-            if (items != null)
-                items.CopyTo(array, arrayIndex);
-        }
+            => items?.CopyTo(array, arrayIndex);
 
         public void ExceptWith(IEnumerable<TValue> other)
-        {
-            if (items != null)
-                items.ExceptWith(other);
-        }
+            => items?.ExceptWith(other);
 
         public void IntersectWith(IEnumerable<TValue> other)
-        {
-            if (items != null)
-                items.IntersectWith(other);
-        }
+            => items?.IntersectWith(other);
 
         public bool IsProperSubsetOf(IEnumerable<TValue> other)
             => (items ?? EmptySet).IsProperSubsetOf(other);
@@ -66,13 +54,13 @@
             => (items ?? EmptySet).IsProperSupersetOf(other);
 
         public bool IsSubsetOf(IEnumerable<TValue> other)
-            => (items ?? EmptySet).IsSubsetOf(other);
+            => items is null || items.IsSubsetOf(other);
 
         public bool IsSupersetOf(IEnumerable<TValue> other)
             => (items ?? EmptySet).IsSupersetOf(other);
 
         public bool Overlaps(IEnumerable<TValue> other)
-            => (items ?? EmptySet).Overlaps(other);
+            => items != null && items.Overlaps(other);
 
         public bool Remove(TValue item)
             => items != null && items.Remove(item);
@@ -98,11 +86,6 @@
             => items;
 
         private ISet<TValue> EnsureItems()
-        {
-            if (items == null)
-                items = new HashSet<TValue>();
-
-            return items;
-        }
+            => items ??= new HashSet<TValue>();
     }
 }
