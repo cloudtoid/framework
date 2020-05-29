@@ -75,7 +75,7 @@
             => EnsureItems().UnionWith(other);
 
         public IEnumerator<TValue> GetEnumerator()
-            => (items ?? EmptySet).GetEnumerator();
+            => items is null ? EmptyEnumerator<TValue>.Instance : items.GetEnumerator();
 
         [ExcludeFromCodeCoverage]
         IEnumerator IEnumerable.GetEnumerator()

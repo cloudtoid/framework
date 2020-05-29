@@ -1,5 +1,6 @@
 ﻿namespace Cloudtoid
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.Immutable;
@@ -20,10 +21,10 @@
         }
 
         public ICollection<TKey> Keys
-            => (items ?? EmptyDic).Keys;
+            => items is null ? Array.Empty<TKey>() : items.Keys;
 
         public ICollection<TValue> Values
-            => (items ?? EmptyDic).Values;
+            => items is null ? Array.Empty<TValue>() : items.Values;
 
         public int Count
             => items is null ? 0 : items.Count;
@@ -33,7 +34,7 @@
 
         public TValue this[TKey key]
         {
-            get => (items ?? EmptyDic)[key];
+            get => items is null ? throw new KeyNotFoundException() : items[key];
             set => EnsureItems()[key] = value;
         }
 
@@ -44,10 +45,7 @@
             => EnsureItems().Add(item);
 
         public void Clear()
-        {
-            if (items != null)
-                items.Clear();
-        }
+            => items?.Clear();
 
         public bool Contains(KeyValuePair<TKey, TValue> item)
             => items != null && items.Contains(item);
@@ -56,10 +54,7 @@
             => items != null && items.ContainsKey(key);
 
         public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
-        {
-            if (items != null)
-                items.CopyTo(array, arrayIndex);
-        }
+            => items?.CopyTo(array, arrayIndex);
 
         public bool Remove(TKey key)
             => items != null && items.Remove(key);
@@ -79,7 +74,7 @@
         }
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
-            => (items ?? EmptyDic).GetEnumerator();
+            => items is null ? EmptyEnumerator<KeyValuePair<TKey, TValue>>.Instance : items.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
@@ -89,11 +84,6 @@
             => items;
 
         private IDictionary<TKey, TValue> EnsureItems()
-        {
-            if (items == null)
-                items = new Dictionary<TKey, TValue>();
-
-            return items;
-        }
+            => items ??= new Dictionary<TKey, TValue>();
     }
 }
