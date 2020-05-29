@@ -3,7 +3,6 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Collections.Immutable;
 
     /// <summary>
     /// This struct avoids an object allocation if none of the write methods are called. Once the first write operation is called then
@@ -12,7 +11,6 @@
     public struct ValueDictionary<TKey, TValue> : IDictionary<TKey, TValue>
     {
         public static readonly ValueDictionary<TKey, TValue> Empty = default;
-        private static readonly IDictionary<TKey, TValue> EmptyDic = ImmutableDictionary<TKey, TValue>.Empty;
         private IDictionary<TKey, TValue>? items;
 
         public ValueDictionary(IDictionary<TKey, TValue>? items)
