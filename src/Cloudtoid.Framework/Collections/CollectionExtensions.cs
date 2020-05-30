@@ -65,6 +65,10 @@
             => items as IList<T> ?? items.ToList();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IList<T> AsMutableList<T>(this IEnumerable<T> items)
+            => items is IList<T> list && !list.IsReadOnly ? list : items.ToList();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T[] AsArray<T>(this IEnumerable<T> items)
             => items as T[] ?? items.ToArray();
 
