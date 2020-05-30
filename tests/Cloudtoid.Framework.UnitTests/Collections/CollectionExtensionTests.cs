@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -55,6 +56,39 @@
         {
             IReadOnlyList<string> list = Array.Empty<string>();
             list.IsEmpty().Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void AsMutableList_EmptyReadOnlyList_ReturnsMutableList()
+        {
+            IReadOnlyList<string> list = Array.Empty<string>();
+            var mutable = list.AsMutableList();
+            mutable.Should().NotBeSameAs(list);
+            mutable.IsReadOnly.Should().BeFalse();
+            mutable.Add("z");
+            mutable.Should().HaveCount(1);
+        }
+
+        [TestMethod]
+        public void AsMutableList_Array_ReturnsMutableList()
+        {
+            var list = new string[] { "a", "b" };
+            var mutable = list.AsMutableList();
+            mutable.Should().NotBeSameAs(list);
+            mutable.IsReadOnly.Should().BeFalse();
+            mutable.Add("z");
+            mutable.Should().HaveCount(3);
+        }
+
+        [TestMethod]
+        public void AsMutableList_Enumerable_ReturnsMutableList()
+        {
+            var list = Enumerable.Repeat("a", 2);
+            var mutable = list.AsMutableList();
+            mutable.Should().NotBeSameAs(list);
+            mutable.IsReadOnly.Should().BeFalse();
+            mutable.Add("z");
+            mutable.Should().HaveCount(3);
         }
     }
 }
