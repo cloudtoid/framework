@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Runtime.CompilerServices;
     using static Contract;
@@ -26,19 +27,19 @@
             => value.Length == 0;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNullOrEmpty<T>(this List<T>? value)
+        public static bool IsNullOrEmpty<T>([NotNullWhen(false)] this List<T>? value)
             => value is null || value.Count == 0;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNullOrEmpty<T>(this ICollection<T>? value)
+        public static bool IsNullOrEmpty<T>([NotNullWhen(false)] this ICollection<T>? value)
             => value is null || value.Count == 0;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNullOrEmpty<T>(this IReadOnlyCollection<T>? value)
+        public static bool IsNullOrEmpty<T>([NotNullWhen(false)] this IReadOnlyCollection<T>? value)
             => value is null || value.Count == 0;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNullOrEmpty<T>(this T[]? value)
+        public static bool IsNullOrEmpty<T>([NotNullWhen(false)] this T[]? value)
             => value is null || value.Length == 0;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
