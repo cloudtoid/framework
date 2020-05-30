@@ -61,6 +61,14 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ISet<T>? AsSetOrDefault<T>(this IEnumerable<T>? items)
+            => items?.AsSet();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ISet<T>? AsSetOrDefault<T>(this IEnumerable<T>? items, IEqualityComparer<T> comparer)
+            => items?.AsSet(comparer);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<T> AsList<T>(this IEnumerable<T> items)
             => items as IList<T> ?? items.ToList();
 
