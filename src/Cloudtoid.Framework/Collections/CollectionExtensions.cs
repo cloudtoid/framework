@@ -72,6 +72,14 @@
         public static T[] AsArray<T>(this IEnumerable<T> items)
             => items as T[] ?? items.ToArray();
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ISet<T> AsSet<T>(this IEnumerable<T> items)
+            => items as ISet<T> ?? items.ToHashSet();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ISet<T> AsSet<T>(this IEnumerable<T> items, IEqualityComparer<T> comparer)
+            => items as ISet<T> ?? items.ToHashSet(comparer);
+
         public static void AddRange<TKey, TValue>(
             this ICollection<KeyValuePair<TKey, TValue>> destination,
             IEnumerable<KeyValuePair<TKey, TValue>>? source)
