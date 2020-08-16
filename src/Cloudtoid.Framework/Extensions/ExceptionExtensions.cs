@@ -12,6 +12,12 @@ namespace Cloudtoid
     [DebuggerStepThrough]
     public static class ExceptionExtensions
     {
+        /// <summary>
+        /// Checks if <paramref name="exception"/> is considered a fatal exception such as <see cref="ThreadAbortException"/>,
+        /// <see cref="AccessViolationException"/>, <see cref="SEHException"/>, <see cref="StackOverflowException"/>,
+        /// <see cref="TypeInitializationException"/>, or <see cref="OutOfMemoryException"/> but not
+        /// <see cref="InsufficientMemoryException"/>
+        /// </summary>
         public static bool IsFatal(this Exception exception)
         {
             CheckValue(exception, nameof(exception));
@@ -73,10 +79,18 @@ namespace Cloudtoid
             return false;
         }
 
-        public static bool IsCancelOrTimeout(this Exception ex)
-            => ex is OperationCanceledException || ex is TaskCanceledException;
+        /// <summary>
+        /// Checks if <paramref name="exception"/> is of type <see cref="OperationCanceledException"/>
+        /// or <see cref="TaskCanceledException"/>.
+        /// </summary>
+        public static bool IsCancelOrTimeout(this Exception exception)
+            => exception is OperationCanceledException || exception is TaskCanceledException;
 
-        public static bool IsFatalOrCancelOrTimeout(this Exception ex)
-            => IsFatal(ex) || IsCancelOrTimeout(ex);
+        /// <summary>
+        /// Checks if <paramref name="exception"/> is considered a fatal exception such as <see cref="ThreadAbortException"/> or
+        /// is of type <see cref="OperationCanceledException"/> or <see cref="TaskCanceledException"/>.
+        /// </summary>
+        public static bool IsFatalOrCancelOrTimeout(this Exception exception)
+            => IsFatal(exception) || IsCancelOrTimeout(exception);
     }
 }

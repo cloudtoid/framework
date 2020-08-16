@@ -16,6 +16,7 @@
       "documentInternalElements": false,
       "documentPrivateElements": false,
       "documentPrivateFields": false,
+      "xmlHeader": false
     },
     "namingRules": {
       "allowCommonHungarianPrefixes": false
