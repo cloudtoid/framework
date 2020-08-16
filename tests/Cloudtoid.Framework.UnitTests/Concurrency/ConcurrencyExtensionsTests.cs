@@ -1,14 +1,14 @@
-﻿namespace Cloudtoid.Framework.UnitTests
-{
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-    using FluentAssertions;
-    using Microsoft.Extensions.Logging;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using NSubstitute;
-    using static FluentAssertions.FluentActions;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using FluentAssertions;
+using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
+using static FluentAssertions.FluentActions;
 
+namespace Cloudtoid.Framework.UnitTests
+{
     [TestClass]
     [SuppressMessage("Microsoft.VisualStudio.Threading.Analyzers", "VSTHRD003", Justification = "Reviewed.")]
     public sealed class ConcurrencyExtensionsTests

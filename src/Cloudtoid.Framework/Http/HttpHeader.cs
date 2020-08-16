@@ -1,8 +1,8 @@
-﻿namespace Cloudtoid
-{
-    using System.Diagnostics;
-    using static Contract;
+﻿using System.Diagnostics;
+using static Cloudtoid.Contract;
 
+namespace Cloudtoid
+{
     [DebuggerStepThrough]
     public static class HttpHeader
     {

@@ -1,11 +1,11 @@
-﻿namespace Cloudtoid
-{
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Runtime.CompilerServices;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
+namespace Cloudtoid
+{
     public readonly partial struct ReadOnlyValueList<TValue>
     {
         /// <summary>Retrieves an object that can iterate through the individual <typeparamref name="TValue"/>s in this <see cref="ReadOnlyValueList{TValue}" />.</summary>

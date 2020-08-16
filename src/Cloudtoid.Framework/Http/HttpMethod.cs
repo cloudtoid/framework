@@ -1,11 +1,11 @@
-﻿namespace Cloudtoid
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using static Contract;
-    using Method = System.Net.Http.HttpMethod;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using static Cloudtoid.Contract;
+using Method = System.Net.Http.HttpMethod;
 
+namespace Cloudtoid
+{
     [DebuggerStepThrough]
     public static class HttpMethod
     {

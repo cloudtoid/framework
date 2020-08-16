@@ -1,12 +1,12 @@
-﻿namespace Cloudtoid.Framework.UnitTests
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using FluentAssertions;
-    using Microsoft.Extensions.Primitives;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using FluentAssertions;
+using Microsoft.Extensions.Primitives;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+namespace Cloudtoid.Framework.UnitTests
+{
     [TestClass]
     public sealed class StringValuesExtensionsTests
     {

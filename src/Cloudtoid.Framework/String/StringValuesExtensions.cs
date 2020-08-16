@@ -1,10 +1,10 @@
-﻿namespace Cloudtoid
-{
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using Microsoft.Extensions.Primitives;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using Microsoft.Extensions.Primitives;
 
+namespace Cloudtoid
+{
     [DebuggerStepThrough]
     public static class StringValuesExtensions
     {

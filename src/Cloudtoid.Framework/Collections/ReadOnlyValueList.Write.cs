@@ -1,8 +1,8 @@
-﻿namespace Cloudtoid
-{
-    using System;
-    using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
+namespace Cloudtoid
+{
     public readonly partial struct ReadOnlyValueList<TValue>
     {
         // This is a read only value

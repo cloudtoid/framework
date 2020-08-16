@@ -1,12 +1,12 @@
-﻿namespace Cloudtoid
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Runtime.CompilerServices;
-    using System.Threading;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
+namespace Cloudtoid
+{
     /// <summary>
     /// Execution contract assertions also known as Code Contracts
     /// </summary>

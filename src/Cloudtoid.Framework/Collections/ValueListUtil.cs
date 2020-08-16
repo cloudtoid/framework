@@ -1,9 +1,9 @@
-﻿namespace Cloudtoid
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
+namespace Cloudtoid
+{
     internal static class ValueListUtil
     {
         /// <summary>

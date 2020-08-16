@@ -27,11 +27,11 @@
 
   <!-- Test Package Versions -->
   <PropertyGroup>
-    <MicrosoftDotNetTestSdk>16.6.*</MicrosoftDotNetTestSdk>
+    <MicrosoftDotNetTestSdk>16.7.*</MicrosoftDotNetTestSdk>
     <MSTestVersion>2.1.*</MSTestVersion>
     <NSubstituteVersion>4.2.*</NSubstituteVersion>
     <FluentAssertionsVersion>5.10.*</FluentAssertionsVersion>
-    <CoverletVersion>2.8.*</CoverletVersion>
+    <CoverletVersion>2.9.*</CoverletVersion>
   </PropertyGroup>
 
   <!-- Code Analyzer Versions -->
@@ -39,8 +39,8 @@
     <!-- Temporary workaround to suppress the nuget pack warning below-->
     <NoWarn>$(NoWarn)NU5104</NoWarn>
     <StyleCopAnalyzersVersion>1.2.0-beta.164</StyleCopAnalyzersVersion>
-    <ThreadingAnalyzersVersion>16.6.*</ThreadingAnalyzersVersion>
-    <BannedApiAnalyzersVersion>3.0.*</BannedApiAnalyzersVersion>
+    <ThreadingAnalyzersVersion>16.7.*</ThreadingAnalyzersVersion>
+    <BannedApiAnalyzersVersion>3.3.*</BannedApiAnalyzersVersion>
   </PropertyGroup>
 
   <!-- Code Analyzer Settings -->

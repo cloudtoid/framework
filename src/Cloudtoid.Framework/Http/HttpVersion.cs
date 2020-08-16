@@ -1,9 +1,9 @@
-﻿namespace Cloudtoid
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
+namespace Cloudtoid
+{
     [DebuggerStepThrough]
     public static class HttpVersion
     {

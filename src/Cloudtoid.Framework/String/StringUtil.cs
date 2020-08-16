@@ -1,12 +1,12 @@
-﻿namespace Cloudtoid
-{
-    using System;
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
-    using System.Runtime.CompilerServices;
-    using static Contract;
+﻿using System;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+using static Cloudtoid.Contract;
 
+namespace Cloudtoid
+{
     [SuppressMessage("BannedApiAnalyzer", "RS0030", Justification = "Reviewed.")]
     [DebuggerStepThrough]
     public static class StringUtil

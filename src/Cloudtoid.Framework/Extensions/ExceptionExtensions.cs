@@ -1,14 +1,14 @@
-﻿namespace Cloudtoid
-{
-    using System;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Reflection;
-    using System.Runtime.InteropServices;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using static Contract;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
+using static Cloudtoid.Contract;
 
+namespace Cloudtoid
+{
     [DebuggerStepThrough]
     public static class ExceptionExtensions
     {
@@ -59,7 +59,7 @@
                     // a lesser of the two evils.
                     var faex = aex.Flatten();
                     var iexs = faex.InnerExceptions;
-                    if (iexs != null && iexs.Any(i => i.IsFatal()))
+                    if (iexs != null && iexs.Any(IsFatal))
                         return true;
 
                     ex = ex.InnerException;

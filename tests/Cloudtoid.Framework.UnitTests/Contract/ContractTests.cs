@@ -1,12 +1,12 @@
-﻿namespace Cloudtoid.Framework.UnitTests
-{
-    using System;
-    using System.Threading.Tasks;
-    using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using static Contract;
-    using static FluentAssertions.FluentActions;
+﻿using System;
+using System.Threading.Tasks;
+using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Cloudtoid.Contract;
+using static FluentAssertions.FluentActions;
 
+namespace Cloudtoid.Framework.UnitTests
+{
     [TestClass]
     public sealed class ContractTests
     {

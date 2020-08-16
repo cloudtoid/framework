@@ -1,9 +1,9 @@
-﻿namespace Cloudtoid
-{
-    using System.Diagnostics;
-    using Microsoft.Extensions.DependencyInjection;
-    using static Contract;
+﻿using System.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
+using static Cloudtoid.Contract;
 
+namespace Cloudtoid
+{
     [DebuggerStepThrough]
     public static class DependencyInjection
     {

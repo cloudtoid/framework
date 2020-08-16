@@ -1,10 +1,10 @@
-﻿namespace Cloudtoid
-{
-    using System;
-    using System.Diagnostics;
-    using Microsoft.Extensions.Configuration;
-    using static Contract;
+﻿using System;
+using System.Diagnostics;
+using Microsoft.Extensions.Configuration;
+using static Cloudtoid.Contract;
 
+namespace Cloudtoid
+{
     [DebuggerStepThrough]
     public static class ConfigurationExtensions
     {

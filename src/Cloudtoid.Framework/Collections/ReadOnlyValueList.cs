@@ -1,9 +1,9 @@
-﻿namespace Cloudtoid
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
+namespace Cloudtoid
+{
     /// <summary>
     /// Represents zero/<see langword="null"/>, one, or many items of type <typeparamref name="TValue"/> in an efficient way.
     /// </summary>

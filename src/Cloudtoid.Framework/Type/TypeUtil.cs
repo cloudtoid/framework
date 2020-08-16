@@ -1,7 +1,7 @@
-﻿namespace Cloudtoid
-{
-    using System;
+﻿using System;
 
+namespace Cloudtoid
+{
     public static class TypeUtil
     {
         public static Type GetNonNullableType(this Type type)

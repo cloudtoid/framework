@@ -1,7 +1,7 @@
-﻿namespace Cloudtoid
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace Cloudtoid
+{
     public readonly partial struct ReadOnlyValueList<TValue>
     {
         /// <summary>

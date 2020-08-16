@@ -1,13 +1,13 @@
-﻿namespace Cloudtoid.Framework.UnitTests
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Cloudtoid;
-    using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using static FluentAssertions.FluentActions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Cloudtoid;
+using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static FluentAssertions.FluentActions;
 
+namespace Cloudtoid.Framework.UnitTests
+{
     [TestClass]
     public sealed class ReadOnlyValueListTests
     {

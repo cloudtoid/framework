@@ -1,8 +1,8 @@
-﻿namespace Cloudtoid
-{
-    using System.Diagnostics;
-    using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
 
+namespace Cloudtoid
+{
     [DebuggerStepThrough]
     public static class HttpStatusCodeExtensions
     {

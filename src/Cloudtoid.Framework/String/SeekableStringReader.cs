@@ -1,11 +1,11 @@
-﻿namespace Cloudtoid
-{
-    using System;
-    using System.IO;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using static Contract;
+﻿using System;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+using static Cloudtoid.Contract;
 
+namespace Cloudtoid
+{
     /// <summary>
     /// This class implements a seekable text reader that reads from a string.
     /// </summary>

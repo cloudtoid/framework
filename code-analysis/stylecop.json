@@ -24,7 +24,7 @@
     "orderingRules": {
       "blankLinesBetweenUsingGroups": "omit",
       "systemUsingDirectivesFirst": true,
-      "usingDirectivesPlacement": "insideNamespace"
+      "usingDirectivesPlacement": "outsideNamespace"
     }
   }
 }

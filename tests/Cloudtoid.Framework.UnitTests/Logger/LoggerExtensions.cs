@@ -1,12 +1,12 @@
-﻿namespace Cloudtoid.Framework.UnitTests
-{
-    using System;
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-    using NSubstitute;
-    using NSubstitute.Exceptions;
-    using static Contract;
+﻿using System;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
+using NSubstitute;
+using NSubstitute.Exceptions;
+using static Cloudtoid.Contract;
 
+namespace Cloudtoid.Framework.UnitTests
+{
     public static class LoggerExtensions
     {
         private static readonly MethodInfo LogMethodInfo = typeof(ILogger).GetMethod("Log")

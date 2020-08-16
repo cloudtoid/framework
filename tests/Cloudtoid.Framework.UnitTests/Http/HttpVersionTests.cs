@@ -1,8 +1,8 @@
-﻿namespace Cloudtoid.Framework.UnitTests
-{
-    using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+namespace Cloudtoid.Framework.UnitTests
+{
     [TestClass]
     public sealed class HttpVersionTests
     {

@@ -1,12 +1,12 @@
-﻿namespace Cloudtoid
-{
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.Runtime.CompilerServices;
-    using System.Text;
-    using static Contract;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Text;
+using static Cloudtoid.Contract;
 
+namespace Cloudtoid
+{
     [DebuggerStepThrough]
     public static class StringBuilderExtensions
     {

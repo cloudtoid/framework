@@ -1,11 +1,11 @@
-﻿namespace Cloudtoid
-{
-    using System;
-    using System.Diagnostics;
-    using System.Linq;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.DependencyInjection.Extensions;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
+namespace Cloudtoid
+{
     // Added this class so that the extensions all return the service collection
     [DebuggerStepThrough]
     public static class ServiceCollectionExtensions

@@ -1,10 +1,10 @@
-﻿namespace Cloudtoid
-{
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Runtime.CompilerServices;
-    using static Contract;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using static Cloudtoid.Contract;
 
+namespace Cloudtoid
+{
     /// <summary>
     /// Utility methods for generating and combining hash codes.
     /// </summary>
