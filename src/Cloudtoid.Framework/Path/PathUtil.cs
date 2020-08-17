@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace Cloudtoid.Framework
+namespace Cloudtoid
 {
     [DebuggerStepThrough]
     public static class PathUtil
