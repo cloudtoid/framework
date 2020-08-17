@@ -55,8 +55,11 @@ namespace Cloudtoid.Framework
             return filePath;
         }
 
-        // shortens a file path by choosing the shorter of absolute and relative paths
-        private static string ShortenPath(string path)
+        /// <summary>
+        /// Shortens a file path by choosing the shorter of absolute and relative paths.
+        /// The relative path is assumed to be relative to <see cref="Environment.CurrentDirectory"/>.
+        /// </summary>
+        public static string ShortenPath(string path)
         {
             var relativePath = Path.GetRelativePath(Environment.CurrentDirectory, path);
             return relativePath.Length < path.Length ? relativePath : path;
