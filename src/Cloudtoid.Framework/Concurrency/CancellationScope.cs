@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.ObjectPool;
 
 namespace Cloudtoid
@@ -91,6 +92,25 @@ namespace Cloudtoid
                 using (token1.Register(CancelAction, source, false))
                 using (token2.Register(CancelAction, source, false))
                     return func(state, source.Token);
+            }
+            finally
+            {
+                Pool.Return(source);
+            }
+        }
+
+        public static async ValueTask<TResult> ExecuteAsync<TState, TResult>(
+            CancellationToken token1,
+            CancellationToken token2,
+            Func<TState, CancellationToken, ValueTask<TResult>> func,
+            TState state)
+        {
+            var source = Pool.Get();
+            try
+            {
+                using (token1.Register(CancelAction, source, false))
+                using (token2.Register(CancelAction, source, false))
+                    return await func(state, source.Token);
             }
             finally
             {
