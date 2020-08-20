@@ -14,8 +14,16 @@ namespace Cloudtoid
         private static readonly Action<object?> CancelAction =
             s => ((CancellationTokenSource)s!).Cancel();
 
-        private static readonly ObjectPool<CancellationTokenSource> Pool =
-            new DefaultObjectPool<CancellationTokenSource>(new Policy(), 1024);
+        private static readonly ObjectPool<CancellationTokenSource> Pool;
+
+        static CancellationScope()
+        {
+            var provider = new DefaultObjectPoolProvider
+            {
+                MaximumRetained = 1024
+            };
+            Pool = provider.Create(new Policy());
+        }
 
         public static void Execute(
             CancellationToken token1,
