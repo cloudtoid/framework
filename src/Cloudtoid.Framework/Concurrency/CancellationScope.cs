@@ -25,14 +25,31 @@ namespace Cloudtoid
             var source = Pool.Get();
             try
             {
-                using (token1.Register(CancelAction, token1))
-                using (token2.Register(CancelAction, token2))
+                using (token1.Register(CancelAction, source, false))
+                using (token2.Register(CancelAction, source, false))
                     action(source.Token);
             }
             finally
             {
-                if (!source.IsCancellationRequested)
-                    Pool.Return(source);
+                Pool.Return(source);
+            }
+        }
+
+        public static TResult Execute<TResult>(
+            CancellationToken token1,
+            CancellationToken token2,
+            Func<CancellationToken, TResult> func)
+        {
+            var source = Pool.Get();
+            try
+            {
+                using (token1.Register(CancelAction, source, false))
+                using (token2.Register(CancelAction, source, false))
+                    return func(source.Token);
+            }
+            finally
+            {
+                Pool.Return(source);
             }
         }
 
@@ -44,14 +61,13 @@ namespace Cloudtoid
             var source = Pool.Get();
             try
             {
-                using (token1.Register(CancelAction, token1))
-                using (token2.Register(CancelAction, token2))
+                using (token1.Register(CancelAction, source, false))
+                using (token2.Register(CancelAction, source, false))
                     await action(source.Token);
             }
             finally
             {
-                if (!source.IsCancellationRequested)
-                    Pool.Return(source);
+                Pool.Return(source);
             }
         }
 
@@ -63,14 +79,13 @@ namespace Cloudtoid
             var source = Pool.Get();
             try
             {
-                using (token1.Register(CancelAction, token1))
-                using (token2.Register(CancelAction, token2))
+                using (token1.Register(CancelAction, source, false))
+                using (token2.Register(CancelAction, source, false))
                     return await action(source.Token);
             }
             finally
             {
-                if (!source.IsCancellationRequested)
-                    Pool.Return(source);
+                Pool.Return(source);
             }
         }
 
@@ -82,14 +97,13 @@ namespace Cloudtoid
             var source = Pool.Get();
             try
             {
-                using (token1.Register(CancelAction, token1))
-                using (token2.Register(CancelAction, token2))
+                using (token1.Register(CancelAction, source, false))
+                using (token2.Register(CancelAction, source, false))
                     return await func(source.Token);
             }
             finally
             {
-                if (!source.IsCancellationRequested)
-                    Pool.Return(source);
+                Pool.Return(source);
             }
         }
 

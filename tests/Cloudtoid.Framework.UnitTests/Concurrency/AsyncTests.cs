@@ -11,7 +11,7 @@ namespace Cloudtoid.Framework.UnitTests
 {
     [TestClass]
     [SuppressMessage("Microsoft.VisualStudio.Threading.Analyzers", "VSTHRD003", Justification = "Reviewed.")]
-    public sealed class ConcurrencyExtensionsTests
+    public sealed class AsyncTests
     {
         [TestMethod]
         public void TraceOnFaulted_WhenTaskThrows_ErrorIsLogged()
