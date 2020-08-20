@@ -87,13 +87,15 @@ namespace Cloudtoid.Framework.UnitTests
             await CancellationScope.Execute(
                 source1.Token,
                 source2.Token,
-                async ct =>
+                async (state, ct) =>
                 {
+                    state.Should().Be("state");
                     ct.IsCancellationRequested.Should().BeFalse();
                     source1.Cancel();
                     ct.IsCancellationRequested.Should().BeTrue();
                     await Task.CompletedTask;
-                });
+                },
+                "state");
         }
     }
 }
