@@ -115,6 +115,25 @@ namespace Cloudtoid
             }
         }
 
+        public static async ValueTask<TResult> ExecuteAsync<TState, TResult>(
+            CancellationToken token1,
+            CancellationToken token2,
+            Func<TState, CancellationToken, ValueTask<TResult>> func,
+            TState state)
+        {
+            var source = Pool.Get();
+            try
+            {
+                using (token1.Register(CancelAction, source, false))
+                using (token2.Register(CancelAction, source, false))
+                    return await func(state, source.Token);
+            }
+            finally
+            {
+                Pool.Return(source);
+            }
+        }
+
         private sealed class Policy : PooledObjectPolicy<CancellationTokenSource>
         {
             public override CancellationTokenSource Create()
