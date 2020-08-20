@@ -35,9 +35,9 @@
 
   <!-- Code Analyzer Versions -->
   <PropertyGroup>
-    <!-- Temporary workaround to suppress the nuget pack warning below-->
+    <!-- HACK HACK Temporary workaround to suppress the nuget pack warning for depending on a pre-release package versions(stylecop.analyzers)-->
     <NoWarn>$(NoWarn)NU5104</NoWarn>
-    <StyleCopAnalyzersVersion>1.2.0-beta.164</StyleCopAnalyzersVersion>
+    <StyleCopAnalyzersVersion>1.2.0-beta.205</StyleCopAnalyzersVersion>
     <ThreadingAnalyzersVersion>16.7.*</ThreadingAnalyzersVersion>
     <BannedApiAnalyzersVersion>3.3.*</BannedApiAnalyzersVersion>
   </PropertyGroup>
