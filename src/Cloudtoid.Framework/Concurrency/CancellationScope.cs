@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.ObjectPool;
 
 namespace Cloudtoid
@@ -43,6 +42,25 @@ namespace Cloudtoid
             }
         }
 
+        public static void Execute<TState>(
+            CancellationToken token1,
+            CancellationToken token2,
+            Action<TState, CancellationToken> action,
+            TState state)
+        {
+            var source = Pool.Get();
+            try
+            {
+                using (token1.Register(CancelAction, source, false))
+                using (token2.Register(CancelAction, source, false))
+                    action(state, source.Token);
+            }
+            finally
+            {
+                Pool.Return(source);
+            }
+        }
+
         public static TResult Execute<TResult>(
             CancellationToken token1,
             CancellationToken token2,
@@ -61,64 +79,10 @@ namespace Cloudtoid
             }
         }
 
-        public static async Task ExecuteAsync(
+        public static TResult Execute<TState, TResult>(
             CancellationToken token1,
             CancellationToken token2,
-            Func<CancellationToken, Task> action)
-        {
-            var source = Pool.Get();
-            try
-            {
-                using (token1.Register(CancelAction, source, false))
-                using (token2.Register(CancelAction, source, false))
-                    await action(source.Token);
-            }
-            finally
-            {
-                Pool.Return(source);
-            }
-        }
-
-        public static async Task<TResult> ExecuteAsync<TResult>(
-            CancellationToken token1,
-            CancellationToken token2,
-            Func<CancellationToken, Task<TResult>> action)
-        {
-            var source = Pool.Get();
-            try
-            {
-                using (token1.Register(CancelAction, source, false))
-                using (token2.Register(CancelAction, source, false))
-                    return await action(source.Token);
-            }
-            finally
-            {
-                Pool.Return(source);
-            }
-        }
-
-        public static async ValueTask<TResult> ExecuteAsync<TResult>(
-            CancellationToken token1,
-            CancellationToken token2,
-            Func<CancellationToken, ValueTask<TResult>> func)
-        {
-            var source = Pool.Get();
-            try
-            {
-                using (token1.Register(CancelAction, source, false))
-                using (token2.Register(CancelAction, source, false))
-                    return await func(source.Token);
-            }
-            finally
-            {
-                Pool.Return(source);
-            }
-        }
-
-        public static async ValueTask<TResult> ExecuteAsync<TState, TResult>(
-            CancellationToken token1,
-            CancellationToken token2,
-            Func<TState, CancellationToken, ValueTask<TResult>> func,
+            Func<TState, CancellationToken, TResult> func,
             TState state)
         {
             var source = Pool.Get();
@@ -126,7 +90,7 @@ namespace Cloudtoid
             {
                 using (token1.Register(CancelAction, source, false))
                 using (token2.Register(CancelAction, source, false))
-                    return await func(state, source.Token);
+                    return func(state, source.Token);
             }
             finally
             {
