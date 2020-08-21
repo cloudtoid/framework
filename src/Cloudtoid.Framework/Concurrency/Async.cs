@@ -59,9 +59,9 @@ namespace Cloudtoid
             }
         }
 
-        public static Task TraceOnFaulted<TLoggerCategoryName>(
+        public static Task TraceOnFaulted(
             this Task task,
-            ILogger<TLoggerCategoryName> logger,
+            ILogger logger,
             string message,
             CancellationToken cancellationToken)
         {
@@ -89,9 +89,9 @@ namespace Cloudtoid
                 cancellationToken);
         }
 
-        public static async Task<TResult> TraceOnFaulted<TLoggerCategoryName, TResult>(
+        public static async Task<TResult> TraceOnFaulted<TResult>(
             this Task<TResult> task,
-            ILogger<TLoggerCategoryName> logger,
+            ILogger logger,
             string message,
             CancellationToken cancellationToken)
         {
@@ -123,9 +123,9 @@ namespace Cloudtoid
 #pragma warning restore VSTHRD003 // Avoid awaiting foreign Tasks
         }
 
-        public static void FireAndForget<TLoggerCategoryName>(
+        public static void FireAndForget(
             this Task task,
-            ILogger<TLoggerCategoryName> logger,
+            ILogger logger,
             string faultedMessage,
             CancellationToken cancellationToken)
         {
@@ -140,6 +140,31 @@ namespace Cloudtoid
             var tcs = new TaskCompletionSource<bool>();
             cancellationToken.Register(s => ((TaskCompletionSource<bool>)s!).SetResult(true), tcs);
             return tcs.Task;
+        }
+
+        public static async ValueTask LoopTillCancelledAsync(
+            Func<CancellationToken, ValueTask> action,
+            ILogger logger,
+            CancellationToken cancellation)
+        {
+            try
+            {
+                while (!cancellation.IsCancellationRequested)
+                {
+                    try
+                    {
+                        await action(cancellation).ConfigureAwait(false);
+                    }
+                    catch (Exception ex) when (!cancellation.IsCancellationRequested && !ex.IsFatal())
+                    {
+                        logger.LogError(
+                            ex,
+                            $"Received an unexpected error in a safe loop while the cancellation token is still active. " +
+                            $"We will ignore this exception and continue with the loop.");
+                    }
+                }
+            }
+            catch when (cancellation.IsCancellationRequested) { }
         }
     }
 }
