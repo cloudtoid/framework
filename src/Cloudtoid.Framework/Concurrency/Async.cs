@@ -142,6 +142,10 @@ namespace Cloudtoid
             return tcs.Task;
         }
 
+        /// <summary>
+        /// Loops until the token is cancelled or a fatal exception is thrown. See <see cref="ExceptionExtensions.IsFatal(Exception)"/>
+        /// for what is considered a fatal exception
+        /// </summary>
         public static async ValueTask LoopTillCancelledAsync(
             Func<CancellationToken, ValueTask> action,
             ILogger logger,
