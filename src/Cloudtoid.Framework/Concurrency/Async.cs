@@ -170,5 +170,34 @@ namespace Cloudtoid
             }
             catch when (cancellation.IsCancellationRequested) { }
         }
+
+        /// <summary>
+        /// Loops until the token is cancelled or a fatal exception is thrown. See <see cref="ExceptionExtensions.IsFatal(Exception)"/>
+        /// for what is considered a fatal exception
+        /// </summary>
+        public static void LoopTillCancelled(
+            Action<CancellationToken> action,
+            ILogger logger,
+            CancellationToken cancellation)
+        {
+            try
+            {
+                while (!cancellation.IsCancellationRequested)
+                {
+                    try
+                    {
+                        action(cancellation);
+                    }
+                    catch (Exception ex) when (!cancellation.IsCancellationRequested && !ex.IsFatal())
+                    {
+                        logger.LogError(
+                            ex,
+                            $"Received an unexpected error in a safe loop while the cancellation token is still active. " +
+                            $"We will ignore this exception and continue with the loop.");
+                    }
+                }
+            }
+            catch when (cancellation.IsCancellationRequested) { }
+        }
     }
 }
