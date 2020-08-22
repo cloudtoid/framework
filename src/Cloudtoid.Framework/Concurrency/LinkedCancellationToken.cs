@@ -28,7 +28,7 @@ namespace Cloudtoid
 
         public LinkedCancellationToken(CancellationToken token1, CancellationToken token2)
         {
-            var source = RentSource();
+            var source = Rent();
             if (source is null)
             {
                 source = CancellationTokenSource.CreateLinkedTokenSource(token1, token2);
@@ -48,6 +48,7 @@ namespace Cloudtoid
 
         public static bool operator ==(LinkedCancellationToken left, LinkedCancellationToken right)
             => left.Equals(right);
+
         public static bool operator !=(LinkedCancellationToken left, LinkedCancellationToken right)
             => !left.Equals(right);
 
@@ -77,17 +78,17 @@ namespace Cloudtoid
                 if (source.IsCancellationRequested)
                 {
                     source.Dispose();
-                    ReturnSource(new CancellationTokenSource());
+                    Return(new CancellationTokenSource());
                 }
                 else
                 {
-                    ReturnSource(source);
+                    Return(source);
                 }
             }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static CancellationTokenSource? RentSource()
+        private static CancellationTokenSource? Rent()
         {
             for (var i = 0; i < Count; i++)
             {
@@ -106,7 +107,7 @@ namespace Cloudtoid
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void ReturnSource(CancellationTokenSource source)
+        private static void Return(CancellationTokenSource source)
         {
             var i = 0;
             while (true)
