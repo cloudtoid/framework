@@ -4,7 +4,7 @@
 
 ![](https://github.com/cloudtoid/url-pattern/workflows/publish/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/cloudtoid/url-patterns/blob/master/LICENSE)
 
-Welcome to Cloudtoid's Framework project, which is a library of utility classes, targetting `.netstandard 2.1`, for all Cloudtoid projects.
+Welcome to Cloudtoid's Framework project, which is a library of utility classes, targeting `.netstandard 2.1`.
 
 The latest NuGet package can be found [here](https://www.nuget.org/packages/Cloudtoid.Framework/).
 
@@ -17,20 +17,22 @@ The latest NuGet package can be found [here](https://www.nuget.org/packages/Clou
   - Automatic tracing if a task becomes faulted: `Async.TraceOnFaulted`
   - Ability to fire and forget a task but log its failure: `Async.FireAndForget`
   - Ability to create a `Task` that is completed if a `CancellationToken` is canceled: `Async.WhenCancelled`
+  - Heap-allocation free pool of linked `CancellationTokenSource`s: `LinkedCancellationToken`
 - `AsyncLazy<T>` provides support for asynchronous lazy initialization.
+- A read-only list to contain null, zero, one, or more values in a memory efficient manner: `ReadOnlyValueList<TValue>`  
 - A set of code contracts to validate arguments and other states. See the `Contracts` static class.
 - A set of collection extensions on `ICollection<T>`, `IReadOnlyCollection<T>`, `IList<T>`, `List<T>` and `T[]`.
 - A set of extensions on `IEnumerable<T>`.
 - A set of extensions on `Exception` to:
-  - differentiate between a fatal extension and a non-fatal one
+  - Differentiate between a fatal extension and a non-fatal one
   - Whether a task was timed out or canceled.
 - A set of extensions on `Microsoft.Extensions.Configuration.IConfiguration`.
 - A set of extensions on `IServiceCollection`.
 - A set of extensions on `StringBuilder`.
-- A set of constant providers used for mocking:
+- A set of non-volatile value providers used for mocking:
   - `IGuidProvider` that can produce a stable `Guid` when needed.
   - `IDateTimeProvider` and `IDateTimeOffsetProvider` that can produce stable `DateTime` and `DateTimeOffset` when needed.
-- A set of utility methods to help with `hashcode` creation and manipulation. See `HashUtil`.
-- A set of utility methods to help with `hashcode` creation and manipulation. See `HashUtil`.
+- A set of utility methods to help with `hashcode` creation and manipulation: `HashUtil`.
 - A set of utility methods for `string` manipulation. See `StringUtil` and `ToStringExtensions`.
 - A set of utility methods for HTTP related needs. See `HttpVersion` for HTTP protocol versioning, `HttpMethod` for codifying HTTP methods, and `HttpHeader` for validating HTTP header names.
+- A set of utility methods for file and path related needs: PathUtil
