@@ -1,5 +1,8 @@
 <Project>
 
-  <Import Project="$(MSBuildThisFileDirectory)stylecop.props" />
+  <!-- Code Analyzer Assets -->
+  <ItemGroup>
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)BannedSymbols.txt" Visible="false" Link="Properties\BannedSymbols.txt" />
+  </ItemGroup>
 
 </Project>

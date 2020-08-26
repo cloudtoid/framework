@@ -22,11 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Build\Cloudtoid.Framework.targets" PackagePath="build" />
     <Content Include="Build\Cloudtoid.Framework.props" PackagePath="build" />
-    <Content Include="$(FrameworkCodeAnalysis)\stylecop.props" PackagePath="build" Link="Build\stylecop.props" />
-    <Content Include="$(FrameworkCodeAnalysis)\stylecop.ruleset" PackagePath="build" Link="CodeAnalysis\stylecop.ruleset" />
-    <Content Include="$(FrameworkCodeAnalysis)\stylecop.json" PackagePath="build" Link="CodeAnalysis\stylecop.json" />
     <Content Include="$(FrameworkCodeAnalysis)\BannedSymbols.txt" PackagePath="build" Link="CodeAnalysis\BannedSymbols.txt" />
   </ItemGroup>
 

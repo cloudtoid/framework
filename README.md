@@ -10,7 +10,6 @@ The latest NuGet package can be found [here](https://www.nuget.org/packages/Clou
 
 ## Features
 
-- A common set of code analysis settings.
 - Banning a set of unsafe .NET APIs and providing alternatives to those APIs.
 - A set of concurrency related extensions.
   - Execution of actions within a specified timeout: `Async.WithTimeout`

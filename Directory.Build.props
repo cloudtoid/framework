@@ -16,7 +16,6 @@
   <PropertyGroup>
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
@@ -36,21 +35,17 @@
 
   <!-- Code Analyzer Versions -->
   <PropertyGroup>
-    <!-- HACK HACK Temporary workaround to suppress the nuget pack warning for depending on a pre-release package versions(stylecop.analyzers)-->
-    <NoWarn>$(NoWarn)NU5104</NoWarn>
-    <StyleCopAnalyzersVersion>1.2.0-beta.205</StyleCopAnalyzersVersion>
-    <ThreadingAnalyzersVersion>16.7.*</ThreadingAnalyzersVersion>
+    <CloudtoidCodeAnalyzerVersion>1.0.*</CloudtoidCodeAnalyzerVersion>
     <BannedApiAnalyzersVersion>3.3.*</BannedApiAnalyzersVersion>
   </PropertyGroup>
 
-  <!-- Code Analyzer Settings -->
-  <PropertyGroup>
-    <CodeAnalysisRuleSet>$(FrameworkCodeAnalysis)stylecop.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+  <!-- Code Analyzer Packages -->
+  <ItemGroup>
+    <PackageReference Include="Cloudtoid.CodeAnalysis" Version="$(CloudtoidCodeAnalyzerVersion)" />
+  </ItemGroup>
 
   <!-- Code Analyzer Assets -->
   <ItemGroup>
-    <AdditionalFiles Include="$(FrameworkCodeAnalysis)stylecop.json" Visible="false" />
     <AdditionalFiles Include="$(FrameworkCodeAnalysis)BannedSymbols.txt" Visible="false" />
   </ItemGroup>
 
@@ -60,8 +55,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="$(MicrosoftExtensionsVersion)" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftExtensionsVersion)" />
     <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="$(BannedApiAnalyzersVersion)" IncludeAssets="all"/>
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="$(ThreadingAnalyzersVersion)" IncludeAssets="all" />
-    <PackageReference Include="StyleCop.Analyzers" Version="$(StyleCopAnalyzersVersion)" IncludeAssets="all"  />
   </ItemGroup>
 
 </Project>
