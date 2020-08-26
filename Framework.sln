@@ -12,6 +12,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E779803-1D3E-4F74-936F-F73EBAA41221}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		code-analysis\BannedSymbols.txt = code-analysis\BannedSymbols.txt
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
 Global
