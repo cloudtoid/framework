@@ -35,13 +35,13 @@
 
   <!-- Code Analyzer Versions -->
   <PropertyGroup>
-    <CloudtoidCodeAnalyzerVersion>1.0.*</CloudtoidCodeAnalyzerVersion>
+    <CloudtoidCodeAnalysisVersion>1.0.*</CloudtoidCodeAnalysisVersion>
     <BannedApiAnalyzersVersion>3.3.*</BannedApiAnalyzersVersion>
   </PropertyGroup>
 
   <!-- Code Analyzer Packages -->
   <ItemGroup>
-    <PackageReference Include="Cloudtoid.CodeAnalysis" Version="$(CloudtoidCodeAnalyzerVersion)" />
+    <PackageReference Include="Cloudtoid.CodeAnalysis" Version="$(CloudtoidCodeAnalysisVersion)" />
   </ItemGroup>
 
   <!-- Code Analyzer Assets -->
