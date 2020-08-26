@@ -328,7 +328,7 @@ namespace Cloudtoid.Framework.UnitTests
             v.GetHashCode().Should().Be("a".GetHashCode());
 #pragma warning restore RS0030 // Do not used banned APIs
 
-            ReadOnlyValueList<string?>.Empty.GetHashCode().Should().Be(0);
+            ReadOnlyValueList<string?>.Empty.GetHashCode().Should().Be(new HashCode().ToHashCode());
 
             new ReadOnlyValueList<string?>(default(string)).GetHashCode().Should().Be(HashUtil.NullHashCode);
         }

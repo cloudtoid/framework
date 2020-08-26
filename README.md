@@ -2,7 +2,7 @@
 
 # Framework
 
-![](https://github.com/cloudtoid/url-pattern/workflows/publish/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/cloudtoid/url-patterns/blob/master/LICENSE)
+![](https://github.com/cloudtoid/framework/workflows/publish/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/cloudtoid/framework/blob/master/LICENSE)
 
 Welcome to Cloudtoid's Framework project, which is a library of utility classes, targeting `.netstandard 2.1`.
 
