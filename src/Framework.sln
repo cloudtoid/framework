@@ -3,18 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloudtoid.Framework", "src\Cloudtoid.Framework\Cloudtoid.Framework.csproj", "{37BC5D4C-8ED3-415E-B3DF-EC2C87624FCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloudtoid.Framework", "Cloudtoid.Framework\Cloudtoid.Framework.csproj", "{37BC5D4C-8ED3-415E-B3DF-EC2C87624FCC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B34B66C7-7A6A-4AAD-935C-7B44462FBF23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloudtoid.Framework.UnitTests", "Cloudtoid.Framework.UnitTests\Cloudtoid.Framework.UnitTests.csproj", "{F7A0FE22-BBF9-458E-AEAD-F36E1DC38FF8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloudtoid.Framework.UnitTests", "tests\Cloudtoid.Framework.UnitTests\Cloudtoid.Framework.UnitTests.csproj", "{F7A0FE22-BBF9-458E-AEAD-F36E1DC38FF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloudtoid.Framework.Benchmark", "Cloudtoid.Framework.Benchmark\Cloudtoid.Framework.Benchmark.csproj", "{5CFAC4A1-AFCE-4C98-AF52-3F33A7EA35A3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E779803-1D3E-4F74-936F-F73EBAA41221}"
 	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		code-analysis\BannedSymbols.txt = code-analysis\BannedSymbols.txt
-		Directory.Build.props = Directory.Build.props
-		README.md = README.md
+		..\code-analysis\BannedSymbols.txt = ..\code-analysis\BannedSymbols.txt
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Global
@@ -31,12 +29,13 @@ Global
 		{F7A0FE22-BBF9-458E-AEAD-F36E1DC38FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7A0FE22-BBF9-458E-AEAD-F36E1DC38FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7A0FE22-BBF9-458E-AEAD-F36E1DC38FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CFAC4A1-AFCE-4C98-AF52-3F33A7EA35A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CFAC4A1-AFCE-4C98-AF52-3F33A7EA35A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CFAC4A1-AFCE-4C98-AF52-3F33A7EA35A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CFAC4A1-AFCE-4C98-AF52-3F33A7EA35A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{F7A0FE22-BBF9-458E-AEAD-F36E1DC38FF8} = {B34B66C7-7A6A-4AAD-935C-7B44462FBF23}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C13DFE5-70DB-4B4D-9144-0E5231A28B5F}

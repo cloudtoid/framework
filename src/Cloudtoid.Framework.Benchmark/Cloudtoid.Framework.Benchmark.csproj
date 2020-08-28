@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>$(AppDotNetVersion)</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.12.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cloudtoid.Framework\Cloudtoid.Framework.csproj" />
+  </ItemGroup>
+
+</Project>

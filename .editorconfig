@@ -1,6 +1,0 @@
-﻿## Only adding configurations here that cannot be specified in Cloudtoid.CodeAnalysis
-
-[*.cs]
-
-# IDE0007: Use implicit type
-csharp_style_var_for_built_in_types = false:silent

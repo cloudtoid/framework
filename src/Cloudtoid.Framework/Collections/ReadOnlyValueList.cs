@@ -193,7 +193,7 @@ namespace Cloudtoid
                 return;
             }
 
-            // value not array, can only be TValue
+            // value is not an array, can only be TValue
             ar[arrayIndex] = (TValue)value;
         }
 
