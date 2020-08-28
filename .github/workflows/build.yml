@@ -16,7 +16,7 @@ jobs:
       with:
         dotnet-version: 3.1.x
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore src/Framework.sln
     - name: Build
       run: dotnet build -c Release --no-restore src/Framework.sln
     - name: Test

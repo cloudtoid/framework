@@ -15,12 +15,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
-    - name: Install dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build -c Release --no-restore src/Cloudtoid.Framework/Cloudtoid.Framework.csproj
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
+    - name: Build and Test
+      run: dotnet test -c Release src/Framework.sln
     - name: Pack
       run: dotnet pack -c Release --no-build --output . --version-suffix ${{github.run_number}} src/Cloudtoid.Framework/Cloudtoid.Framework.csproj 
     - name: Push
