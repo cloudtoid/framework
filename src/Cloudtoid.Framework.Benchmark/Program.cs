@@ -7,8 +7,9 @@ namespace Cloudtoid.Framework.Benchmark
     {
         public static void Main()
         {
-            _ = BenchmarkRunner.Run<PassToMethod>();
+            _ = BenchmarkRunner.Run<EnumerateValueTypeItems>();
             //// _ = BenchmarkRunner.Run(typeof(Program).Assembly);
+            System.Console.ReadLine();
         }
     }
 }

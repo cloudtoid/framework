@@ -3,7 +3,7 @@
   <!-- Paths -->
   <PropertyGroup>
     <Root>$(MSBuildThisFileDirectory)</Root>
-    <FrameworkCodeAnalysis>$(Root)code-analysis\</FrameworkCodeAnalysis>
+    <FrameworkCodeAnalysis>$(Root)..\code-analysis\</FrameworkCodeAnalysis>
   </PropertyGroup>
 
   <!-- .NET Runtime Versions -->

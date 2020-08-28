@@ -41,7 +41,7 @@ namespace Cloudtoid
                     var arr = new TValue[DefaultCapacity];
                     arr[0] = first;
                     arr[1] = en.Current;
-                    int count = 2;
+                    var count = 2;
 
                     while (en.MoveNext())
                     {
@@ -64,7 +64,7 @@ namespace Cloudtoid
                             // larger than that.  For that case, we then ensure that the newLength is large enough to hold
                             // the desired capacity.  This does mean that in the very rare case where we've grown to such a
                             // large size, each new element added after MaxArrayLength will end up doing a resize.
-                            int newLength = count << 1;
+                            var newLength = count << 1;
                             if ((uint)newLength > MaxArrayLength)
                                 newLength = count >= MaxArrayLength ? count + 1 : MaxArrayLength;
 

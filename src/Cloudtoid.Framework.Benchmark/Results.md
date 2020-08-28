@@ -30,3 +30,19 @@ Date updated: 8/24/2020
 |       'Creation of list with 2 ref-type items' | 20.98 ns | 0.507 ns | 0.623 ns |  1.00 |    0.00 | 0.0138 |     - |     - |      72 B |
 | 'Creation of value list with 2 ref-type items' | 10.35 ns | 0.242 ns | 0.551 ns |  0.49 |    0.03 | 0.0076 |     - |     - |      40 B |
 
+|                       Method |     Mean |    Error |   StdDev | Ratio | RatioSD | Gen 0 | Gen 1 | Gen 2 | Allocated |
+|----------------------------- |---------:|---------:|---------:|------:|--------:|------:|------:|------:|----------:|
+|                'Pass a list' | 14.82 us | 0.280 us | 0.393 us |  1.00 |    0.00 |     - |     - |     - |         - |
+| 'Pass a value list by value' | 18.05 us | 0.320 us | 0.449 us |  1.22 |    0.05 |     - |     - |     - |         - |
+|   'Pass a value list by ref' | 36.41 us | 0.718 us | 1.257 us |  2.46 |    0.12 |     - |     - |     - |         - |
+
+|                                                       Method |     Mean |    Error |   StdDev | Ratio | RatioSD | Gen 0 | Gen 1 | Gen 2 | Allocated |
+|------------------------------------------------------------- |---------:|---------:|---------:|------:|--------:|------:|------:|------:|----------:|
+|       'Enumerate a list of value-type items (100,000 items)' | 236.4 us |  4.24 us |  3.76 us |  1.00 |    0.00 |     - |     - |     - |         - |
+| 'Enumerate a value list of value-type items (100,000 items)' | 763.5 us | 15.18 us | 20.27 us |  3.25 |    0.09 |     - |     - |     - |         - |
+
+|                                                     Method |       Mean |    Error |   StdDev | Ratio | RatioSD | Gen 0 | Gen 1 | Gen 2 | Allocated |
+|----------------------------------------------------------- |-----------:|---------:|---------:|------:|--------:|------:|------:|------:|----------:|
+|       'Enumerate a list of ref-type items (100,000 items)' |   432.0 us |  8.59 us | 15.72 us |  1.00 |    0.00 |     - |     - |     - |         - |
+| 'Enumerate a value list of ref-type items (100,000 items)' | 1,152.5 us | 22.80 us | 37.46 us |  2.67 |    0.13 |     - |     - |     - |         - |
+

@@ -10,22 +10,22 @@ namespace Cloudtoid
     {
         /// <summary>Retrieves an object that can iterate through the individual <typeparamref name="TValue"/>s in this <see cref="ReadOnlyValueList{TValue}" />.</summary>
         /// <returns>An enumerator that can be used to iterate through the <see cref="ReadOnlyValueList{TValue}" />.</returns>
-        public IEnumerator<TValue> GetEnumerator()
+        public Enumerator GetEnumerator()
             => new Enumerator(items);
 
         /// <inheritdoc cref="GetEnumerator()" />
         IEnumerator<TValue> IEnumerable<TValue>.GetEnumerator()
-            => GetEnumerator();
+            => new Enumerator(items);
 
         /// <inheritdoc cref="GetEnumerator()" />
         [ExcludeFromCodeCoverage]
         IEnumerator IEnumerable.GetEnumerator()
-            => GetEnumerator();
+            => new Enumerator(items);
 
         /// <summary>
         /// Enumerates the <typeparamref name="TValue"/> values of a <see cref="ReadOnlyValueList{TValue}" />.
         /// </summary>
-        private struct Enumerator : IEnumerator<TValue>
+        public struct Enumerator : IEnumerator<TValue>
         {
             private readonly IList<TValue>? values;
             private int index;
@@ -53,26 +53,23 @@ namespace Cloudtoid
 
             public bool MoveNext()
             {
-                var index = this.index;
                 if (index < 0)
                     return false;
 
-                var vs = values;
-                if (vs != null)
+                if (values is null)
                 {
-                    if ((uint)index < (uint)vs.Count)
-                    {
-                        this.index = index + 1;
-                        Current = vs[index];
-                        return true;
-                    }
-
-                    this.index = -1;
-                    return false;
+                    index = -1;
+                    return Current != null;
                 }
 
-                this.index = -1;
-                return Current != null;
+                if (index < values.Count)
+                {
+                    Current = values[index++];
+                    return true;
+                }
+
+                index = -1;
+                return false;
             }
 
             [ExcludeFromCodeCoverage]
