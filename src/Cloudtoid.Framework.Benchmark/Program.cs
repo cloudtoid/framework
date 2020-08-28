@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Running;
+using Cloudtoid.Framework.Benchmark.ReadOnlyValueList;
 
 namespace Cloudtoid.Framework.Benchmark
 {
@@ -6,7 +7,8 @@ namespace Cloudtoid.Framework.Benchmark
     {
         public static void Main()
         {
-            _ = BenchmarkRunner.Run(typeof(Program).Assembly);
+            _ = BenchmarkRunner.Run<PassToMethod>();
+            //// _ = BenchmarkRunner.Run(typeof(Program).Assembly);
         }
     }
 }
