@@ -13,7 +13,7 @@ namespace Cloudtoid.Framework.UnitTests
         [TestMethod]
         public void CheckValue_NonNullString_Success()
         {
-            string? nonNullString = "some-string";
+            var nonNullString = "some-string";
             CheckValue<object>(nonNullString, "testParam")
                 .Should()
                 .Be(nonNullString);

@@ -26,7 +26,7 @@ namespace Cloudtoid
             comparer ??= EqualityComparer<T>.Default;
             var count = values.Count;
             var hashCode = new HashCode();
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
                 hashCode.Add(values[i], comparer);
 
             return hashCode.ToHashCode();
