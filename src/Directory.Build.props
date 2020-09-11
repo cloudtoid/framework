@@ -42,7 +42,10 @@
 
   <!-- Code Analyzer Packages -->
   <ItemGroup>
-    <PackageReference Include="Cloudtoid.CodeAnalysis" Version="$(CloudtoidCodeAnalysisVersion)" />
+    <PackageReference Include="Cloudtoid.CodeAnalysis" Version="$(CloudtoidCodeAnalysisVersion)">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <!-- Code Analyzer Assets -->
