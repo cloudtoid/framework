@@ -78,7 +78,7 @@ namespace Cloudtoid
             Check(buffer.Length - index >= count, "The length of the buffer is smaller than what is needed by index + count");
             CheckDisposed();
 
-            int n = length - pos;
+            var n = length - pos;
             if (n > 0)
             {
                 if (n > count)
@@ -95,7 +95,7 @@ namespace Cloudtoid
         {
             CheckDisposed();
 
-            int n = length - pos;
+            var n = length - pos;
             if (n > 0)
             {
                 if (n > buffer.Length)
@@ -134,13 +134,13 @@ namespace Cloudtoid
         {
             CheckDisposed();
 
-            int i = pos;
+            var i = pos;
             while (i < length)
             {
-                char ch = Value[i];
+                var ch = Value[i];
                 if (ch == '\r' || ch == '\n')
                 {
-                    string result = Value[pos..i];
+                    var result = Value[pos..i];
                     pos = i + 1;
                     if (ch == '\r' && pos < length && Value[pos] == '\n')
                     {
@@ -155,7 +155,7 @@ namespace Cloudtoid
 
             if (i > pos)
             {
-                string result = Value[pos..i];
+                var result = Value[pos..i];
                 pos = i;
                 return result;
             }

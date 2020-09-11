@@ -16,7 +16,7 @@ namespace Cloudtoid
             var tokenChars = new bool[128];
 
             // Skip Space (32) & DEL (127).
-            for (int i = 33; i < 127; i++)
+            for (var i = 33; i < 127; i++)
                 tokenChars[i] = true;
 
             // Remove separators: these are not valid token characters.
@@ -48,7 +48,7 @@ namespace Cloudtoid
         {
             CheckValue(name, nameof(name));
 
-            for (int i = 0; i < name.Length; i++)
+            for (var i = 0; i < name.Length; i++)
             {
                 if (!IsValidNameChar(name[i]))
                     return false;

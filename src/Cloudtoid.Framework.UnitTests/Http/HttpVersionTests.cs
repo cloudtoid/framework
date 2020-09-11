@@ -9,7 +9,7 @@ namespace Cloudtoid.Framework.UnitTests
         [TestMethod]
         public void GetHttpVersion_AllHttpVersions_CorrectResults()
         {
-            string? protocol = "HTTP/1.0";
+            var protocol = "HTTP/1.0";
             HttpVersion.ParseOrDefault(protocol).Should().Be(HttpVersion.Version10);
 
             protocol = "HTTP/1.1";

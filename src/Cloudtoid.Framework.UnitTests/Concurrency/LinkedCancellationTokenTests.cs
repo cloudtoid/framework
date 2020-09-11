@@ -57,16 +57,16 @@ namespace Cloudtoid.Framework.UnitTests
             var count = LinkedCancellationToken.Count;
             var set = new HashSet<LinkedCancellationToken>();
 
-            for (int i = 0; i < count + 10; i++)
+            for (var i = 0; i < count + 10; i++)
                 set.Add(new LinkedCancellationToken(source1.Token, source2.Token)).Should().BeTrue();
 
             foreach (var linked in set)
                 linked.Dispose();
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
                 set.Add(new LinkedCancellationToken(source1.Token, source2.Token)).Should().BeFalse();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
                 set.Add(new LinkedCancellationToken(source1.Token, source2.Token)).Should().BeTrue();
 
             set.Should().HaveCount(count + 20);
@@ -89,7 +89,7 @@ namespace Cloudtoid.Framework.UnitTests
             cancelledLinked.Token.IsCancellationRequested.Should().BeTrue();
             cancelledLinked.Dispose();
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var linked = new LinkedCancellationToken(source1.Token, source2.Token);
                 set.Add(linked).Should().BeTrue();

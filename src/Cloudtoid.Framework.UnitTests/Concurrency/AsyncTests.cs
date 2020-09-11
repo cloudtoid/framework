@@ -66,7 +66,7 @@ namespace Cloudtoid.Framework.UnitTests
                 .Run(() => 10)
                 .TraceOnFaulted(logger, "TraceOnFaultedWithException", default);
 
-            int result = 0;
+            var result = 0;
             Invoking(async () => result = await task).Should().NotThrow();
 
             logger.LogReceivedThatContains("TraceOnFaultedWithException", 0, LogLevel.Error);

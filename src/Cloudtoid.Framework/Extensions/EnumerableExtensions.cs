@@ -38,7 +38,7 @@ namespace Cloudtoid
         {
             comparer ??= EqualityComparer<TItem>.Default;
 
-            int i = 0;
+            var i = 0;
             foreach (var it in items)
             {
                 if (comparer.Equals(item, it))
