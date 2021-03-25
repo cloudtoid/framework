@@ -15,7 +15,7 @@
   <!-- Build Settings -->
   <PropertyGroup>
     <Nullable>enable</Nullable>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>9.0</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
@@ -27,11 +27,11 @@
 
   <!-- Test Package Versions -->
   <PropertyGroup>
-    <MicrosoftDotNetTestSdk>16.7.*</MicrosoftDotNetTestSdk>
-    <MSTestVersion>2.1.*</MSTestVersion>
+    <MicrosoftDotNetTestSdk>16.9.*</MicrosoftDotNetTestSdk>
+    <MSTestVersion>2.2.*</MSTestVersion>
     <NSubstituteVersion>4.2.*</NSubstituteVersion>
     <FluentAssertionsVersion>5.10.*</FluentAssertionsVersion>
-    <CoverletVersion>2.9.*</CoverletVersion>
+    <CoverletVersion>3.0.*</CoverletVersion>
   </PropertyGroup>
 
   <!-- Code Analyzer Versions -->
@@ -55,7 +55,6 @@
 
   <!-- Package dependencies -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftExtensionsVersion)" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="$(MicrosoftExtensionsVersion)" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftExtensionsVersion)" />
     <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="$(BannedApiAnalyzersVersion)" IncludeAssets="all"/>

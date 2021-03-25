@@ -15,7 +15,7 @@ namespace Cloudtoid
         /// <item>In all other cases, it behaves similar to <see cref="Enumerable.ToArray{TSource}(IEnumerable{TSource})"/>.</item>
         /// </list>
         /// </summary>
-        internal static (TValue Value, IList<TValue>? Values) GetOptimizedValues<TValue>(IEnumerable<TValue>? source)
+        internal static (TValue? Value, IList<TValue>? Values) GetOptimizedValues<TValue>(IEnumerable<TValue>? source)
         {
             switch (source)
             {
