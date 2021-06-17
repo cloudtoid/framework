@@ -6,14 +6,9 @@
     <FrameworkCodeAnalysis>$(Root)..\code-analysis\</FrameworkCodeAnalysis>
   </PropertyGroup>
 
-  <!-- .NET Runtime Versions -->
-  <PropertyGroup>
-    <LibraryDotNetVersion>netstandard2.1</LibraryDotNetVersion>
-    <AppDotNetVersion>netcoreapp3.1</AppDotNetVersion>
-  </PropertyGroup>
-
   <!-- Build Settings -->
   <PropertyGroup>
+    <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
     <Nullable>enable</Nullable>
     <LangVersion>9.0</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -22,12 +17,12 @@
 
   <!-- Product Package Versions -->
   <PropertyGroup>
-    <MicrosoftExtensionsVersion>3.1.*</MicrosoftExtensionsVersion>
+    <MicrosoftExtensionsVersion>5.0.*</MicrosoftExtensionsVersion>
   </PropertyGroup>
 
   <!-- Test Package Versions -->
   <PropertyGroup>
-    <MicrosoftDotNetTestSdk>16.9.*</MicrosoftDotNetTestSdk>
+    <MicrosoftDotNetTestSdk>16.10.*</MicrosoftDotNetTestSdk>
     <MSTestVersion>2.2.*</MSTestVersion>
     <NSubstituteVersion>4.2.*</NSubstituteVersion>
     <FluentAssertionsVersion>5.10.*</FluentAssertionsVersion>
