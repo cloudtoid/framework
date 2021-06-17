@@ -2,11 +2,10 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>$(AppDotNetVersion)</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.12.*" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.*" />
   </ItemGroup>
 
   <ItemGroup>

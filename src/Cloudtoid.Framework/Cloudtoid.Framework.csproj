@@ -1,9 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>$(LibraryDotNetVersion)</TargetFramework>
-  </PropertyGroup>
-
   <!-- NuGet Packaging -->
   <PropertyGroup>
     <PackageId>Cloudtoid.Framework</PackageId>

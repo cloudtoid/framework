@@ -44,7 +44,7 @@ namespace Cloudtoid
         public ReadOnlyValueList(IEnumerable<TValue>? items)
         {
             (var value, var values) = ValueListUtil.GetOptimizedValues(items);
-            this.items = values is null ? value : (object)values;
+            this.items = values is null ? value : values;
         }
 
         bool ICollection<TValue>.IsReadOnly => true;
@@ -93,7 +93,7 @@ namespace Cloudtoid
                     return Unsafe.As<IList<TValue>>(value)[index]; // may throw
                 }
 
-                throw new IndexOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(index));
             }
         }
 

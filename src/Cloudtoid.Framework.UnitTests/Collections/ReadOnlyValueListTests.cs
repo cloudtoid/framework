@@ -203,15 +203,15 @@ namespace Cloudtoid.Framework.UnitTests
         public void Indexer_WhenNullValue_Throws()
         {
             var v = new ReadOnlyValueList<string?>(default(string));
-            Invoking(() => v[0]).Should().ThrowExactly<IndexOutOfRangeException>();
+            Invoking(() => v[0]).Should().ThrowExactly<ArgumentOutOfRangeException>();
         }
 
         [TestMethod]
         public void Indexer_WhenOneValueAccessingOutOfBounds_Throws()
         {
             var v = new ReadOnlyValueList<string?>("a");
-            Invoking(() => v[-1]).Should().ThrowExactly<IndexOutOfRangeException>();
-            Invoking(() => v[1]).Should().ThrowExactly<IndexOutOfRangeException>();
+            Invoking(() => v[-1]).Should().ThrowExactly<ArgumentOutOfRangeException>();
+            Invoking(() => v[1]).Should().ThrowExactly<ArgumentOutOfRangeException>();
         }
 
         [TestMethod]
@@ -325,7 +325,9 @@ namespace Cloudtoid.Framework.UnitTests
 
             v = new ReadOnlyValueList<string?>("a");
 #pragma warning disable RS0030 // Do not used banned APIs
+#pragma warning disable CA1307 // Specify StringComparison for clarity
             v.GetHashCode().Should().Be("a".GetHashCode());
+#pragma warning restore CA1307 // Specify StringComparison for clarity
 #pragma warning restore RS0030 // Do not used banned APIs
 
             ReadOnlyValueList<string?>.Empty.GetHashCode().Should().Be(new HashCode().ToHashCode());
