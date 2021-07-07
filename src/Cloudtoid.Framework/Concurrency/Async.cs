@@ -10,7 +10,6 @@ using static Cloudtoid.Contract;
 namespace Cloudtoid
 {
     [SuppressMessage("Microsoft.VisualStudio.Threading.Analyzers", "VSTHRD200", Justification = "Reviewed.")]
-    [SuppressMessage("Microsoft.VisualStudio.Threading.Analyzers", "VSTHRD105", Justification = "Reviewed.")]
     [DebuggerStepThrough]
     public static class Async
     {

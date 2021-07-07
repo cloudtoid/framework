@@ -201,8 +201,6 @@ namespace Cloudtoid
             return val.Value;
         }
 
-#pragma warning disable VSTHRD200
-
         /// <summary>
         /// Validates that the value is non-null.
         /// </summary>
@@ -360,8 +358,6 @@ namespace Cloudtoid
             if (val is null)
                 throw ExceptValue(paramName, format, args);
         }
-
-#pragma warning restore VSTHRD200
 
         /// <summary>
         /// Validates that the value is null.
@@ -521,10 +517,8 @@ namespace Cloudtoid
         /// <param name="val">The <see cref="CancellationToken"/> to test.</param>
         /// <param name="paramName">The name of the parameter being tested.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#pragma warning disable CA1068 // CancellationToken parameters must come last
         public static CancellationToken CheckNonEmpty(CancellationToken val, string paramName)
             => CheckNonEmpty(val, paramName, null, Array.Empty<object>());
-#pragma warning restore CA1068 // CancellationToken parameters must come last
 
         /// <summary>
         /// Verify whether a <see cref="CancellationToken"/> is <see cref="CancellationToken.None"/> or default./>.
@@ -534,9 +528,7 @@ namespace Cloudtoid
         /// <param name="paramName">The name of the parameter being tested.</param>
         /// <param name="format">The exception message or message format.</param>
         /// <param name="args">The arguments for message format.</param>
-#pragma warning disable CA1068 // CancellationToken parameters must come last
         public static CancellationToken CheckNonEmpty(CancellationToken val, string paramName, string? format, params object?[] args)
-#pragma warning restore CA1068 // CancellationToken parameters must come last
         {
             if (val == default || val == CancellationToken.None)
                 throw ExceptNonEmpty(paramName, format, args);

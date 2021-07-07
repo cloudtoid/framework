@@ -324,12 +324,7 @@ namespace Cloudtoid.Framework.UnitTests
             v.GetHashCode().Should().NotBe(HashUtil.NullHashCode);
 
             v = new ReadOnlyValueList<string?>("a");
-#pragma warning disable RS0030 // Do not used banned APIs
-#pragma warning disable CA1307 // Specify StringComparison for clarity
-            v.GetHashCode().Should().Be("a".GetHashCode());
-#pragma warning restore CA1307 // Specify StringComparison for clarity
-#pragma warning restore RS0030 // Do not used banned APIs
-
+            v.GetHashCode().Should().Be("a".GetHashCode(StringComparison.Ordinal));
             ReadOnlyValueList<string?>.Empty.GetHashCode().Should().Be(new HashCode().ToHashCode());
 
             new ReadOnlyValueList<string?>(default(string)).GetHashCode().Should().Be(HashUtil.NullHashCode);
