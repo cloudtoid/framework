@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Cloudtoid.Framework.UnitTests
 {
     [TestClass]
-    public class UniqueIdentifierTests
+    public class GuidTests
     {
         [TestMethod]
         public void Base64UrlTests()
@@ -18,7 +18,7 @@ namespace Cloudtoid.Framework.UnitTests
             };
 
             foreach (var (g, s) in tests)
-                UniqueIdentifierProvider.Base64UrlEncode(g).Should().Be(s);
+                g.Base64UrlEncode().Should().Be(s);
         }
 
         [TestMethod]
@@ -30,7 +30,7 @@ namespace Cloudtoid.Framework.UnitTests
             };
 
             foreach (var (g, s) in tests)
-                UniqueIdentifierProvider.Base41UrlEncode(g).Should().Be(s);
+                g.Base41UrlEncode().Should().Be(s);
         }
     }
 }

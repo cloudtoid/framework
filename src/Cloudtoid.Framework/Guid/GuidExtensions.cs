@@ -2,33 +2,24 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace Cloudtoid
+namespace Cloudtoid.Framework
 {
     [DebuggerStepThrough]
-    internal sealed class UniqueIdentifierProvider : IUniqueIdentifierProvider
+    public static class GuidExtensions
     {
         private static readonly char[] Base64UrlChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".ToCharArray();
         private static readonly char[] Base41UrlChars = "abcdefghijklmnopqrstuvwxyz0123456789-_.!~".ToCharArray();
-        public Guid CreateGuid() => Guid.NewGuid();
 
         /// <summary>
-        /// This is a <a href="https://base64.guru/standards/base64url">base64url</a> encoded unique identifier.
-        /// The length of this identifier is always 22 characters consisting of these characters: [A..Za..z0..9-_]
+        /// <a href="https://base64.guru/standards/base64url">Base64url</a> encodes <paramref name="value"/>.
+        /// The length of the result is always 22 characters consisting of these characters: [A..Za..z0..9-_].
+        /// This case-sensitive encoded value can be used in Query Parameters and HTTP Headers, but for the most parts,
+        /// ULR paths are case-insensitive. Use <see cref="Base41UrlChars"/> instead.
         /// </summary>
-        public string CreateCaseSensitveIdentifier()
-            => Base64UrlEncode(Guid.NewGuid());
-
-        /// <summary>
-        /// This is an encoded unique identifier with the length of 24 characters. The valid characters are: [A..Za..z0..9-_.!~]
-        /// </summary>
-        public string CreateCaseInsensitveIdentifier()
-            => Base41UrlEncode(Guid.NewGuid());
-
-        // internal for testing only
-        internal static string Base64UrlEncode(Guid guid)
+        public static string Base64UrlEncode(this Guid value)
         {
             Span<byte> bytes = stackalloc byte[16];
-            guid.TryWriteBytes(bytes);
+            value.TryWriteBytes(bytes);
             Span<char> str = stackalloc char[22];
 
             str[0] = Base64UrlChars[bytes[0] >> 2];
@@ -62,11 +53,14 @@ namespace Cloudtoid
             return new string(str);
         }
 
-        // internal for testing only
-        internal static string Base41UrlEncode(Guid guid)
+        /// <summary>
+        /// Encodes <paramref name="value"/> to base 41. The length of the result is 24 characters consisting of these characters: [a..z0..9-_].
+        /// This case-insensitive encoded value can be used in URL Path as well as Query Parameters and HTTP Headers.
+        /// </summary>
+        public static string Base41UrlEncode(this Guid value)
         {
             Span<byte> bytes = stackalloc byte[16];
-            guid.TryWriteBytes(bytes);
+            value.TryWriteBytes(bytes);
             Span<ulong> ulongs = MemoryMarshal.Cast<byte, ulong>(bytes);
             Span<char> str = stackalloc char[24];
 

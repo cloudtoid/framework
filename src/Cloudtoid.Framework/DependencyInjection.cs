@@ -18,7 +18,6 @@ namespace Cloudtoid
                 .TryAddSingleton<Marker>()
                 .TryAddSingleton<IDateTimeProvider, DateTimeProvider>()
                 .TryAddSingleton<IDateTimeOffsetProvider, DateTimeOffsetProvider>()
-                .TryAddSingleton<IUniqueIdentifierProvider, UniqueIdentifierProvider>()
                 .TryAddSingleton<IGuidProvider, GuidProvider>();
         }
 
