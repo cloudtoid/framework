@@ -1,12 +1,12 @@
-<a href="https://github.com/cloudtoid"><img src="https://raw.githubusercontent.com/cloudtoid/assets/master/logos/cloudtoid-black-red.png" width="100"></a>
+[<img src="https://raw.githubusercontent.com/cloudtoid/assets/master/logos/cloudtoid-blue.svg" width="100px">][Cloudtoid]
 
 # Framework
 
-![](https://github.com/cloudtoid/framework/workflows/publish/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/cloudtoid/framework/blob/master/LICENSE)
+[![][WorkflowBadgePublish]][PublishWorkflow] [![License: MIT][LicenseBadge]][License]
 
 Welcome to Cloudtoid's Framework project, which is a library of utility classes, targeting `.netstandard 2.1`.
 
-The latest NuGet package can be found [here](https://www.nuget.org/packages/Cloudtoid.Framework/).
+The latest NuGet package can be found [here][NuGet].
 
 ## Features
 
@@ -35,3 +35,10 @@ The latest NuGet package can be found [here](https://www.nuget.org/packages/Clou
 - A set of utility methods for `string` manipulation. See `StringUtil` and `ToStringExtensions`.
 - A set of utility methods for HTTP related needs. See `HttpVersion` for HTTP protocol versioning, `HttpMethod` for codifying HTTP methods, and `HttpHeader` for validating HTTP header names.
 - A set of utility methods for file and path related needs: PathUtil
+
+[Cloudtoid]:https://github.com/cloudtoid
+[License]:https://github.com/cloudtoid/framework/blob/master/LICENSE
+[LicenseBadge]:https://img.shields.io/badge/License-MIT-blue.svg
+[WorkflowBadgePublish]:https://github.com/cloudtoid/framework/workflows/publish/badge.svg
+[PublishWorkflow]:https://github.com/cloudtoid/framework/actions/workflows/publish.yml
+[NuGet]:https://www.nuget.org/packages/Cloudtoid.Framework/
