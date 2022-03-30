@@ -14,7 +14,7 @@ namespace Cloudtoid.Framework.UnitTests
     public sealed class AsyncTests
     {
         [TestMethod]
-        public void TraceOnFaulted_WhenTaskThrows_ErrorIsLogged()
+        public async Task TraceOnFaulted_WhenTaskThrows_ErrorIsLoggedAsync()
         {
             var logger = Substitute.For<ILogger<object>>();
 
@@ -22,13 +22,13 @@ namespace Cloudtoid.Framework.UnitTests
                 .Run(() => throw new InvalidCastException())
                 .TraceOnFaulted(logger, "TraceOnFaultedWithException", default);
 
-            Invoking(async () => await task).Should().ThrowExactly<InvalidCastException>();
+            await Invoking(async () => await task).Should().ThrowExactlyAsync<InvalidCastException>();
 
             logger.LogReceivedThatContains("TraceOnFaultedWithException", level: LogLevel.Error);
         }
 
         [TestMethod]
-        public void TraceOnFaulted_WhenNoExceptionThrown_NoErrorIsLogged()
+        public async Task TraceOnFaulted_WhenNoExceptionThrown_NoErrorIsLoggedAsync()
         {
             var logger = Substitute.For<ILogger<object>>();
 
@@ -36,7 +36,7 @@ namespace Cloudtoid.Framework.UnitTests
                 .Run(() => { })
                 .TraceOnFaulted(logger, "TraceOnFaultedWithException", default);
 
-            Invoking(() => task).Should().NotThrow();
+            await Invoking(() => task).Should().NotThrowAsync();
 
             logger.LogReceivedThatContains("TraceOnFaultedWithException", 0, LogLevel.Error);
 
@@ -44,7 +44,7 @@ namespace Cloudtoid.Framework.UnitTests
         }
 
         [TestMethod]
-        public void TraceOnFaultedWithResult_WhenTaskThrows_ErrorIsLogged()
+        public async Task TraceOnFaultedWithResult_WhenTaskThrows_ErrorIsLoggedAsync()
         {
             var logger = Substitute.For<ILogger<object>>();
 
@@ -52,13 +52,13 @@ namespace Cloudtoid.Framework.UnitTests
                 .Run((Func<int>)(() => throw new InvalidCastException()))
                 .TraceOnFaulted(logger, "TraceOnFaultedWithException", default);
 
-            Invoking(() => task).Should().ThrowExactly<InvalidCastException>();
+            await Invoking(() => task).Should().ThrowExactlyAsync<InvalidCastException>();
 
             logger.LogReceivedThatContains("TraceOnFaultedWithException", level: LogLevel.Error);
         }
 
         [TestMethod]
-        public void TraceOnFaultedWithResult_WhenNoExceptionThrown_NoErrorIsLogged()
+        public async Task TraceOnFaultedWithResult_WhenNoExceptionThrown_NoErrorIsLoggedAsync()
         {
             var logger = Substitute.For<ILogger<object>>();
 
@@ -67,7 +67,7 @@ namespace Cloudtoid.Framework.UnitTests
                 .TraceOnFaulted(logger, "TraceOnFaultedWithException", default);
 
             var result = 0;
-            Invoking(async () => result = await task).Should().NotThrow();
+            await Invoking(async () => result = await task).Should().NotThrowAsync();
 
             logger.LogReceivedThatContains("TraceOnFaultedWithException", 0, LogLevel.Error);
 

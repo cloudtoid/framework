@@ -47,7 +47,7 @@ namespace Cloudtoid.Framework.UnitTests
                     continue;
 
                 var arguments = call.GetArguments();
-                if (level != LogLevel.None && level != (LogLevel)arguments[0])
+                if (level != LogLevel.None && level != (LogLevel)arguments[0]!)
                     continue;
 
                 if (searchString is null)

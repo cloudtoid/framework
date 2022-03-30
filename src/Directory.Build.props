@@ -8,25 +8,25 @@
 
   <!-- Build Settings -->
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
     <Nullable>enable</Nullable>
-    <LangVersion>9.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <!-- Product Package Versions -->
   <PropertyGroup>
-    <MicrosoftExtensionsVersion>5.0.*</MicrosoftExtensionsVersion>
+    <MicrosoftExtensionsVersion>6.0.*</MicrosoftExtensionsVersion>
   </PropertyGroup>
 
   <!-- Test Package Versions -->
   <PropertyGroup>
-    <MicrosoftDotNetTestSdk>16.10.*</MicrosoftDotNetTestSdk>
+    <MicrosoftDotNetTestSdk>17.1.*</MicrosoftDotNetTestSdk>
     <MSTestVersion>2.2.*</MSTestVersion>
-    <NSubstituteVersion>4.2.*</NSubstituteVersion>
-    <FluentAssertionsVersion>5.10.*</FluentAssertionsVersion>
-    <CoverletVersion>3.0.*</CoverletVersion>
+    <NSubstituteVersion>4.3.*</NSubstituteVersion>
+    <FluentAssertionsVersion>6.5.*</FluentAssertionsVersion>
+    <CoverletVersion>3.1.*</CoverletVersion>
   </PropertyGroup>
 
   <!-- Code Analyzer Versions -->
