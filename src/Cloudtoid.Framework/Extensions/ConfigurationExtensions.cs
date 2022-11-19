@@ -34,7 +34,7 @@ namespace Cloudtoid
             if (section is null || string.IsNullOrEmpty(section.Key))
                 return defaultValue;
 
-            return section.Value;
+            return section.Value ?? defaultValue;
         }
     }
 }

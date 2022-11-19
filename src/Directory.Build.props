@@ -8,9 +8,9 @@
 
   <!-- Build Settings -->
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net7.0;net6.0;netcoreapp3.1</TargetFrameworks>
     <Nullable>enable</Nullable>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>11.0</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
@@ -22,11 +22,11 @@
 
   <!-- Test Package Versions -->
   <PropertyGroup>
-    <MicrosoftDotNetTestSdk>17.1.*</MicrosoftDotNetTestSdk>
+    <MicrosoftDotNetTestSdk>17.4.*</MicrosoftDotNetTestSdk>
     <MSTestVersion>2.2.*</MSTestVersion>
-    <NSubstituteVersion>4.3.*</NSubstituteVersion>
-    <FluentAssertionsVersion>6.5.*</FluentAssertionsVersion>
-    <CoverletVersion>3.1.*</CoverletVersion>
+    <NSubstituteVersion>4.4.*</NSubstituteVersion>
+    <FluentAssertionsVersion>6.8.*</FluentAssertionsVersion>
+    <CoverletVersion>3.2.*</CoverletVersion>
   </PropertyGroup>
 
   <!-- Code Analyzer Versions -->
