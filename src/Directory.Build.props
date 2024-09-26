@@ -8,25 +8,24 @@
 
   <!-- Build Settings -->
   <PropertyGroup>
-    <TargetFrameworks>net7.0;net6.0;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <Nullable>enable</Nullable>
-    <LangVersion>11.0</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <!-- Product Package Versions -->
   <PropertyGroup>
-    <MicrosoftExtensionsVersion>6.0.*</MicrosoftExtensionsVersion>
+    <MicrosoftExtensionsVersion>8.0.*</MicrosoftExtensionsVersion>
   </PropertyGroup>
 
   <!-- Test Package Versions -->
   <PropertyGroup>
-    <MicrosoftDotNetTestSdk>17.4.*</MicrosoftDotNetTestSdk>
-    <MSTestVersion>2.2.*</MSTestVersion>
-    <NSubstituteVersion>4.4.*</NSubstituteVersion>
-    <FluentAssertionsVersion>6.8.*</FluentAssertionsVersion>
-    <CoverletVersion>3.2.*</CoverletVersion>
+    <MicrosoftDotNetTestSdk>17.11.*</MicrosoftDotNetTestSdk>
+    <MSTestVersion>3.6.*</MSTestVersion>
+    <NSubstituteVersion>5.1.*</NSubstituteVersion>
+    <FluentAssertionsVersion>6.12.*</FluentAssertionsVersion>
+    <CoverletVersion>6.0.*</CoverletVersion>
   </PropertyGroup>
 
   <!-- Code Analyzer Versions -->
