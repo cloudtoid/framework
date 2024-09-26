@@ -22,7 +22,7 @@ namespace Cloudtoid.Framework.UnitTests
         [TestMethod]
         public void AsStringValues_WhenOneValue_ReturnsOneValue()
         {
-            var items = Enumerable.Repeat("a", 1);
+            var items = new string[] { "a" }.Where(x => true);
             var values = items.AsStringValues();
             values.Should().BeEquivalentTo(new StringValues("a"));
             var internals = ValuesField.GetValue(values);

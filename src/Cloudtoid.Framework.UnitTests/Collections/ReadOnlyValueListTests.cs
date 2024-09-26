@@ -115,7 +115,7 @@ namespace Cloudtoid.Framework.UnitTests
         [TestMethod]
         public void New_WhenOneEnumerableValue_ValuesFieldSetToThatValue()
         {
-            var v = new ReadOnlyValueList<string?>(Enumerable.Repeat("a", 1));
+            var v = new ReadOnlyValueList<string?>(new string[] { "a" }.Where(x => true));
             v.GetInner().Should().Be("a");
             v.Count.Should().Be(1);
             v[0].Should().Be("a");
