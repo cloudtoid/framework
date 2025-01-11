@@ -4,7 +4,7 @@
 
 [![][WorkflowBadgePublish]][PublishWorkflow] [![License: MIT][LicenseBadge]][License]
 
-Welcome to Cloudtoid's Framework project, which is a library of utility classes, targeting `.net 8+`.
+Welcome to Cloudtoid's Framework project, which is a library of utility classes, targeting `.net 9+`.
 
 The latest NuGet package can be found [here][NuGet].
 
