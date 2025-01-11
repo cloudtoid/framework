@@ -16,15 +16,15 @@
 
   <!-- Product Package Versions -->
   <PropertyGroup>
-    <MicrosoftExtensionsVersion>8.0.*</MicrosoftExtensionsVersion>
+    <MicrosoftExtensionsVersion>9.0.*</MicrosoftExtensionsVersion>
   </PropertyGroup>
 
   <!-- Test Package Versions -->
   <PropertyGroup>
-    <MicrosoftDotNetTestSdk>17.11.*</MicrosoftDotNetTestSdk>
-    <MSTestVersion>3.6.*</MSTestVersion>
-    <NSubstituteVersion>5.1.*</NSubstituteVersion>
-    <FluentAssertionsVersion>6.12.*</FluentAssertionsVersion>
+    <MicrosoftDotNetTestSdk>17.12.*</MicrosoftDotNetTestSdk>
+    <MSTestVersion>3.7.*</MSTestVersion>
+    <NSubstituteVersion>5.3.*</NSubstituteVersion>
+    <FluentAssertionsVersion>7.0.*</FluentAssertionsVersion>
     <CoverletVersion>6.0.*</CoverletVersion>
   </PropertyGroup>
 
