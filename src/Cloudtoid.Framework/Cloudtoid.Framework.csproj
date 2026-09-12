@@ -2,6 +2,7 @@
 
   <!-- NuGet Packaging -->
   <PropertyGroup>
+    <PackageReadmeFile>PACKAGE_README.md</PackageReadmeFile>
     <PackageId>Cloudtoid.Framework</PackageId>
     <Title>Cloudtoid.Framework</Title>
     <Authors>pedram@rezaei.us</Authors>
@@ -25,6 +26,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="$(MicrosoftExtensionsVersion)" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="$(MicrosoftExtensionsVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../PACKAGE_README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
 
 </Project>

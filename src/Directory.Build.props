@@ -30,7 +30,7 @@
 
   <!-- Code Analyzer Versions -->
   <PropertyGroup>
-    <CloudtoidCodeAnalysisVersion>1.0.24</CloudtoidCodeAnalysisVersion>
+    <CloudtoidCodeAnalysisVersion>1.0.28</CloudtoidCodeAnalysisVersion>
     <BannedApiAnalyzersVersion>5.6.0</BannedApiAnalyzersVersion>
   </PropertyGroup>
 
