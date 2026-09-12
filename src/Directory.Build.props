@@ -8,7 +8,7 @@
 
   <!-- Build Settings -->
   <PropertyGroup>
-    <TargetFrameworks>net9.0</TargetFrameworks>
+    <TargetFrameworks>net10.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -16,22 +16,22 @@
 
   <!-- Product Package Versions -->
   <PropertyGroup>
-    <MicrosoftExtensionsVersion>9.0.*</MicrosoftExtensionsVersion>
+    <MicrosoftExtensionsVersion>10.0.12</MicrosoftExtensionsVersion>
   </PropertyGroup>
 
   <!-- Test Package Versions -->
   <PropertyGroup>
-    <MicrosoftDotNetTestSdk>17.12.*</MicrosoftDotNetTestSdk>
-    <MSTestVersion>3.7.*</MSTestVersion>
-    <NSubstituteVersion>5.3.*</NSubstituteVersion>
-    <FluentAssertionsVersion>7.0.*</FluentAssertionsVersion>
-    <CoverletVersion>6.0.*</CoverletVersion>
+    <MicrosoftDotNetTestSdk>18.10.0</MicrosoftDotNetTestSdk>
+    <MSTestVersion>4.4.0</MSTestVersion>
+    <NSubstituteVersion>6.2.0</NSubstituteVersion>
+    <FluentAssertionsVersion>8.10.0</FluentAssertionsVersion>
+    <CoverletVersion>10.0.1</CoverletVersion>
   </PropertyGroup>
 
   <!-- Code Analyzer Versions -->
   <PropertyGroup>
-    <CloudtoidCodeAnalysisVersion>1.0.*</CloudtoidCodeAnalysisVersion>
-    <BannedApiAnalyzersVersion>3.3.*</BannedApiAnalyzersVersion>
+    <CloudtoidCodeAnalysisVersion>1.0.24</CloudtoidCodeAnalysisVersion>
+    <BannedApiAnalyzersVersion>5.6.0</BannedApiAnalyzersVersion>
   </PropertyGroup>
 
   <!-- Code Analyzer Packages -->
