@@ -2,7 +2,7 @@
 
   <!-- NuGet Packaging -->
   <PropertyGroup>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>PACKAGE_README.md</PackageReadmeFile>
     <PackageId>Cloudtoid.Framework</PackageId>
     <Title>Cloudtoid.Framework</Title>
     <Authors>pedram@rezaei.us</Authors>
@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../../README.md" Pack="true" PackagePath="/" />
+    <None Include="../../PACKAGE_README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
 
 </Project>
